@@ -154,8 +154,10 @@ public class MyAddressPage {
         List<WebElement> list_Address = driver.findElements(listAddress);
         String fullAddress = address +", "+ward+", "+district+", "+city;
         logTest.info("Full address: "+fullAddress);
-        for (int i=0;i<list_Address.size();i++){
-
+        for (WebElement adr : list_Address) {
+            if(adr.getText().contains(fullname)){
+                return true;
+            }
         }
         return false;
     }
