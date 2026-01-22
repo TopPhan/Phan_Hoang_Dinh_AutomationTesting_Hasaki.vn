@@ -1,0 +1,34 @@
+<suite name="Page Object test example" parallel="tests" thread-count="1">
+
+    <listeners>
+        <listener class-name="com.listener.Standard_Mode_Listener"></listener>
+    </listeners>
+
+    <test name="sample test on chrome">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL"
+                   value="https://hasaki.vn/" />
+        <classes>
+            <class name="testcases.LoginTest">
+                <methods>
+                    <include name="EnterLoginAccount" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="sample test on firefox">
+        <parameter name="browserType" value="firefox" />
+        <parameter name="appURL"
+                   value="https://hasaki.vn/" />
+        <classes>
+            <class name="testcases.LoginTest">
+                <methods>
+                    <include name="EnterLoginAccount" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

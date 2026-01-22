@@ -1,0 +1,21 @@
+<suite name="Page Object test example" parallel="none" thread-count="1">
+
+    <listeners>
+        <listener class-name="com.listener.Demo_Mode_Listener"></listener>
+    </listeners>
+
+    <test name="sample test on chrome">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL"
+                   value="https://hasaki.vn/" />
+        <classes>
+            <class name="testcases.MyAddressTest">
+                <methods>
+                    <include name="MyAddress_verifyAddressUI"/>
+                    <include name="MyAddress_verifyAddNewAddress"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
