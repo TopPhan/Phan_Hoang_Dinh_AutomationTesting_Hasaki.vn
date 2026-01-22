@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class MyAddressPage {
@@ -71,6 +72,13 @@ public class MyAddressPage {
         validateHelper = new ValidateHelper(driver);
         softAssert = new CustomSoftAssert(driver);
         this.js = (JavascriptExecutor) driver ;
+        try{
+            this.wait = new WebDriverWait(driver,
+                    Duration.ofSeconds(10),
+                    Duration.ofMillis(500));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Step("Verify address tab url")
@@ -153,13 +161,33 @@ public class MyAddressPage {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(listAddress));
         List<WebElement> list_Address = driver.findElements(listAddress);
         String fullAddress = address +", "+ward+", "+district+", "+city;
-        logTest.info("Full address: "+fullAddress);
-        for (WebElement adr : list_Address) {
-            if(adr.getText().contains(fullname)){
+        logTest.info("Full name expected:"+fullname);
+        logTest.info("Full address expected: "+fullAddress);
+
+        // Set logic
+        Boolean isFullNameSaved = false;
+        Boolean isFullAddressSaved = false;
+
+        for (int i=1;i<=list_Address.size();i++){
+
+            //Get fullname
+            String getFullName = driver.findElement(By.xpath("" +
+                    "//div[@class='grid gap-5 grid-cols-2 w-full']/div["+i+"]//p[@class='text-sm font-bold']")).getText();
+
+            //Get fulladdress
+            String getFullAddress = driver.findElement(By.xpath("" +
+                    "//div[@class='grid gap-5 grid-cols-2 w-full']/div["+i+"]//p[@class='text-muted-foreground text-sm leading-normal']")).getText();
+
+            // If address is found return true
+            if (getFullName.trim().contains(fullname) && getFullAddress.trim().contains(fullAddress)) {
+                logTest.info("Actual fullname: "+getFullName);
+                logTest.info("Actual address: "+getFullAddress);
+                logTest.info("[PASS] Found matching address at position: " + i);
                 return true;
             }
         }
-        return false;
+            logTest.error("[FAIL] Full name and full address aren't save");
+            return false;
     }
 
 }

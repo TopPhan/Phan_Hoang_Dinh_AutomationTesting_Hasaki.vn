@@ -73,7 +73,6 @@ public class MyAddressTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Verify add address"));
 
-
         myAddressPage.addNewAddress(addressModel.getPhoneNumber(),
                 addressModel.getFullName(),
                 addressModel.getCity(),
@@ -81,6 +80,13 @@ public class MyAddressTest extends multipleThread_baseSetup {
                 addressModel.getWard(),
                 addressModel.getAddress());
 
+        softAssert.assertTrue(myAddressPage.verifyAddressIsSaved(addressModel.getFullName(),
+                addressModel.getCity(),
+                addressModel.getDistrict(),
+                addressModel.getWard(),
+                addressModel.getAddress()),"[FAIL] Address is not saved");
+
+        softAssert.assertAll();
     }
 
     @AfterMethod

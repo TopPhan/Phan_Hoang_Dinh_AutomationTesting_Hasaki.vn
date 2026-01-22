@@ -4375,3 +4375,50 @@ Command: [null, newSession {capabilities=[Capabilities {browserName: chrome, goo
 [INFO] 22-01-2026 20:26:20 [CHROME] [main] Demo_Mode_Listener - This test case is success : MyAddress_verifyAddNewAddress
 [INFO] 22-01-2026 20:26:21 [CHROME] [main] MyAddressTest - Finish Test: MyAddress_verifyAddNewAddress
 [INFO] 22-01-2026 20:26:24 [CHROME] [main] multipleThread_baseSetup - Driver closed. Test completed.
+[WARN] 22-01-2026 23:16:27 [] [main] TestNGContentHandler - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\RunTest\ChromeRun.xml] otherwise TestNG may fail or not work as expected.
+[INFO] 22-01-2026 23:16:28 [] [main] Utils - [TestNG] Running:
+  C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\RunTest\ChromeRun.xml
+
+[INFO] 22-01-2026 23:16:28 [CHROME] [main] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 22-01-2026 23:16:38 [CHROME] [main] MyAddressTest - Test case: Verify Address UI
+[INFO] 22-01-2026 23:16:38 [CHROME] [main] MyAddressTest - Default Username: topphanst@gmail.com
+[INFO] 22-01-2026 23:16:38 [CHROME] [main] MyAddressTest - Default Password: topphan93
+[WARN] 22-01-2026 23:16:50 [CHROME] [main] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] Demo_Mode_Listener - 🎥 Run screen record test: chrome_MyAddress_verifyAddressUI_23-16-55
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] MyAddressPage - [PASS] Url: hasaki.vn/customer/address is display
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] MyAddressPage - [PASS] Title: Sổ địa chỉ is display
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] Demo_Mode_Listener - This test case is success : MyAddress_verifyAddressUI
+[INFO] 22-01-2026 23:16:55 [CHROME] [main] MyAddressTest - Finish Test: MyAddress_verifyAddressUI
+[INFO] 22-01-2026 23:16:57 [CHROME] [main] Demo_Mode_Listener - 🎥 Run screen record test: chrome_MyAddress_verifyAddNewAddress_23-16-57
+[INFO] 22-01-2026 23:16:57 [CHROME] [main] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[WARN] 22-01-2026 23:16:58 [CHROME] [main] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@aria-label='add address button']
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] MyAddressPage - Full name expected:Nguyễn Thị B
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] MyAddressPage - Full address expected: For Demo Only, Xã Vĩnh Lộc A, Huyện Bình Chánh, Hồ Chí Minh
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] MyAddressPage - Actual fullname: Nguyễn Thị B - **********
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] MyAddressPage - Actual address: For Demo Only, Xã Vĩnh Lộc A, Huyện Bình Chánh, Hồ Chí Minh
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] MyAddressPage - [PASS] Found matching address at position: 2
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] Demo_Mode_Listener - This test case is success : MyAddress_verifyAddNewAddress
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] MyAddressTest - Finish Test: MyAddress_verifyAddNewAddress
+[INFO] 22-01-2026 23:17:05 [CHROME] [main] Demo_Mode_Listener - 🎥 Run screen record test: chrome_MyAddress_verifyAddNewAddress_23-17-05
+[INFO] 22-01-2026 23:17:06 [CHROME] [main] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[WARN] 22-01-2026 23:17:07 [CHROME] [main] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@aria-label='add address button']
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] MyAddressPage - Full name expected:Trương Ngọc A
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] MyAddressPage - Full address expected: For Demo Only, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] MyAddressPage - Actual fullname: Trương Ngọc A - **********
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] MyAddressPage - Actual address: For Demo Only, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] MyAddressPage - [PASS] Found matching address at position: 2
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] Demo_Mode_Listener - This test case is success : MyAddress_verifyAddNewAddress
+[INFO] 22-01-2026 23:17:13 [CHROME] [main] MyAddressTest - Finish Test: MyAddress_verifyAddNewAddress
+[INFO] 22-01-2026 23:17:14 [CHROME] [main] Demo_Mode_Listener - 🎥 Run screen record test: chrome_MyAddress_verifyAddNewAddress_23-17-14
+[INFO] 22-01-2026 23:17:14 [CHROME] [main] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[WARN] 22-01-2026 23:17:15 [CHROME] [main] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@aria-label='add address button']
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] MyAddressPage - Full name expected:Nguyễn Tuấn T
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] MyAddressPage - Full address expected: For Demo Only, Phường Cái Khế, Quận Ninh Kiều, Cần Thơ
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] MyAddressPage - Actual fullname: Nguyễn Tuấn T - **********
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] MyAddressPage - Actual address: For Demo Only, Phường Cái Khế, Quận Ninh Kiều, Cần Thơ
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] MyAddressPage - [PASS] Found matching address at position: 2
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] Demo_Mode_Listener - This test case is success : MyAddress_verifyAddNewAddress
+[INFO] 22-01-2026 23:17:21 [CHROME] [main] MyAddressTest - Finish Test: MyAddress_verifyAddNewAddress
+[INFO] 22-01-2026 23:17:24 [CHROME] [main] multipleThread_baseSetup - Driver closed. Test completed.
