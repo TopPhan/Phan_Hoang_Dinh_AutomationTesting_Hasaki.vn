@@ -41,6 +41,15 @@ public class ValidateHelper {
         this.action = new Actions(driver);
     }
 
+    @Step("Wait for element invinsible")
+    public void waitForElementInvisible(By locator) {
+        try{
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Step("Verify isPaginationButtonDisabled is enabled / disabled")
     public boolean isPaginationButtonDisabled(WebElement element) {
         // Lấy giá trị của thuộc tính class
@@ -227,12 +236,16 @@ public class ValidateHelper {
     @Step("Verify url match with: '{0}'")
     public boolean verifyUrl(String expectedUrl) {
         try {
+            wait.until(ExpectedConditions.urlContains(expectedUrl));
             return Objects.requireNonNull(driver.getCurrentUrl()).contains(expectedUrl);
         } catch (Exception e) {
             logTest.error("[FAIL] Url is not match with: " + expectedUrl );
         }
         return false;
     }
+
+
+
 
     @Step("Verify element '{0}' is existed")
     public boolean verifyElementIsExist(By locator) {

@@ -9,10 +9,9 @@
         <parameter name="appURL"
                    value="https://hasaki.vn/" />
         <classes>
-            <class name="testcases.MyAddressTest">
+            <class name="testcases.ProductDetailTest">
                 <methods>
-                    <include name="MyAddress_verifyAddressUI"/>
-                    <include name="MyAddress_verifyAddNewAddress"/>
+                    <include name="ProductDetail_VerifyUI"/>
                 </methods>
             </class>
         </classes>

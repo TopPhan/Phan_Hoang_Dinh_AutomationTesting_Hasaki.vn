@@ -36,7 +36,7 @@ public class SearchPage {
     // SearchTest textbox
     private By searchBar = By.id("search");
     // SearchTest button
-    private By searchButton = By.xpath("//button[@title='SearchTest']");
+    private By searchButton = By.xpath("//button[@title='Search']");
     // List items in page
     private By listItems = By.xpath("//div[@class='grid grid-cols-4 gap-2.5 px-2.5 mt-5']//div/a");
     // Text not found item in search
@@ -61,6 +61,25 @@ public class SearchPage {
     public void searchProduct(String product) {
         validateHelper.setText(searchBar,product);
         validateHelper.clickElement(searchButton);
+    }
+
+    @Step("Search and click first product with keyword: '{0}'")
+    public ProductDetailPage searchAndReturnFirstProduct(String product) throws InterruptedException {
+        try {
+            validateHelper.setText(searchBar, product);
+            validateHelper.clickElement(searchButton);
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(listItems));
+            WebElement firstItem = driver.findElements(listItems).getFirst();
+            if (!driver.findElements(listItems).isEmpty()) {
+                validateHelper.clickElement(firstItem);
+                return new ProductDetailPage(driver);
+            } else {
+                logTest.info("[FAIL] No product found");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     @Step("Go to next page")

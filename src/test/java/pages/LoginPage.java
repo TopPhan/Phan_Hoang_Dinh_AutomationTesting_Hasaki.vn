@@ -81,8 +81,8 @@ public class LoginPage {
             validateHelper.verifyElementIsDisplay(hasakiLogo);
             if(validateHelper.verifyUrl("hasaki.vn")){
                 logTest.info("[PASS] sign in page url match");
+                return validateHelper.verifyUrl("hasaki.vn");
             };
-            return validateHelper.verifyUrl("hasaki.vn");
         } catch (Exception e) {
             logTest.error("[FAIL] sign in page url doesn't match");
         }

@@ -162,6 +162,27 @@ public class SearchTest extends multipleThread_baseSetup {
 
     }
 
+    @Test(priority = 3)
+    @Feature("SearchTest")
+    @Story("Search and click first items")
+    @Severity(SeverityLevel.NORMAL)
+    public void Search_ClickFirstItems() throws InterruptedException {
+
+        // Overite testcase name display on Allure report by testcode and description.
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC6 Negative Test: SearchTest with none less keyword"));
+
+        searchPage = new SearchPage(getDriver());
+        loginPage = new LoginPage(getDriver());
+
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("TC7 SearchTest and click firsh items");
+
+        String keyword = "Sữa rửa mặt cerave";
+        searchPage.searchAndReturnFirstProduct(keyword);
+
+    }
+
     @AfterMethod
     public void closeSearch(ITestResult result) {
         try {
