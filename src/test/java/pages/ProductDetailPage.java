@@ -38,12 +38,12 @@ public class ProductDetailPage {
     private By productPrice = By.xpath("//span[@class='text-orange text-base font-bold leading-[22px] cursor-pointer']");
     private By productAdd = By.xpath("//div[contains(text(),'Giỏ hàng')]/parent::button");
     private By productByNow = By.xpath("//div[contains(text(),'MUA NGAY')]/parent::button");
-    private By DescreseProduct = By.xpath("//button[@aria-label='Descrease btn']");
-    private By IncreaseProduct = By.xpath("//button[@aria-label='Increase btn']");
+    private By descreseProduct = By.xpath("//button[@aria-label='Descrease btn']");
+    private By increaseProduct = By.xpath("//button[@aria-label='Increase btn']");
     private By productQuantity = By.xpath("//input[@name='qty']");
     private By productAvailable = By.xpath("//span//b");
-    private By CartButton = By.xpath("//a[@aria-label='Cart Nav']");
-    private By NumberOfItems = By.xpath("//span[contains(text(),'Cart Icon')]/following-sibling::span");
+    private By cartButton = By.xpath("//a[@aria-label='Cart Nav']");
+    private By numberOfItems = By.xpath("//span[contains(text(),'Cart Icon')]/following-sibling::span");
 
     // ---
     private By logoIsDisplay = By.xpath("//a[@aria-label='Homepage']");
@@ -51,12 +51,12 @@ public class ProductDetailPage {
     private By closePopup = By.xpath("//div[@class='grid gap-1']/following-sibling::button");
 
 
-
+    // ---------- VERIFY PAGE --------------
     @Step("Verify product page url contains: /san-pham ")
     public boolean verify_ProductPage_Url() {
         try {
-            boolean UrlContains = validateHelper.verifyUrl("hasaki.vn/san-pham/");
-            if (UrlContains){
+            boolean urlContains = validateHelper.verifyUrl("hasaki.vn/san-pham/");
+            if (urlContains){
                 logTest.info("[PASS] Url: hasaki.vn/san-pham/... is display");
                 return validateHelper.verifyUrl("hasaki.vn/san-pham/");
             }
@@ -83,6 +83,40 @@ public class ProductDetailPage {
         }
     }
 
+    @Step("Verify product name is display correctly")
+    public boolean isAddCartEnable() {
+        try {
+
+            Boolean isAddCartDisplay = validateHelper.verifyElementIsDisplay(productAdd);
+            Boolean isAddCartEnable = validateHelper.verifyElementEnabled(productAdd);
+
+            if(isAddCartDisplay && isAddCartEnable){
+                logTest.info("[PASS] Add Cart button is display & enable");
+            }
+            return isAddCartDisplay && isAddCartEnable;
+        } catch (Exception e) {
+            logTest.error("[FAIL] Add Cart button isn't display or enable");
+            return false;
+        }
+    }
+
+    @Step("Get cart quantity")
+    public int getCartQuantity() {
+        try {
+
+            String rawText = validateHelper.getTextElement(numberOfItems).trim();
+            logTest.info("Raw cart text: '" + rawText + "'");
+            if (rawText.isEmpty() || !rawText.matches("\\d+")) {
+                logTest.warn("[WARN] Cart is empty or contains non-numeric text. Returning 0.");
+                return 0;
+            }
+            return Integer.parseInt(rawText);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Unexpected error getting cart quantity: " + e.getMessage());
+            return 0;
+        }
+    }
+
     @Step("Verify popup add to cart is display")
     public boolean isPopupAddToCartDisplay() {
         try {
@@ -98,7 +132,21 @@ public class ProductDetailPage {
         }
     }
 
+    @Step("Close success popup")
+    public void closeSuccessPopup() {
+        validateHelper.waitForElementInvisible(successPopup);
+    }
 
+    // --------------- ACTION -----------------
+    @Step("Add single product to cart")
+    public void addSingleProductToCart() {
+        try {
+            validateHelper.clickElement(productAdd);
+            logTest.info("[PASS] Add single product");
+        } catch (Exception e) {
+            logTest.error("[FAIL] Add single product");
+        }
+    }
 
 
 

@@ -72,7 +72,7 @@ public class MyAccountPage {
         return isLoginDisplayed && isRegisterDisplayed;
     }
 
-    @Step("Create MyAddressPage class for linking page ")
+    @Step("Create MyAddressPage class for linking page (Open address page) ")
     public MyAddressPage goToMyAddressTab() {
         try {
             validateHelper.action_MovetoElement(myAccountPanel);

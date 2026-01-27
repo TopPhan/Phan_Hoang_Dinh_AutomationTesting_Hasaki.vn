@@ -107,12 +107,12 @@ public class MyAddressPage {
     public boolean isTitleAddressTab() {
         try {
 
-            Boolean AddressTitleFound = validateHelper.verifyElementIsDisplay(addressTitle);
-            Boolean TitleMatch = validateHelper.getTextElement(addressTitle).trim().toLowerCase().contains("sổ địa chỉ");
-            if(AddressTitleFound && TitleMatch){
+            Boolean addressTitleFound = validateHelper.verifyElementIsDisplay(addressTitle);
+            Boolean titleMatch = validateHelper.getTextElement(addressTitle).trim().toLowerCase().contains("sổ địa chỉ");
+            if(addressTitleFound && titleMatch){
                 logTest.info("[PASS] Title: " + validateHelper.getTextElement(addressTitle) + " is display");
             }
-            return AddressTitleFound && TitleMatch;
+            return addressTitleFound && titleMatch;
         } catch (Exception e) {
             logTest.error("[FAIL] Title 'Sổ địa chỉ' is not display");
             return false;

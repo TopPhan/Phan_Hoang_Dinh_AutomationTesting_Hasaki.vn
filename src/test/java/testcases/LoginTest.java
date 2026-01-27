@@ -21,21 +21,12 @@ public class LoginTest extends multipleThread_baseSetup {
 
     private ValidateHelper validateHelper;
     private JavascriptExecutor js;
-    private CustomSoftAssert softAssert;
-
-    public LoginPage loginPage;
-    public MyAccountPage myAccountPage;
 
     @BeforeMethod
     public void createHelper() {
         //driver = getDriver();
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
-        softAssert = new CustomSoftAssert(getDriver());
-    }
-
-    @Test
-    public void Login_isSuccessfully() throws InterruptedException {
 
     }
 
@@ -60,12 +51,13 @@ public class LoginTest extends multipleThread_baseSetup {
         logTest.info("Username: " + loginModel.getEmail());
         logTest.info("Password: " + loginModel.getPassword());
 
-        loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
         Assert.assertTrue(loginPage.verify_SignInPage_Title(), "Sign In page title doesn't match");
         Assert.assertTrue(loginPage.verify_SignInPage_Url(),"Sign In page url doesn't match");
 
-        myAccountPage = loginPage.login_user(loginModel.getEmail(),loginModel.getPassword());
+        MyAccountPage myAccountPage = loginPage.login_user(loginModel.getEmail(),loginModel.getPassword());
 
         // 3. Switch Case để Assert riêng cho từng mã TestCode
         switch (loginModel.getTestcode().trim().toUpperCase()) {
@@ -106,7 +98,8 @@ public class LoginTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("Verify LoginTest UI"));
 
-        loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
         loginPage.bypass_Cookie();
 

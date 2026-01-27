@@ -45,6 +45,7 @@ public class SearchPage {
     private By itemsNotExisted = By.xpath("//span[@class='text-orange font-bold']");
 
 
+
     // --- Filer ---
     // Start price
     private By startPrice = By.xpath("//input[@name='priceFrom']");
@@ -55,6 +56,9 @@ public class SearchPage {
     // --- List price of item
     private By listPrice = By.xpath("//div[@class='grid grid-cols-4 gap-2.5 px-2.5 mt-5']//a//span[@class='text-orange font-bold text-sm']");
 
+    // --- Search on product detailed page ---
+    private By textboxProductDetail = By.xpath("//input[@placeholder='Tìm sản phẩm, thương hiệu bạn mong muốn...']");
+    private By searchButtonProduct = By.xpath("//button[@aria-label='Search Button']");
 
 
     @Step("SearchTest product with keyword: '{0}'")
@@ -63,7 +67,13 @@ public class SearchPage {
         validateHelper.clickElement(searchButton);
     }
 
-    @Step("Search and click first product with keyword: '{0}'")
+    @Step("SearchTest product with keyword: '{0}'")
+    public void searchOnProductDetailedPage(String product) {
+        validateHelper.setText(textboxProductDetail,product);
+        validateHelper.clickElement(searchButtonProduct);
+    }
+
+    @Step("Search and click first product with keyword: '{0}' (Open Product Detail Page)")
     public ProductDetailPage searchAndReturnFirstProduct(String product) throws InterruptedException {
         try {
             validateHelper.setText(searchBar, product);

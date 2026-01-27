@@ -24,29 +24,12 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
     private ValidateHelper validateHelper;
     private JavascriptExecutor js;
-    private CustomSoftAssert softAssert;
 
-    public LoginPage loginPage;
-    public MyAccountPage myAccountPage;
-    public MyAddressPage myAddressPage;
-
-
-    @BeforeClass
+    @BeforeMethod
     public void setLoginPage() throws Exception {
         //driver = getDriver();
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
-        softAssert = new CustomSoftAssert(getDriver());
-
-        loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
-
-        logTest.info("Log into the hasaki.vn");
-        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
-        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
-
-        myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        myAddressPage = myAccountPage.goToMyAddressTab();
     }
 
     @Test(priority = 0)
@@ -58,14 +41,23 @@ public class MyAddressTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Quick verify address page UI"));
 
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("Log into the hasaki.vn");
+        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
+        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
+
+        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
+        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
+
         Assert.assertTrue(myAddressPage.verify_AddressTab_Url(),"Address tab url doesn't match");
         Assert.assertTrue(myAddressPage.isTitleAddressTab(),"Address tab title doesn't exist");
     }
 
-
-
-    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,
-            dependsOnMethods = "MyAddress_verifyAddressUI", priority = 1)
+    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,priority = 1)
     @Feature("MyAddressTest")
     @Story("Validate Add address on page")
     @Severity(SeverityLevel.CRITICAL)
@@ -79,6 +71,18 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Verify add address"));
+
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("Log into the hasaki.vn");
+        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
+        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
+
+        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
+        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
 
         String fullname = addressModel.getFullName();
         String fullAddress = addressModel.getAddress() +", "+addressModel.getWard()+", "+addressModel.getDistrict()+", "+addressModel.getCity();
@@ -105,8 +109,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
     }
 
-    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,
-            dependsOnMethods = "MyAddress_verifyAddNewAddress", priority = 2)
+    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,priority = 2)
     @Feature("MyAddressTest")
     @Story("Validate Delete address on page")
     @Severity(SeverityLevel.CRITICAL)
@@ -120,6 +123,18 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Verify delete address"));
+
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("Log into the hasaki.vn");
+        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
+        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
+
+        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
+        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
 
         String fullname = addressModel.getFullName();
         String fullAddress = addressModel.getAddress() +", "+addressModel.getWard()+", "+addressModel.getDistrict()+", "+addressModel.getCity();
@@ -146,8 +161,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,
-            dependsOnMethods = "MyAddress_verifyAddressUI", priority = 3)
+    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class, priority = 3)
     @Feature("MyAddressTest")
     @Story("Negative Test: Validate error message on add address page")
     @Severity(SeverityLevel.MINOR)
@@ -161,6 +175,18 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Validate error message on add address page"));
+
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("Log into the hasaki.vn");
+        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
+        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
+
+        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
+        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
 
         softAssert.assertTrue(myAddressPage.addAddressWithoutPhoneNumber(
                 addressModel.getFullName(),

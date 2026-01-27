@@ -1,7 +1,7 @@
 <suite name="Page Object test example" parallel="none" thread-count="1">
 
     <listeners>
-        <listener class-name="com.listener.Demo_Mode_Listener"></listener>
+        <listener class-name="com.listener.Standard_Mode_Listener"></listener>
     </listeners>
 
     <test name="sample test on chrome">
@@ -11,7 +11,7 @@
         <classes>
             <class name="testcases.ProductDetailTest">
                 <methods>
-                    <include name="ProductDetail_VerifyUI"/>
+                    <include name="ProductDetail_AddSingleToCart"/>
                 </methods>
             </class>
         </classes>

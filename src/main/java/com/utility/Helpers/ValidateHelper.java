@@ -244,8 +244,21 @@ public class ValidateHelper {
         return false;
     }
 
+    @Step("Verify element '{0}' is enabled")
+    public boolean verifyElementEnabled(By locator) {
+        try {
 
-
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+            boolean isEnabled = driver.findElement(locator).isEnabled();
+            if (isEnabled) {
+                logTest.info("[PASS] Element " + locator.toString() + " is enabled.");
+            }
+            return isEnabled;
+        } catch (Exception e) {
+            logTest.error("[FAIL] Element " + locator.toString() + " is NOT enabled or not clickable after timeout.");
+            return false;
+        }
+    }
 
     @Step("Verify element '{0}' is existed")
     public boolean verifyElementIsExist(By locator) {

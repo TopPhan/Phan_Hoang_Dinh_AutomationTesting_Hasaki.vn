@@ -21,16 +21,11 @@ public class SearchTest extends multipleThread_baseSetup {
 
     private ValidateHelper validateHelper;
     private JavascriptExecutor js;
-    private CustomSoftAssert softAssert;
-
-    public SearchPage searchPage;
-    public LoginPage loginPage;
 
     @BeforeMethod
     public void createHelper() {
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
-        softAssert = new CustomSoftAssert(getDriver());
     }
 
     @Test(dataProvider = "SearchDataFromExcel",dataProviderClass = DataProviders.class, priority = 0)
@@ -48,10 +43,11 @@ public class SearchTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName(searchModel.getTestcase() + " " + searchModel.getDescriptions()));
 
-        loginPage = new LoginPage(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        searchPage = new SearchPage(getDriver());
+        SearchPage searchPage = new SearchPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
         logTest.info(searchModel.getTestcase() + " " + searchModel.getDescriptions());
 
@@ -110,10 +106,11 @@ public class SearchTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC5 Verify search by price"));
 
-        searchPage = new SearchPage(getDriver());
-        loginPage = new LoginPage(getDriver());
-
+        LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        SearchPage searchPage = new SearchPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
         logTest.info("TC5 Verify search by price");
 
@@ -148,10 +145,11 @@ public class SearchTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC6 Negative Test: SearchTest with none less keyword"));
 
-        searchPage = new SearchPage(getDriver());
-        loginPage = new LoginPage(getDriver());
-
+        LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        SearchPage searchPage = new SearchPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
         logTest.info("TC6 Negative Test: SearchTest with none less keyword");
 
@@ -171,10 +169,11 @@ public class SearchTest extends multipleThread_baseSetup {
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC6 Negative Test: SearchTest with none less keyword"));
 
-        searchPage = new SearchPage(getDriver());
-        loginPage = new LoginPage(getDriver());
-
+        LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        SearchPage searchPage = new SearchPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
         logTest.info("TC7 SearchTest and click firsh items");
 

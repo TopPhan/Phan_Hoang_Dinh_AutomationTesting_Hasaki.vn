@@ -142,7 +142,7 @@ public class LoginPage {
         return validateHelper.getTextElement(headerUsername);
     }
 
-    @Step("Create MyAccountPage class for linking by login")
+    @Step("Create MyAccountPage class for linking by login (Open My Account Page)")
     public MyAccountPage login_user(String username, String password) throws Exception {
 
         validateHelper.Delay(2000);
@@ -164,7 +164,7 @@ public class LoginPage {
         return new MyAccountPage(driver);
     }
 
-    @Step("Create MyAccountPage class for linking by login and remember password")
+    @Step("Create MyAccountPage class for linking by login and remember password (Open My Account Page)")
     public MyAccountPage login_remember_user(String username, String password) throws Exception {
 
         validateHelper.Delay(2000);

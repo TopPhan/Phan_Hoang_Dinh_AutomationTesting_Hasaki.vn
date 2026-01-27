@@ -118,13 +118,13 @@ public class DataProviders {
 
     //-------------------  Data Include Quick -----------------
 
-    @DataProvider(name = "searchData", parallel = true)
+    @DataProvider(name = "searchData")
     public Object[][] searchKeywords() {
         return new Object[][]{
-                {"Kem chống nắng"}, // Row 0, Column 0
-                {"Nước hoa"},       // Row 1, Column 0
-                {"Son môi"},        // Row 2, Column 0
-                {"Sữa rửa mặt"}     // Row 3, Column 0
+                {"Chống nắng sunplay"}, // Row 0, Column 0
+                {"Nước hoa nữ Narciso Rodriguez"},       // Row 1, Column 0
+                {"Son thỏi 3CE"},        // Row 2, Column 0
+                {"Sữa rửa mặt cerave"}     // Row 3, Column 0
         };
     }
     // Test chay searchData
