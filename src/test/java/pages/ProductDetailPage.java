@@ -103,7 +103,7 @@ public class ProductDetailPage {
     @Step("Get cart quantity")
     public int getCartQuantity() {
         try {
-
+            validateHelper.scrollToTopPage_js();
             String rawText = validateHelper.getTextElement(numberOfItems).trim();
             logTest.info("Raw cart text: '" + rawText + "'");
             if (rawText.isEmpty() || !rawText.matches("\\d+")) {

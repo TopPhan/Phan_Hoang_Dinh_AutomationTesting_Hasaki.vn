@@ -27,7 +27,6 @@ public class LoginTest extends multipleThread_baseSetup {
         //driver = getDriver();
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
-
     }
 
     @Test(dataProvider = "dataLogin",dataProviderClass = DataProviders.class, priority = 0)
@@ -87,7 +86,6 @@ public class LoginTest extends multipleThread_baseSetup {
         }
 
     }
-
     @Test( priority = 1)
     @Feature("LoginTest")
     @Story("Verify LoginTest label")

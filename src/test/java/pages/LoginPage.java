@@ -31,6 +31,7 @@ public class LoginPage {
     private By rememberPasswordCheckbox = By.xpath("//label[contains(.,'Nhớ mật khẩu')]//input[@type='checkbox']");
     // Header username
     private By headerUsername = By.xpath("//span[@class='header_username']");
+    private By headerUsernameAddress = By.xpath("//span[normalize-space()='Chào']");
     // Show error message
     private By errorMessage = By.xpath("//div[@class='alert alert-danger']");
 
@@ -58,6 +59,11 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.validateHelper  = new ValidateHelper(driver);
+    }
+
+    @Step("Verify is logged in")
+    public boolean isLoggedIn() {
+        return validateHelper.verifyElementIsExist(headerUsername) || validateHelper.verifyElementIsExist(headerUsernameAddress) ;
     }
 
     @Step("Verify Sign In page title")
@@ -204,5 +210,7 @@ public class LoginPage {
         validateHelper.clickElement(popup_login_button);
 
     }
+
+
 
 }

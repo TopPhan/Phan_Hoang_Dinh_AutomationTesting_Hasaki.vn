@@ -220,6 +220,36 @@ public class ValidateHelper {
         }
     }
 
+    @Step("Scroll to top of the page")
+    public void scrollToTopPage_js() {
+        try {
+            js.executeScript("window.scrollTo(0, 0);");
+            logTest.info("Scrolled to top of the page");
+        } catch (Exception e) {
+            logTest.error("[ERROR] Failed to scroll to top: " + e.getMessage());
+        }
+    }
+
+    @Step("Scroll to bottom of the page")
+    public void scrollToBottomPage_js() {
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            logTest.info("Scrolled to bottom of the page");
+        } catch (Exception e) {
+            logTest.error("[ERROR] Failed to scroll to bottom: " + e.getMessage());
+        }
+    }
+
+    @Step("Scroll to middle of the page")
+    public void scrollToMiddlePage_js() {
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight / 2);");
+            logTest.info("Scrolled to middle of the page");
+        } catch (Exception e) {
+            logTest.error("[ERROR] Failed to scroll to middle: " + e.getMessage());
+        }
+    }
+
     @Step("Get text of locator '{0}'")
     public String getTextElement(By locator) {
         try {

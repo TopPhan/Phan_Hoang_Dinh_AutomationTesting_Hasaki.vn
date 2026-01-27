@@ -11,10 +11,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.SkipException;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.MyAccountPage;
 import pages.MyAddressPage;
@@ -24,12 +21,21 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
     private ValidateHelper validateHelper;
     private JavascriptExecutor js;
+    private String emailXml;
+    private String passXml;
+    private String browserXml;
 
+    @Parameters({"email", "password","browserType"})
     @BeforeMethod
-    public void setLoginPage() throws Exception {
+    public void setLoginPage(@Optional("") String email,
+                             @Optional("") String password,
+                             @Optional("") String browser) throws Exception {
         //driver = getDriver();
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
+        this.emailXml = (email != null && !email.isEmpty()) ? email : PropertiesFile.getPropValue("username");
+        this.passXml = (password != null && !password.isEmpty()) ? password : PropertiesFile.getPropValue("password");
+        this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
     }
 
     @Test(priority = 0)
@@ -40,18 +46,24 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Quick verify address page UI"));
-
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
-
         LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Log into the hasaki.vn");
-        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
-        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
-
-        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
+        // --- SMART LOGIN LOGIC ---
+        MyAccountPage myAccountPage;
+        MyAddressPage myAddressPage ;
+        if (!loginPage.isLoggedIn()) {
+            logTest.info("Session not available, proceed Login for: " + emailXml);
+            myAccountPage = loginPage.login_user(emailXml, passXml);
+            myAddressPage = myAccountPage.goToMyAddressTab();
+        } else {
+            logTest.info("(Session reused), skip logged in step.");
+            myAddressPage = new MyAddressPage(getDriver());
+            //getDriver().navigate().to("https://hasaki.vn/customer/address/");
+        }
+        Assert.assertNotNull(myAddressPage, "MyAddressPage was not initialized!");
+        // -------------------------
 
         Assert.assertTrue(myAddressPage.verify_AddressTab_Url(),"Address tab url doesn't match");
         Assert.assertTrue(myAddressPage.isTitleAddressTab(),"Address tab title doesn't exist");
@@ -73,16 +85,23 @@ public class MyAddressTest extends multipleThread_baseSetup {
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Verify add address"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
-
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Log into the hasaki.vn");
-        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
-        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
-
-        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
+        // --- SMART LOGIN LOGIC ---
+        MyAccountPage myAccountPage;
+        MyAddressPage myAddressPage ;
+        if (!loginPage.isLoggedIn()) {
+            logTest.info("Session not available, proceed Login for: " + emailXml);
+            myAccountPage = loginPage.login_user(emailXml, passXml);
+            validateHelper.clickElement(loginPage.getAcceptCookie());
+            myAddressPage = myAccountPage.goToMyAddressTab();
+        } else {
+            logTest.info("(Session reused), skip logged in step.");
+            myAddressPage = new MyAddressPage(getDriver());
+            //getDriver().navigate().to("https://hasaki.vn/customer/address/");
+        }
+        Assert.assertNotNull(myAddressPage, "MyAddressPage was not initialized!");
+        // -------------------------
 
         String fullname = addressModel.getFullName();
         String fullAddress = addressModel.getAddress() +", "+addressModel.getWard()+", "+addressModel.getDistrict()+", "+addressModel.getCity();
@@ -125,16 +144,24 @@ public class MyAddressTest extends multipleThread_baseSetup {
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Verify delete address"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
-
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Log into the hasaki.vn");
-        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
-        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
 
-        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
+        // --- SMART LOGIN LOGIC ---
+        MyAccountPage myAccountPage;
+        MyAddressPage myAddressPage ;
+        if (!loginPage.isLoggedIn()) {
+            logTest.info("Session not available, proceed Login for: " + emailXml);
+            myAccountPage = loginPage.login_user(emailXml, passXml);
+            validateHelper.clickElement(loginPage.getAcceptCookie());
+            myAddressPage = myAccountPage.goToMyAddressTab();
+        } else {
+            logTest.info("(Session reused), skip logged in step.");
+            myAddressPage = new MyAddressPage(getDriver());
+            //getDriver().navigate().to("https://hasaki.vn/customer/address/");
+        }
+        Assert.assertNotNull(myAddressPage, "MyAddressPage was not initialized!");
+        // -------------------------
 
         String fullname = addressModel.getFullName();
         String fullAddress = addressModel.getAddress() +", "+addressModel.getWard()+", "+addressModel.getDistrict()+", "+addressModel.getCity();
@@ -177,16 +204,23 @@ public class MyAddressTest extends multipleThread_baseSetup {
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Validate error message on add address page"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
-
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Log into the hasaki.vn");
-        logTest.info("Default Username: " + PropertiesFile.getPropValue("username"));
-        logTest.info("Default Password: " + PropertiesFile.getPropValue("password"));
-
-        MyAccountPage myAccountPage = loginPage.login_user(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
-        MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
+        // --- SMART LOGIN LOGIC ---
+        MyAccountPage myAccountPage;
+        MyAddressPage myAddressPage ;
+        if (!loginPage.isLoggedIn()) {
+            logTest.info("Session not available, proceed Login for: " + emailXml);
+            myAccountPage = loginPage.login_user(emailXml, passXml);
+            validateHelper.clickElement(loginPage.getAcceptCookie());
+            myAddressPage = myAccountPage.goToMyAddressTab();
+        } else {
+            logTest.info("(Session reused), skip logged in step.");
+            myAddressPage = new MyAddressPage(getDriver());
+            //getDriver().navigate().to("https://hasaki.vn/customer/address/");
+        }
+        Assert.assertNotNull(myAddressPage, "MyAddressPage was not initialized!");
+        // -------------------------
 
         softAssert.assertTrue(myAddressPage.addAddressWithoutPhoneNumber(
                 addressModel.getFullName(),
@@ -198,7 +232,6 @@ public class MyAddressTest extends multipleThread_baseSetup {
         softAssert.assertAll();
 
     }
-
 
     @AfterMethod
     public void tearDown(ITestResult result){

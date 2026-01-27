@@ -19,7 +19,7 @@ import static org.monte.media.VideoFormatKeys.*;
 public class CaptureVideo extends ScreenRecorder {
 
     // ------Record with Monte Media library---------
-    public static ScreenRecorder screenRecorder;
+    private static ThreadLocal<ScreenRecorder> screenRecorderThreadLocal = new ThreadLocal<>();
     public String name;
 
     //Hàm xây dựng
@@ -55,19 +55,27 @@ public class CaptureVideo extends ScreenRecorder {
 
         GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
                 .getDefaultConfiguration();
-        screenRecorder = new CaptureVideo(gc, captureSize,
+        ScreenRecorder screenRecorder = new CaptureVideo(gc, captureSize,
                 new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey, MIME_AVI),
                 new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
                         CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
                         Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
                 new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf(30)),
                 null, file, methodName);
-        screenRecorder.start();
+
+        // Lưu vào ThreadLocal trước khi start
+        screenRecorderThreadLocal.set(screenRecorder);
+        screenRecorderThreadLocal.get().start();
     }
 
     // Stop record video
     public static void stopRecord() throws Exception {
-        screenRecorder.stop();
+        // Chỉ stop bộ ghi của luồng hiện tại
+        if (screenRecorderThreadLocal.get() != null) {
+            screenRecorderThreadLocal.get().stop();
+            // Quan trọng: remove để giải phóng bộ nhớ
+            screenRecorderThreadLocal.remove();
+        }
     }
 
     // If Test success delete video
