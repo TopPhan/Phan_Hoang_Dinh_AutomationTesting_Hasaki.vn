@@ -53,7 +53,7 @@ public class Demo_Mode_Listener implements ITestListener {
         try {
             CaptureVideo.stopRecord();
         } catch (Exception e) {
-            logTest.error("[FAIL] Can't stop record video: " + e.getMessage());
+            logTest.error("⚠️ Can't stop record video: " + e.getMessage());
         }
     }
 
@@ -102,27 +102,23 @@ public class Demo_Mode_Listener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
+        Object instance = result.getInstance();
+        if (instance instanceof multipleThread_baseSetup) {
+            multipleThread_baseSetup baseSetup = (multipleThread_baseSetup) instance;
+            String browserName = baseSetup.getBrowserName();
+            try {
+                String testName = result.getName();
+                String timestamp = new SimpleDateFormat("HH-mm-ss").format(new Date());
+                String videoName = browserName + "_" + testName + "_" + timestamp;
 
+                result.setAttribute("videoName", videoName);
 
-        // Get currently Browser name.
-        multipleThread_baseSetup baseSetup = (multipleThread_baseSetup) result.getInstance();
-        String browserName = baseSetup.getBrowserName();
-
-        try {
-            //Get test
-            String testName = result.getName();
-            //Get current time
-            String timestamp = new SimpleDateFormat("HH-mm-ss").format(new Date());
-            //Create video name
-            String videoName = browserName + "_" + testName + "_" + timestamp;
-
-            // Store video name into attribute of result. Delete video if test success.
-            result.setAttribute("videoName", videoName);
-
-            CaptureVideo.startRecord(videoName);
-            logTest.info("🎥 Run screen record test: " + videoName);
-        } catch (Exception e) {
-            logTest.error("❌ Can't open screen record: " + e.getMessage());
+                // Luồng nào sẽ bắt đầu ghi video cho luồng đó
+                CaptureVideo.startRecord(videoName);
+                logTest.info("🎥 [THREAD-" + Thread.currentThread().getId() + "] Start recording: " + videoName);
+            } catch (Exception e) {
+                logTest.error("❌ Can't open screen record: " + e.getMessage());
+            }
         }
 
     }
@@ -149,8 +145,7 @@ public class Demo_Mode_Listener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        logTest.info("This test case is failed: " + result.getName());
-
+        logTest.error("[FAIL] This test case is failed: " + result.getName());
         // Stop Record video
         stopRecordVideo();
 
@@ -177,6 +172,13 @@ public class Demo_Mode_Listener implements ITestListener {
             }
         }
 
+        // Get (Object[])  DataProvider currently load to test
+        Object[] parameters = result.getParameters();
+        if (parameters.length > 0) {
+            // Log error
+            logTest.error("Data causing failure: " + parameters[0]);
+            saveTextLog("Data causing failure: " + parameters[0]);
+        }
     }
 
     @Override

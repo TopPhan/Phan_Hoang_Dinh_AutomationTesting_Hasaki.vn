@@ -10,6 +10,7 @@ import io.qameta.allure.Allure;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.ITestResult;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 import pages.*;
 
@@ -72,7 +73,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     public void ProductDetail_AddSingleToCart(String keyword) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Add single product"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Add single product to cart"));
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
@@ -98,13 +99,59 @@ public class ProductDetailTest extends multipleThread_baseSetup {
         int currentItems = productDetailPage.getCartQuantity();
 
         // Add single product to cart
-        productDetailPage.addSingleProductToCart();
+        productDetailPage.addProductToCart();
         Assert.assertTrue(productDetailPage.isPopupAddToCartDisplay(),"Popup add to cart is not display");
         productDetailPage.closeSuccessPopup();
 
         // Get quantity in cart after add
         int afterAddItems = productDetailPage.getCartQuantity();
         Assert.assertEquals(afterAddItems,currentItems+1,"Quantity in cart is not correct");
+    }
+
+    @Test(dataProvider = "searchData",dataProviderClass = DataProviders.class)
+    public void ProductDetail_AddManyToCart(String keyword, String quantity) throws Exception {
+
+        // Overite testcase name display on Allure report by testcode and description.
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Add many product to cart"));
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("Test case: Add many product to cart on browser" + browserXml);
+
+        // --- SMART LOGIN LOGIC ---
+        if (!loginPage.isLoggedIn()) {
+            logTest.info("Session not available, proceed Login for: " + emailXml);
+            loginPage.login_user(emailXml, passXml);
+        } else {
+            logTest.info("(Session reused), skip logged in step.");
+        }
+        // -------------------------
+
+        SearchPage searchPage = new SearchPage(getDriver());
+
+        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword);
+
+        Assert.assertTrue(productDetailPage.isAddCartEnable(),"Add to cart button is not enable");
+
+        // Get current quantity in cart
+        int currentItems = productDetailPage.getCartQuantity();
+        int qtyInput = Integer.parseInt(quantity);
+
+
+        // Add  product to cart
+        productDetailPage.setProductQuantity(quantity);
+        productDetailPage.addProductToCart();
+
+        boolean isProductAllowOnlyBuyOne = productDetailPage.isProductAllowOnlyBuyOne();
+        if (isProductAllowOnlyBuyOne) {
+            logTest.info("Product allow only buy one, skip test");
+            throw new SkipException("Product allow only buy one, skip test");
+        }
+
+        // Get quantity in cart after add
+        int afterAddItems = productDetailPage.getCartQuantity();
+        Assert.assertEquals(afterAddItems, currentItems + qtyInput, "Số lượng trong giỏ hàng không khớp với logic hệ thống!");
     }
 
     @AfterMethod

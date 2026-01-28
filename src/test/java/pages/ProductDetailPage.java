@@ -4,9 +4,8 @@ import com.log.logTest;
 import com.utility.CustomSoftAssert;
 import com.utility.Helpers.ValidateHelper;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,12 +17,14 @@ public class ProductDetailPage {
     private CustomSoftAssert softAssert;
     private JavascriptExecutor js;
     private WebDriverWait wait;
+    private Actions action;
 
     public ProductDetailPage(WebDriver driver) {
         this.driver = driver;
         validateHelper = new ValidateHelper(driver);
         softAssert = new CustomSoftAssert(driver);
         this.js = (JavascriptExecutor) driver ;
+        this.action = new Actions(driver);
         try{
             this.wait = new WebDriverWait(driver,
                     Duration.ofSeconds(10),
@@ -37,6 +38,7 @@ public class ProductDetailPage {
     private By productName = By.xpath("//h1[@class='text-lg font-medium leading-[1.25]']");
     private By productPrice = By.xpath("//span[@class='text-orange text-base font-bold leading-[22px] cursor-pointer']");
     private By productAdd = By.xpath("//div[contains(text(),'Giỏ hàng')]/parent::button");
+    private By productCheckout = By.xpath("//button//div[contains(text(),'MUA NGAY NOWFREE 2H')]");
     private By productByNow = By.xpath("//div[contains(text(),'MUA NGAY')]/parent::button");
     private By descreseProduct = By.xpath("//button[@aria-label='Descrease btn']");
     private By increaseProduct = By.xpath("//button[@aria-label='Increase btn']");
@@ -45,7 +47,9 @@ public class ProductDetailPage {
     private By cartButton = By.xpath("//a[@aria-label='Cart Nav']");
     private By numberOfItems = By.xpath("//span[contains(text(),'Cart Icon')]/following-sibling::span");
 
-    // ---
+    // --- Test Element ---
+    private By onlyBuyOne = By.xpath("//div[contains(text(),'Sản phẩm chỉ được mua tối đa là 1')]");
+    private By closePopupBuyOne = By.xpath("//button/preceding::div[contains(text(),'Sản phẩm chỉ được mua tối đa là 1')]");
     private By logoIsDisplay = By.xpath("//a[@aria-label='Homepage']");
     private By successPopup = By.xpath("//div[contains(text(),'Sản Phẩm đã được thêm vào giỏ hàng thành công')]");
     private By closePopup = By.xpath("//div[@class='grid gap-1']/following-sibling::button");
@@ -100,6 +104,23 @@ public class ProductDetailPage {
         }
     }
 
+    @Step("Get product quantity")
+    public int getProductQuantity() {
+        try {
+            validateHelper.scrollToTopPage_js();
+            String rawText = validateHelper.getTextElement(productQuantity).trim();
+            logTest.info("Raw cart text: '" + rawText + "'");
+            if (rawText.isEmpty() || !rawText.matches("\\d+")) {
+                logTest.warn("[WARN] Product is empty or contains non-numeric text. Returning 0.");
+                return 0;
+            }
+            return Integer.parseInt(rawText);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Unexpected error getting product quantity: " + e.getMessage());
+            return 0;
+        }
+    }
+
     @Step("Get cart quantity")
     public int getCartQuantity() {
         try {
@@ -123,7 +144,22 @@ public class ProductDetailPage {
             Boolean popupFound = validateHelper.verifyElementIsDisplay(successPopup);
             Boolean popupMatch = validateHelper.getTextElement(successPopup).trim().contains("Sản Phẩm đã được thêm vào giỏ hàng thành công");
             if(popupFound && popupMatch){
-                logTest.info("[PASS] Popup: " + validateHelper.getTextElement(productName) + " is display");
+                logTest.info("[PASS] Popup: " + validateHelper.getTextElement(successPopup) + " is display");
+            }
+            return popupFound && popupMatch;
+        } catch (Exception e) {
+            logTest.error("[FAIL] Popup is not display");
+            return false;
+        }
+    }
+
+    @Step("Verify is product allow only buy one")
+    public boolean isProductAllowOnlyBuyOne() {
+        try {
+            Boolean popupFound = validateHelper.verifyElementIsDisplay(onlyBuyOne);
+            Boolean popupMatch = validateHelper.getTextElement(onlyBuyOne).trim().contains("Sản phẩm chỉ được mua tối đa là 1");
+            if(popupFound && popupMatch){
+                logTest.info("[PASS] Popup: " + validateHelper.getTextElement(onlyBuyOne) + " is display");
             }
             return popupFound && popupMatch;
         } catch (Exception e) {
@@ -134,23 +170,55 @@ public class ProductDetailPage {
 
     @Step("Close success popup")
     public void closeSuccessPopup() {
-        validateHelper.waitForElementInvisible(successPopup);
+        validateHelper.clickElement(closePopup);
+        validateHelper.waitForElementInvisible(closePopup);
     }
 
-    // --------------- ACTION -----------------
-    @Step("Add single product to cart")
-    public void addSingleProductToCart() {
+    @Step("Close only buy one popup")
+    public void closeOnlyBuyOnePopup() {
+        validateHelper.clickElement(closePopupBuyOne);
+        validateHelper.waitForElementInvisible(closePopupBuyOne);
+    }
+
+
+    @Step("Add '{0}' product to cart")
+    public void setProductQuantity(String quantity) {
         try {
-            validateHelper.clickElement(productAdd);
-            logTest.info("[PASS] Add single product");
+            int intQty = Integer.parseInt(quantity);
+            for (int i = 0 ; i< intQty-1; i++){
+                validateHelper.clickElement(increaseProduct);
+            }
+            logTest.info("[PASS] Success add " + quantity + " product to cart");
         } catch (Exception e) {
-            logTest.error("[FAIL] Add single product");
+            logTest.error("[FAIL] to add " + quantity + " product to cart");
+            throw new RuntimeException(e);
         }
     }
 
 
+    // --------------- ACTION -----------------
+    @Step("Add single product to cart (Create CartPage class for linking page)")
+    public CartPage addProductToCart() {
+        try {
+            validateHelper.clickElement(productAdd);
+            logTest.info("[PASS] Add product");
+            return new CartPage(driver);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Add product");
+            throw new RuntimeException(e);
+        }
+    }
 
-
-
+    @Step("Check out product (Create CheckoutPage class for linking page)")
+    public CheckoutPage quickCheckOutProduct() {
+        try {
+            validateHelper.clickElement(productCheckout);
+            logTest.info("[PASS] Go to checkout product");
+            return new CheckoutPage(driver);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't checkout product");
+            throw new RuntimeException(e);
+        }
+    }
 
 }

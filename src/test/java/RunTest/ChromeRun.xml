@@ -1,4 +1,4 @@
-<suite name="Page Object test example" parallel="tests" thread-count="2">
+<suite name="Page Object test example" parallel="none" thread-count="1">
 
     <listeners>
         <listener class-name="com.listener.Standard_Mode_Listener"></listener>
@@ -12,21 +12,7 @@
         <classes>
             <class name="testcases.ProductDetailTest">
                 <methods>
-                    <include name="ProductDetail_AddSingleToCart"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="sample test on edge">
-        <parameter name="browserType" value="msedge" />
-        <parameter name="appURL" value="https://hasaki.vn/" />
-        <parameter name="email" value="swata44@gmail.com"/>
-        <parameter name="password" value="topphan93"/>
-        <classes>
-            <class name="testcases.ProductDetailTest">
-                <methods>
-                    <include name="ProductDetail_AddSingleToCart"/>
+                    <include name="ProductDetail_AddManyToCart"/>
                 </methods>
             </class>
         </classes>

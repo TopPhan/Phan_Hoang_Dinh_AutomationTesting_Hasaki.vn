@@ -106,8 +106,8 @@ public class ValidateHelper {
         WebElement element = driver.findElement(locator);
         action.moveToElement(element)
                 .click()
-                //.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
-                //.sendKeys(Keys.BACK_SPACE)
+                .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
+                .sendKeys(Keys.BACK_SPACE)
                 .sendKeys(text)
                 .perform();
     }

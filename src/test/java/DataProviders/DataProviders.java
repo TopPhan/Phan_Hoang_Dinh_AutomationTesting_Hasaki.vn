@@ -121,12 +121,13 @@ public class DataProviders {
     @DataProvider(name = "searchData")
     public Object[][] searchKeywords() {
         return new Object[][]{
-                {"Chống nắng sunplay"}, // Row 0, Column 0
-                {"Nước hoa nữ Narciso Rodriguez"},       // Row 1, Column 0
-                {"Son thỏi 3CE"},        // Row 2, Column 0
-                {"Sữa rửa mặt cerave"}     // Row 3, Column 0
+                {"Chống nắng sunplay","2"}, // Row 0, Column 0
+                {"Nước hoa nữ Narciso Rodriguez","3"},       // Row 1, Column 0
+                {"Son thỏi 3CE","3"},        // Row 2, Column 0
+                {"Sữa rửa mặt cerave","4"}     // Row 3, Column 0
         };
     }
+
     // Test chay searchData
     /*@Test(dataProvider = "searchData")
     public void testSearch(String keyword) { // Cột 0 sẽ đổ vào biến keyword
