@@ -35,7 +35,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     }
 
     @Test(dataProvider = "searchData",dataProviderClass = DataProviders.class, priority = 0)
-    public void ProductDetail_VerifyUI(String keyword) throws Exception {
+    public void ProductDetail_VerifyUI(String keyword,String brand) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Quick verify Product detailed page UI"));
@@ -57,10 +57,10 @@ public class ProductDetailTest extends multipleThread_baseSetup {
 
         SearchPage searchPage = new SearchPage(getDriver());
 
-        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword);
+        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword+" "+brand);
 
         softAssert.assertTrue(productDetailPage.verify_ProductPage_Url(),"Product detailed page URL is not correct");
-        softAssert.assertTrue(productDetailPage.isProductNameDisplay(keyword),"Product name is not contains keyword:" +keyword);
+        softAssert.assertTrue(productDetailPage.isProductNameDisplay(keyword+" "+brand),"Product name is not contains keyword:" +keyword);
         softAssert.assertTrue(productDetailPage.isAddCartEnable(),"Add to cart button is not enable");
         softAssert.assertAll();
 
@@ -70,7 +70,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     }
 
     @Test(dataProvider = "searchData",dataProviderClass = DataProviders.class)
-    public void ProductDetail_AddSingleToCart(String keyword) throws Exception {
+    public void ProductDetail_AddSingleToCart(String keyword,String brand,String quantity) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Add single product to cart"));
@@ -91,7 +91,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
 
         SearchPage searchPage = new SearchPage(getDriver());
 
-        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword);
+        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword+" "+brand);
 
         Assert.assertTrue(productDetailPage.isAddCartEnable(),"Add to cart button is not enable");
 
@@ -109,7 +109,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     }
 
     @Test(dataProvider = "searchData",dataProviderClass = DataProviders.class)
-    public void ProductDetail_AddManyToCart(String keyword, String quantity) throws Exception {
+    public void ProductDetail_AddManyToCart(String keyword,String brand, String quantity) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Add many product to cart"));
@@ -130,7 +130,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
 
         SearchPage searchPage = new SearchPage(getDriver());
 
-        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword);
+        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword+" "+brand);
 
         Assert.assertTrue(productDetailPage.isAddCartEnable(),"Add to cart button is not enable");
 
@@ -146,6 +146,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
         boolean isProductAllowOnlyBuyOne = productDetailPage.isProductAllowOnlyBuyOne();
         if (isProductAllowOnlyBuyOne) {
             logTest.info("Product allow only buy one, skip test");
+            productDetailPage.closeOnlyBuyOnePopup();
             throw new SkipException("Product allow only buy one, skip test");
         }
 

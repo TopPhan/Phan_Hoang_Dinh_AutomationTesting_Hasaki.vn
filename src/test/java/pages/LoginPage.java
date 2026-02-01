@@ -34,6 +34,8 @@ public class LoginPage {
     private By headerUsernameAddress = By.xpath("//span[normalize-space()='Chào']");
     // Show error message
     private By errorMessage = By.xpath("//div[@class='alert alert-danger']");
+    // Cart button
+    private By cartBtn = By.xpath("//a[@href='https://hasaki.vn/checkout/cart']");
 
 
 
@@ -47,7 +49,6 @@ public class LoginPage {
 
     //--- Start popup ---
     public By acceptCookie = By.xpath("//button[@id='acceptCookies']");
-
     public By getAcceptCookie() {
         return acceptCookie;
     }
@@ -209,6 +210,18 @@ public class LoginPage {
         validateHelper.action_MovetoElement(popup_login);
         validateHelper.clickElement(popup_login_button);
 
+    }
+
+    @Step("Go to cart page (Create CartPage class for linking page)")
+    public CartPage quickGoToCart() {
+        try {
+            validateHelper.clickElement(cartBtn);
+            logTest.info("[PASS] Go to cart");
+            return new CartPage(driver);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't go tocart");
+            throw new RuntimeException(e);
+        }
     }
 
 

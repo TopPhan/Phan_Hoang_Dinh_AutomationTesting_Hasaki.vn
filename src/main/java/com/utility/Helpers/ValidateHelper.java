@@ -5,7 +5,6 @@ import com.utility.PropertiesFile;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,10 +16,10 @@ import java.util.Objects;
 
 public class ValidateHelper {
 
-    private WebDriver driver;
-    private Actions action;
-    private WebDriverWait wait;
-    private JavascriptExecutor js;
+    private final WebDriver driver;
+    private final Actions action;
+    private final WebDriverWait wait;
+    private final JavascriptExecutor js;
 
     public ValidateHelper(WebDriver driver){
         this.driver = driver;
@@ -41,226 +40,13 @@ public class ValidateHelper {
         this.action = new Actions(driver);
     }
 
-    @Step("Wait for element invinsible")
-    public void waitForElementInvisible(By locator) {
-        try{
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    // ---- Verify Page -> Return Boolean ----
     @Step("Verify isPaginationButtonDisabled is enabled / disabled")
     public boolean isPaginationButtonDisabled(WebElement element) {
         // Lấy giá trị của thuộc tính class
         String classValue = element.getAttribute("class");
         // Kiểm tra xem trong class có chứa từ khóa khóa nút hay không
         return classValue.contains("cursor-not-allowed") || classValue.contains("disabled");
-    }
-
-    @Step("Set slider '{0}' to X axis: '{1}' and Y axis: '{2}'")
-    public void setSlider(By locator, int x, int y){
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-            action.dragAndDropBy(driver.findElement(locator), x, y).build().perform();
-        } catch (Exception e) {
-            logTest.warn("[WARN] Can't not set slider "+ locator);
-            Assert.fail("Could not interact with the slider.");
-        }
-    }
-
-    @Step("Get shadow element with shadow host locator: '{0}' and inner css selector: '{1}'")
-    public WebElement getShadowElement(By ShadowHostLocator, String innerCssSelector) {
-        try {
-            // 1. Find Shadow Host (tag include shadow-root)
-            WebElement shadowHost = driver.findElement(ShadowHostLocator);
-            // 2. Use JavaScript to through Shadow Root and find inner CSS selector
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            WebElement shadowElement = (WebElement) js.executeScript(
-                    "return arguments[0].shadowRoot.querySelector(arguments[1])",
-                    shadowHost, innerCssSelector);
-
-            logTest.info("Found shadow element with CSS: " + innerCssSelector);
-            return shadowElement;
-        } catch (Exception e) {
-            logTest.warn("[WARN] Cannot find shadow element: " + innerCssSelector);
-            return null;
-        }
-    }
-
-    @Step("Verify value of placeholder")
-    public boolean getTextPlaceholder(By locator, String expect){
-        try {
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-            return Objects.requireNonNull(driver.findElement(locator).getAttribute("placeholder")).trim().contains((expect));
-        } catch (Exception e) {
-            logTest.error("[FAIL] Can't not get value of placeholder "+ locator);
-            return false;
-        }
-    }
-
-    @Step("Set text '{1}' into element '{0}'")
-    public void setTextByActions(By locator, String text) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        WebElement element = driver.findElement(locator);
-        action.moveToElement(element)
-                .click()
-                .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
-                .sendKeys(Keys.BACK_SPACE)
-                .sendKeys(text)
-                .perform();
-    }
-
-
-    @Step("Set text '{1}' into locator '{0}'")
-    public void setText(By locator, String text){
-
-        try {
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        ScrollToElement_js(locator);
-        driver.findElement(locator).click();
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(text);
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Selenium setText fail, try setText by JavaScript: " + locator.toString());
-            try {
-                WebElement element = driver.findElement(locator);
-
-                String script = "arguments[0].value='" + text + "';" +
-                        "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
-                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));";
-                js.executeScript(script, element);
-                logTest.info("[WARN] Set text '" + text + "' sucessful by JavaScript.");
-            } catch (Exception jsException) {
-                logTest.error("[FAIL] Both Selenium and JS fail: " + locator.toString());
-            }
-        }
-    }
-
-    @Step("Click nornal on locator '{0}'")
-    public void clickElement(By locator){
-        try {
-
-            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-            element.click();
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Fail to click with locator, try js click : " + locator.toString());
-            clickElement_js(locator);
-        }
-    }
-
-    @Step("Click js on locator '{0}'")
-    public void clickElement_js(By locator){
-        try {
-
-            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-            js.executeScript("arguments[0].click();", element);
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Fail to click JS with locator: " + locator.toString());
-        }
-    }
-
-
-
-    @Step("Click nornal on element '{0}'")
-    public void clickElement(WebElement element){
-        try {
-
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-            element.click();
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Fail to click with element, try js click : " + element.toString());
-            clickElement_js(element);
-        }
-    }
-
-    @Step("Click js on element '{0}'")
-    public void clickElement_js(WebElement element){
-        try {
-
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-            js.executeScript("arguments[0].click();", element);
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Fail to click JS with element: " + element.toString());
-        }
-    }
-
-    @Step("Scroll to element '{0}' by js")
-    public void ScrollToElement_js(WebElement element){
-        try {
-
-            wait.until(ExpectedConditions.visibilityOf(element));
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Can't scroll js to element with locator: " + element.toString());
-        }
-    }
-
-    @Step("Scroll to locator '{0}' by js")
-    public void ScrollToElement_js(By locator){
-        try {
-
-            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-
-        } catch (Exception e) {
-            logTest.warn("[WARN] Can't scroll js to element with locator: " + locator.toString());
-        }
-    }
-
-    @Step("Scroll to top of the page")
-    public void scrollToTopPage_js() {
-        try {
-            js.executeScript("window.scrollTo(0, 0);");
-            logTest.info("Scrolled to top of the page");
-        } catch (Exception e) {
-            logTest.error("[ERROR] Failed to scroll to top: " + e.getMessage());
-        }
-    }
-
-    @Step("Scroll to bottom of the page")
-    public void scrollToBottomPage_js() {
-        try {
-            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-            logTest.info("Scrolled to bottom of the page");
-        } catch (Exception e) {
-            logTest.error("[ERROR] Failed to scroll to bottom: " + e.getMessage());
-        }
-    }
-
-    @Step("Scroll to middle of the page")
-    public void scrollToMiddlePage_js() {
-        try {
-            js.executeScript("window.scrollTo(0, document.body.scrollHeight / 2);");
-            logTest.info("Scrolled to middle of the page");
-        } catch (Exception e) {
-            logTest.error("[ERROR] Failed to scroll to middle: " + e.getMessage());
-        }
-    }
-
-    @Step("Get text of locator '{0}'")
-    public String getTextElement(By locator) {
-        try {
-            String strErrorMsg = null;
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-            strErrorMsg = driver.findElement(locator).getText().trim();
-            return strErrorMsg;
-        } catch (Exception e) {
-            logTest.warn("[WARN] Fail to getText with locator: " + locator.toString());
-        }
-        return "";
     }
 
     @Step("Verify url match with: '{0}'")
@@ -315,6 +101,273 @@ public class ValidateHelper {
         }
     }
 
+
+
+    // ---- Convert Group ----
+    @Step("Convert string '{0}' to Long for calculation")
+    public long parseCurrencyToLong(String currencyText) {
+        try {
+            String cleanString = currencyText.replaceAll("[^0-9]", "");
+            return Long.parseLong(cleanString);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't parse String: " + currencyText + " to Long.");
+            return 0;
+        }
+    }
+
+    @Step("Convert string '{0}' to Int for calculation")
+    public int parseStringToInt(String currencyText) {
+        try {
+            String cleanString = currencyText.replaceAll("[^0-9]", "");
+            return Integer.parseInt(cleanString);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't parse String: " + currencyText + " to Int.");
+            return 0;
+        }
+    }
+
+
+    // ---- Wait Group ----
+    @Step("Wait for element invinsible")
+    public void waitForElementInvisible(By locator) {
+        try{
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Step("Wait for element {0} to be visible in {1} seconds")
+    public void waitForElementVisible(By by, int timeOutInSeconds) {
+        try {
+            WebDriverWait waitCustom = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+            waitCustom.until(ExpectedConditions.visibilityOfElementLocated(by));
+            logTest.info("Element " + by + " is now visible after waiting " + timeOutInSeconds + "s");
+        } catch (Throwable error) {
+            logTest.error("[TIMEOUT] Element " + by + " did not appear within " + timeOutInSeconds + " seconds.");
+        }
+    }
+
+    // ---- Set Group ----
+    @Step("Set slider '{0}' to X axis: '{1}' and Y axis: '{2}'")
+    public void setSlider(By locator, int x, int y){
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            action.dragAndDropBy(driver.findElement(locator), x, y).build().perform();
+        } catch (Exception e) {
+            logTest.warn("[WARN] Can't not set slider "+ locator);
+            Assert.fail("Could not interact with the slider.");
+        }
+    }
+
+    @Step("Set text '{1}' into element '{0}'")
+    public void setTextByActions(By locator, String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement element = driver.findElement(locator);
+        action.moveToElement(element)
+                .click()
+                .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
+                .sendKeys(Keys.BACK_SPACE)
+                .sendKeys(text)
+                .perform();
+    }
+
+    @Step("Set text '{1}' into locator '{0}'")
+    public void setText(By locator, String text){
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            ScrollToElement_js(locator);
+            driver.findElement(locator).click();
+            driver.findElement(locator).clear();
+            driver.findElement(locator).sendKeys(text);
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Selenium setText fail, try setText by JavaScript: " + locator.toString());
+            try {
+                WebElement element = driver.findElement(locator);
+
+                String script = "arguments[0].value='" + text + "';" +
+                        "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+                        "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));";
+                js.executeScript(script, element);
+                logTest.info("[WARN] Set text '" + text + "' sucessful by JavaScript.");
+            } catch (Exception jsException) {
+                logTest.error("[FAIL] Both Selenium and JS fail: " + locator.toString());
+            }
+        }
+    }
+
+    // ---- Get Group ----
+    @Step("Get shadow element with shadow host locator: '{0}' and inner css selector: '{1}'")
+    public WebElement getShadowElement(By ShadowHostLocator, String innerCssSelector) {
+        try {
+            // 1. Find Shadow Host (tag include shadow-root)
+            WebElement shadowHost = driver.findElement(ShadowHostLocator);
+            // 2. Use JavaScript to through Shadow Root and find inner CSS selector
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            WebElement shadowElement = (WebElement) js.executeScript(
+                    "return arguments[0].shadowRoot.querySelector(arguments[1])",
+                    shadowHost, innerCssSelector);
+
+            logTest.info("Found shadow element with CSS: " + innerCssSelector);
+            return shadowElement;
+        } catch (Exception e) {
+            logTest.warn("[WARN] Cannot find shadow element: " + innerCssSelector);
+            return null;
+        }
+    }
+
+    @Step("Verify value of placeholder")
+    public boolean getTextPlaceholder(By locator, String expect){
+        try {
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return Objects.requireNonNull(driver.findElement(locator).getAttribute("placeholder")).trim().contains((expect));
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't not get value of placeholder "+ locator);
+            return false;
+        }
+    }
+
+    @Step("Get text of locator '{0}'")
+    public String getTextElement(By locator) {
+        try {
+            String strErrorMsg = null;
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            strErrorMsg = driver.findElement(locator).getText().trim();
+            return strErrorMsg;
+        } catch (Exception e) {
+            logTest.warn("[WARN] Fail to getText with locator: " + locator.toString());
+        }
+        return "";
+    }
+
+    @Step("Get attribute '{1}' of element {0}")
+    public String getElementAttribute(By locator, String attributeName) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            String value = driver.findElement(locator).getAttribute(attributeName);
+            logTest.info("Attribute '" + attributeName + "' of element " + locator + " is: " + value);
+            return value;
+        } catch (Exception e) {
+            logTest.error("[WARN] Cannot get attribute '" + attributeName + "' from element: " + locator);
+            return "";
+        }
+    }
+
+
+    // ---- Click Group ----
+    @Step("Click nornal on locator '{0}'")
+    public void clickElement(By locator){
+        try {
+
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            element.click();
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Fail to click with locator, try js click : " + locator.toString());
+            clickElement_js(locator);
+        }
+    }
+
+    @Step("Click js on locator '{0}'")
+    public void clickElement_js(By locator){
+        try {
+
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            js.executeScript("arguments[0].click();", element);
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Fail to click JS with locator: " + locator.toString());
+        }
+    }
+
+    @Step("Click nornal on element '{0}'")
+    public void clickElement(WebElement element){
+        try {
+
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            element.click();
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Fail to click with element, try js click : " + element.toString());
+            clickElement_js(element);
+        }
+    }
+
+    @Step("Click js on element '{0}'")
+    public void clickElement_js(WebElement element){
+        try {
+
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            js.executeScript("arguments[0].click();", element);
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Fail to click JS with element: " + element.toString());
+        }
+    }
+
+
+    // ---- JavaScript Scroll ----
+    @Step("Scroll to element '{0}' by js")
+    public void ScrollToElement_js(WebElement element){
+        try {
+
+            wait.until(ExpectedConditions.visibilityOf(element));
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Can't scroll js to element with locator: " + element.toString());
+        }
+    }
+
+    @Step("Scroll to locator '{0}' by js")
+    public void ScrollToElement_js(By locator){
+        try {
+
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+
+        } catch (Exception e) {
+            logTest.warn("[WARN] Can't scroll js to element with locator: " + locator.toString());
+        }
+    }
+
+    @Step("Scroll to top of the page")
+    public void scrollToTopPage_js() {
+        try {
+            js.executeScript("window.scrollTo(0, 0);");
+            logTest.info("Scrolled to top of the page");
+        } catch (Exception e) {
+            logTest.error("[ERROR] Failed to scroll to top: " + e.getMessage());
+        }
+    }
+
+    @Step("Scroll to bottom of the page")
+    public void scrollToBottomPage_js() {
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+            logTest.info("Scrolled to bottom of the page");
+        } catch (Exception e) {
+            logTest.error("[ERROR] Failed to scroll to bottom: " + e.getMessage());
+        }
+    }
+
+    @Step("Scroll to middle of the page")
+    public void scrollToMiddlePage_js() {
+        try {
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight / 2);");
+            logTest.info("Scrolled to middle of the page");
+        } catch (Exception e) {
+            logTest.error("[ERROR] Failed to scroll to middle: " + e.getMessage());
+        }
+    }
+
+    // ---- Handle Dropdown Group ----
     @Step("Select dropdown by locator '{0}' and index '{1}'")
     public void SelectDropdownByIndex(By locator, int value) {
         try{
@@ -348,6 +401,7 @@ public class ValidateHelper {
         }
     }
 
+    // ---- Action Group ----
     @Step("Action - Enter")
     public void action_Enter() {
             action.sendKeys(Keys.ENTER).build().perform();
@@ -439,6 +493,7 @@ public class ValidateHelper {
         }
     }
 
+    // ---- Handle Frame Group ----
     @Step("Switch to frame by locator '{0}'")
     public void switchToFrame(By locator) {
         try {
@@ -460,10 +515,9 @@ public class ValidateHelper {
         }
     }
 
+    // ---- Hard Delay Group ----
     @Step("Delay in '{0}' miliseconds")
     public void Delay(int time) throws InterruptedException {Thread.sleep(time);           }
-
-
 
    /* @Step("Wait for page loaded ()")
     public void waitForPageLoaded() {
@@ -483,7 +537,6 @@ public class ValidateHelper {
                     }
             }
         };
-
         try {
             this.wait.until(jsload);
             // wait jquery disable by default

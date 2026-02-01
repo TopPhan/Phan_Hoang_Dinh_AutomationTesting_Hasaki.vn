@@ -32,11 +32,13 @@ public class ProductDetailPage {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
     // --- Products Element ---
     private By productName = By.xpath("//h1[@class='text-lg font-medium leading-[1.25]']");
-    private By productPrice = By.xpath("//span[@class='text-orange text-base font-bold leading-[22px] cursor-pointer']");
+    private By productPrice = By.xpath(
+            "//span[contains(text(),'Đã bao gồm VAT')]/preceding-sibling::span | //span[@class='text-orange text-base font-bold leading-[22px] cursor-pointer']");
     private By productAdd = By.xpath("//div[contains(text(),'Giỏ hàng')]/parent::button");
     private By productCheckout = By.xpath("//button//div[contains(text(),'MUA NGAY NOWFREE 2H')]");
     private By productByNow = By.xpath("//div[contains(text(),'MUA NGAY')]/parent::button");
@@ -46,6 +48,9 @@ public class ProductDetailPage {
     private By productAvailable = By.xpath("//span//b");
     private By cartButton = By.xpath("//a[@aria-label='Cart Nav']");
     private By numberOfItems = By.xpath("//span[contains(text(),'Cart Icon')]/following-sibling::span");
+    private By productBrand = By.xpath("//a[@aria-label='now free 2h']/following-sibling::a");
+
+
 
     // --- Test Element ---
     private By onlyBuyOne = By.xpath("//div[contains(text(),'Sản phẩm chỉ được mua tối đa là 1')]");
@@ -87,7 +92,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Verify product name is display correctly")
+    @Step("Verify button Add Cart display correctly")
     public boolean isAddCartEnable() {
         try {
 
@@ -101,6 +106,50 @@ public class ProductDetailPage {
         } catch (Exception e) {
             logTest.error("[FAIL] Add Cart button isn't display or enable");
             return false;
+        }
+    }
+
+    @Step("Verify popup add to cart is display")
+    public boolean isPopupAddToCartDisplay() {
+        try {
+            Boolean popupFound = validateHelper.verifyElementIsDisplay(successPopup);
+            Boolean popupMatch = validateHelper.getTextElement(successPopup).trim().contains("Sản Phẩm đã được thêm vào giỏ hàng thành công");
+            if(popupFound && popupMatch){
+                logTest.info("[PASS] Popup: " + validateHelper.getTextElement(successPopup) + " is display");
+            }
+            return popupFound && popupMatch;
+        } catch (Exception e) {
+            logTest.error("[FAIL] Popup is not display");
+            return false;
+        }
+    }
+
+    @Step("Verify is product allow only buy one")
+    public boolean isProductAllowOnlyBuyOne() {
+        try {
+            validateHelper.waitForElementVisible(onlyBuyOne,3);
+            Boolean popupFound = driver.findElement(onlyBuyOne).isDisplayed();
+            Boolean popupMatch = driver.findElement(onlyBuyOne).getText().trim().contains("Sản phẩm chỉ được mua tối đa là 1");
+            if(popupFound && popupMatch){
+                logTest.info("[PASS] Popup: " + driver.findElement(onlyBuyOne).getText().trim() + " is display");
+            }
+            return popupFound && popupMatch;
+        } catch (Exception e) {
+            logTest.error("[FAIL] Popup is not display");
+            return false;
+        }
+    }
+
+    // --------------- ACTION -----------------
+    @Step("Add single product to cart (Create CartPage class for linking page)")
+    public CartPage addProductToCart() {
+        try {
+            validateHelper.clickElement(productAdd);
+            logTest.info("[PASS] Add product");
+            return new CartPage(driver);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Add product");
+            throw new RuntimeException(e);
         }
     }
 
@@ -125,6 +174,7 @@ public class ProductDetailPage {
     public int getCartQuantity() {
         try {
             validateHelper.scrollToTopPage_js();
+            wait.until(ExpectedConditions.elementToBeClickable(numberOfItems));
             String rawText = validateHelper.getTextElement(numberOfItems).trim();
             logTest.info("Raw cart text: '" + rawText + "'");
             if (rawText.isEmpty() || !rawText.matches("\\d+")) {
@@ -138,35 +188,62 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Verify popup add to cart is display")
-    public boolean isPopupAddToCartDisplay() {
+    @Step("Get product brand")
+    public String getProductBrand() {
         try {
-            Boolean popupFound = validateHelper.verifyElementIsDisplay(successPopup);
-            Boolean popupMatch = validateHelper.getTextElement(successPopup).trim().contains("Sản Phẩm đã được thêm vào giỏ hàng thành công");
-            if(popupFound && popupMatch){
-                logTest.info("[PASS] Popup: " + validateHelper.getTextElement(successPopup) + " is display");
+            validateHelper.scrollToTopPage_js();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(productBrand));
+            String rawText = validateHelper.getTextElement(productBrand).trim();
+            logTest.info("Prodcut brand text: '" + rawText + "'");
+            if (rawText.isEmpty()) {
+                logTest.warn("[WARN] Product brand is empty Returning ''");
+                return "";
             }
-            return popupFound && popupMatch;
+            return rawText;
         } catch (Exception e) {
-            logTest.error("[FAIL] Popup is not display");
-            return false;
+            logTest.error("[FAIL] Unexpected error getting product brand: " + e.getMessage());
+            return "";
         }
     }
 
-    @Step("Verify is product allow only buy one")
-    public boolean isProductAllowOnlyBuyOne() {
+    @Step("Get product name")
+    public String getProductName() {
         try {
-            Boolean popupFound = validateHelper.verifyElementIsDisplay(onlyBuyOne);
-            Boolean popupMatch = validateHelper.getTextElement(onlyBuyOne).trim().contains("Sản phẩm chỉ được mua tối đa là 1");
-            if(popupFound && popupMatch){
-                logTest.info("[PASS] Popup: " + validateHelper.getTextElement(onlyBuyOne) + " is display");
+            validateHelper.scrollToTopPage_js();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(productName));
+            String rawText = validateHelper.getTextElement(productName).trim();
+            logTest.info("Product name text: '" + rawText + "'");
+            if (rawText.isEmpty()) {
+                logTest.warn("[WARN] Product name is empty Returning ''");
+                return "";
             }
-            return popupFound && popupMatch;
+            return rawText;
         } catch (Exception e) {
-            logTest.error("[FAIL] Popup is not display");
-            return false;
+            logTest.error("[FAIL] Unexpected error getting product name: " + e.getMessage());
+            return "";
         }
     }
+
+    @Step("Get product name")
+    public long getProductPrice() {
+        try {
+            validateHelper.scrollToTopPage_js();
+            validateHelper.waitForElementVisible(productPrice,2);
+            String rawText = validateHelper.getTextElement(productPrice).trim();
+            long price = validateHelper.parseCurrencyToLong(rawText);
+
+            logTest.info("Product name price: '" + price + "'");
+            if (price == 0) {
+                logTest.warn("[WARN] Product price is empty Returning '0'");
+                return 0;
+            }
+            return price;
+        } catch (Exception e) {
+            logTest.error("[FAIL] Unexpected error getting product price: " + e.getMessage());
+            return 0;
+        }
+    }
+
 
     @Step("Close success popup")
     public void closeSuccessPopup() {
@@ -179,7 +256,6 @@ public class ProductDetailPage {
         validateHelper.clickElement(closePopupBuyOne);
         validateHelper.waitForElementInvisible(closePopupBuyOne);
     }
-
 
     @Step("Add '{0}' product to cart")
     public void setProductQuantity(String quantity) {
@@ -196,19 +272,8 @@ public class ProductDetailPage {
     }
 
 
-    // --------------- ACTION -----------------
-    @Step("Add single product to cart (Create CartPage class for linking page)")
-    public CartPage addProductToCart() {
-        try {
-            validateHelper.clickElement(productAdd);
-            logTest.info("[PASS] Add product");
-            return new CartPage(driver);
-        } catch (Exception e) {
-            logTest.error("[FAIL] Add product");
-            throw new RuntimeException(e);
-        }
-    }
 
+    // -------- Linking page -----------
     @Step("Check out product (Create CheckoutPage class for linking page)")
     public CheckoutPage quickCheckOutProduct() {
         try {
@@ -217,6 +282,18 @@ public class ProductDetailPage {
             return new CheckoutPage(driver);
         } catch (Exception e) {
             logTest.error("[FAIL] Can't checkout product");
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Step("Go to cart page (Create CartPage class for linking page)")
+    public CartPage quickGoToCart() {
+        try {
+            validateHelper.clickElement(cartButton);
+            logTest.info("[PASS] Go to cart");
+            return new CartPage(driver);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't go tocart");
             throw new RuntimeException(e);
         }
     }
