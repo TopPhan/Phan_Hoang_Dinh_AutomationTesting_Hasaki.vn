@@ -38,6 +38,8 @@ public class CartPage {
     private By cartTitle = By.xpath("//div[contains(text(),'Giỏ hàng')]");
     private By allItems = By.xpath("//tbody//tr");
     private By cartEmptyText = By.xpath("//p[contains(text(),'Bạn chưa chọn sản phẩm')]");
+    private By cartTotalPrice = By.xpath("//div[contains(text(),'Tạm tính:')]//span");
+
 
     // --- Dynamic xpath ---
     String itemBrand = "//tbody//tr[%d]//a[@aria-label='Go brand page']";
@@ -49,6 +51,7 @@ public class CartPage {
     String increaseQuantityBtn ="//tbody/tr[%d]//button[@aria-label='Increase btn']";
     String decreaseQuantityBtn ="//tbody/tr[%d]//button[@aria-label='Descrease btn']";
     String itemTotalPrice ="//tbody/tr[%d]//td[4]//div[@class='font-bold']";
+    String onlyByOneItems = "//tbody//tr[%d]//p[.='Sản phẩm chỉ được mua tối đa là 1']";
 
     // ---- Action Dynamic ----
     @Step("Delete items on cart page by index")
@@ -87,16 +90,24 @@ public class CartPage {
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemTotalPriceLocator));
     }
 
-    @Step("Increase items on cart page by index")
-    public void increaseItemsInCartByIndex(int index) {
+    @Step("Increase items on cart page by index {0} and {1} times")
+    public void increaseItemsInCartByIndex(int index, int times) {
         By itemIncreaseLocator = By.xpath(String.format(increaseQuantityBtn, index));
-        validateHelper.clickElement(itemIncreaseLocator);
+        By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
+        for (int i =0 ; i<times; i++) {
+           validateHelper.clickElement(itemIncreaseLocator);
+           validateHelper.waitForElementVisible(itemQuantityLocator,1);
+        }
     }
 
-    @Step("Decrease items on cart page by index")
-    public void DecreaseItemsInCartByIndex(int index) {
+    @Step("Decrease items on cart page by index {0} and {1} times")
+    public void DecreaseItemsInCartByIndex(int index, int times) {
         By itemDecreaseLocator = By.xpath(String.format(decreaseQuantityBtn, index));
-        validateHelper.clickElement(itemDecreaseLocator);
+        By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
+        for (int i =0 ; i<times; i++) {
+            validateHelper.clickElement(itemDecreaseLocator);
+            validateHelper.waitForElementVisible(itemQuantityLocator,1);
+        }
     }
 
     @Step("Verify total price items on cart page by index")
@@ -104,6 +115,22 @@ public class CartPage {
         long expectedTotalPrice = getQuantityItemsInCartByIndex(index) * getUnitPriceItemsInCartByIndex(index);
         long actualTotalPrice = getTotalPriceItemsInCartByIndex(index);
         return expectedTotalPrice == actualTotalPrice;
+    }
+
+    @Step("Get subtotal price items on cart page by index")
+    public long getSubTotalPriceItemsInCartByIndex(int index) {
+        long subTotalPrice = getQuantityItemsInCartByIndex(index) * getUnitPriceItemsInCartByIndex(index);
+        return subTotalPrice;
+    }
+
+    @Step("Get total price all items on cart page")
+    public long getTotalPriceAllItemsInCart() {
+        return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(cartTotalPrice));
+    }
+
+    @Step("Verify cart page is empty")
+    public boolean verifyCartIsEmpty() {
+        return validateHelper.verifyElementIsExist(cartEmptyText);
     }
 
 
@@ -141,52 +168,100 @@ public class CartPage {
     // ---- ACTION LOOP ALL ITEMS IN CART ----
     @Step("Delele all item in cart")
     public void deleteAllItemInCart() {
-
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
         if (validateHelper.verifyElementIsExist(allItems)){
             List<WebElement> listItems = driver.findElements(allItems);
-            for (int i = listItems.size(); i > 0; i--) {
-
+            for (int i = listItems.size()-1; i > 0; i--) {
                 // By pass if item is a gift
                 By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
                 if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
                     logTest.info("Row " + i + " is a Gift item. Skipping...");
                     continue;
                 }
-
                 deleteItemsInCartByIndex(i);
                 logTest.info("[PASS] Deleted item at position: " + i);
             }
+            validateHelper.waitForElementInvisible(allItems);
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
             logTest.info("Cart page empty");
         }
     }
 
     @Step("Verify all item calculation price in cart")
-    public void verifyCalculationPriceAllItemInCart() {
+    public boolean verifyCalculationPriceAllItemInCart() {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
         if (validateHelper.verifyElementIsExist(allItems)){
             List<WebElement> listItems = driver.findElements(allItems);
-            for (int i = listItems.size(); i > 0; i--) {
-
+            for (int i = listItems.size()-1; i > 0; i--) {
                 // By pass if item is a gift
                 By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
                 if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
                     logTest.info("Row " + i + " is a Gift item. Skipping...");
                     continue;
                 }
-
                 boolean isCalculateTrue = verifyTotalPriceItemsInCartByIndex(i);
-                logTest.info(getQuantityItemsInCartByIndex(i));
-                logTest.info(getUnitPriceItemsInCartByIndex(i));
-                logTest.info(getTotalPriceItemsInCartByIndex(i));
-                if (isCalculateTrue) {
-                    logTest.info("[PASS] Calculation item at position: " + i);
-                } else {
+                if (!isCalculateTrue) {
                     logTest.error("[FAIL] Calculation item at position: " + i);
+                    return false;
                 }
+            }
+            return true;
+        } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
+            logTest.info("Cart page empty");
+        }
+        return false;
+    }
+
+    @Step("Get total price in cart")
+    public long getPreCalculatePriceAllItemInCart() {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
+        if (validateHelper.verifyElementIsExist(allItems)){
+            List<WebElement> listItems = driver.findElements(allItems);
+            long totalPrice = 0;
+            for (int i = listItems.size()-1; i > 0; i--) {
+                // By pass if item is a gift
+                By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
+                if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
+                    logTest.info("Row " + i + " is a Gift item. Skipping...");
+                    continue;
+                }
+                totalPrice += getSubTotalPriceItemsInCartByIndex(i);
+            }
+            return totalPrice;
+        } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
+            logTest.info("Cart page empty");
+            return 0;
+        }
+        return 0;
+    }
+
+    @Step("Verify increase quantity of item in cart by 3")
+    public void verifyIncreaseQuantityOfItemInCart() {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
+        if (validateHelper.verifyElementIsExist(allItems)){
+            List<WebElement> listItems = driver.findElements(allItems);
+            for (int i = listItems.size(); i > 0; i--) {
+                // By pass if item is a gift
+                By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
+                if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
+                    logTest.info("Row " + i + " is a Gift item. Skipping...");
+                    continue;
+                }
+                // Increase quantity of item by 3 = 4
+                increaseItemsInCartByIndex(i,3);
+                By isOnlyByOneItems = By.xpath(String.format(onlyByOneItems,i));
+                if (validateHelper.verifyElementIsExist(isOnlyByOneItems)) {
+                    logTest.info("Row " + i + " is a Only by one item. Skipping...");
+                    DecreaseItemsInCartByIndex(i,3);
+                    continue;
+                }
+                break;
             }
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
             logTest.info("Cart page empty");
         }
     }
+
+
 
 }
