@@ -107,7 +107,7 @@ public class CheckoutTest extends multipleThread_baseSetup {
     public void CheckoutTest_VerifyItemListMatchCart(String[][] items) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Verify E2E Flow - Shopping Cart & Checkout Data Integrity"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Verify E2E Flow - Shopping Cart & Checkout Data Integrity"));
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
@@ -146,6 +146,51 @@ public class CheckoutTest extends multipleThread_baseSetup {
         List<ProductModel> checkoutList = checkoutPage.getDetailedListProductInCheckout();
 
         checkoutPage.compareProductLists(cartList, checkoutList);
+
+    }
+
+    @Test(dataProvider = "multiSearchData",dataProviderClass = DataProviders.class,priority = 1)
+    public void CheckoutTest_VerifyTotalPriceMatchCart(String[][] items) throws Exception {
+
+        // Overite testcase name display on Allure report by testcode and description.
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Verify E2E Flow - Shopping Cart & Checkout Total Price"));
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        logTest.info("Test case: Add single product to cart on browser" + browserXml);
+
+        // --- SMART LOGIN LOGIC ---
+        if (!loginPage.isLoggedIn()) {
+            logTest.info("Session not available, proceed Login for: " + emailXml);
+            loginPage.login_user(emailXml, passXml);
+        } else {
+            logTest.info("(Session reused), skip logged in step.");
+        }
+        // -------------------------
+
+        SearchPage searchPage = new SearchPage(getDriver());
+        ProductDetailPage productDetailPage = new ProductDetailPage(getDriver());
+        // ---- Add list product to cart ----
+        for (String[] item : items) {
+            String keyword = item[0];
+            String brand = item[1];
+            int quantity = Integer.parseInt(item[2]);
+
+            productDetailPage = searchPage.searchAndReturnFirstProduct(keyword + " " + brand);
+            Assert.assertTrue(productDetailPage.isAddCartEnable(), "Add to cart button is not enable");
+
+            // Add single product to cart
+            productDetailPage.addProductToCart();
+            productDetailPage.closeSuccessPopup();
+            getDriver().get("https://hasaki.vn/");
+        }
+
+        CartPage cartPage = loginPage.quickGoToCart();
+        long totalPriceInCart = cartPage.getTotalPriceAllItemsInCart();
+        CheckoutPage checkoutPage = cartPage.quickCheckOutProduct();
+        long totalPriceInCheckout = checkoutPage.getTotalPrice();
+        Assert.assertEquals(totalPriceInCart, totalPriceInCheckout, "Total price in cart is not equal to total price in checkout");
 
     }
 

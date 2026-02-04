@@ -10,9 +10,10 @@
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.CheckoutTest">
+            <class name="testcases.LoginTest">
                 <methods>
-                    <include name="CheckoutTest_VerifyItemListMatchCart"/>
+                    <include name="login_verifyMultipleAuthenticationScenarios"/>
+                    <include name="login_verifyUILayoutAndPlaceholders"/>
                 </methods>
             </class>
         </classes>

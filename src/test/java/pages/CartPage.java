@@ -59,7 +59,10 @@ public class CartPage {
     @Step("Delete items on cart page by index")
     public void deleteItemsInCartByIndex(int index) {
         By itemDeleteBtnLocator = By.xpath(String.format(itemDeleteBtn, index));
+        WebElement itemDelete = driver.findElement(itemDeleteBtnLocator);
+        validateHelper.scrollToTopPage_js();
         validateHelper.clickElement(itemDeleteBtnLocator);
+        wait.until(ExpectedConditions.stalenessOf(itemDelete));
     }
 
     @Step("Get brand items on cart page by index")
@@ -168,22 +171,19 @@ public class CartPage {
     }
 
     // ---- ACTION LOOP ALL ITEMS IN CART ----
-    @Step("Delele all item in cart")
+    @Step("Delete all item in cart")
     public void deleteAllItemInCart() {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
-        if (validateHelper.verifyElementIsExist(allItems)){
-            List<WebElement> listItems = driver.findElements(allItems);
-            for (int i = listItems.size()-1; i > 0; i--) {
-                // By pass if item is a gift
-                By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
-                if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
-                    logTest.info("Row " + i + " is a Gift item. Skipping...");
-                    continue;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(allItems));
+        List<WebElement> listItems = driver.findElements(allItems);
+        if (!listItems.isEmpty()) {
+           while (validateHelper.verifyElementIsExist(By.xpath("//button[contains(text(),'Xóa')]"))) {
+                try {
+                    deleteItemsInCartByIndex(1);
+                } catch (Exception e) {
+                    logTest.warn("Small error during deletion, retrying... " + e.getMessage());
+                    break;
                 }
-                deleteItemsInCartByIndex(i);
-                logTest.info("[PASS] Deleted item at position: " + i);
             }
-            validateHelper.waitForElementInvisible(allItems);
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
             logTest.info("Cart page empty");
         }

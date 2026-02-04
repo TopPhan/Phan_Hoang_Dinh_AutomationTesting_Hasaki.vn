@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
 
-    private WebDriver driver;
-    private ValidateHelper validateHelper;
+    private final WebDriver driver;
+    private final ValidateHelper validateHelper;
 
     // Hasaki logo
     private By hasakiLogo = By.xpath("//a[@class='logo']//img[@class='loading']");
@@ -41,11 +41,11 @@ public class LoginPage {
 
     //---- Label Group ---
     // LoginTest with hasaki.vn
-    private By labelLogin = By.xpath("//form[@id='form-head-LoginTest']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')]");
+    private By labelLogin = By.xpath("//form[@id='form-head-login']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')]");
     // remember password label
     private By labelRememberPassword = By.xpath("//label[contains(.,'Nhớ mật khẩu')]");
     // you not have account
-    private By labelYouNotHaveAccount = By.xpath("//form[@id='form-head-LoginTest']");
+    private By labelYouNotHaveAccount = By.xpath("//form[@id='form-head-login']");
 
     //--- Start popup ---
     public By acceptCookie = By.xpath("//button[@id='acceptCookies']");
@@ -59,12 +59,13 @@ public class LoginPage {
         this.validateHelper  = new ValidateHelper(driver);
     }
 
-    @Step("Verify is logged in")
+    // ---- Verify Page ----
+    @Step("Check if user is successfully logged in")
     public boolean isLoggedIn() {
         return validateHelper.verifyElementIsExist(headerUsername) || validateHelper.verifyElementIsExist(headerUsernameAddress) ;
     }
 
-    @Step("Verify Sign In page title")
+    @Step("Validate Login Page Title")
     public boolean verify_SignInPage_Title() {
         try {
             validateHelper.verifyElementIsDisplay(hasakiLogo);
@@ -93,26 +94,26 @@ public class LoginPage {
         return false;
     }
 
-    @Step("Verify Email/Phone placeholder")
-    public boolean verify_EmailPhone_placeholder() {
+    @Step("Check if Email/Phone input has placeholder: '{0}'")
+    public boolean verify_EmailPhone_placeholder(String expectText) {
         try{
-            if(validateHelper.getTextPlaceholder(emailInput,"Nhập email hoặc số điện thoại")){
+            if(validateHelper.getTextPlaceholder(emailInput,expectText)){
                 logTest.info("[PASS] Email/Phone placeholder match");
             };
-            return validateHelper.getTextPlaceholder(emailInput,"Nhập email hoặc số điện thoại");
+            return validateHelper.getTextPlaceholder(emailInput,expectText);
         } catch (Exception e) {
             logTest.error("[FAIL] Email/Phone placeholder doesn't match");
         }
         return false;
     }
 
-    @Step("Verify password placeholder")
-    public boolean verify_Password_placeholder() {
+    @Step("Check if Password input has placeholder: '{0}'")
+    public boolean verify_Password_placeholder(String expectText) {
         try{
-            if(validateHelper.getTextPlaceholder(passwordInput,"Nhập password")){
+            if(validateHelper.getTextPlaceholder(passwordInput,expectText)){
                 logTest.info("[PASS] Password placeholder match");
             };
-            return validateHelper.getTextPlaceholder(passwordInput,"Nhập password");
+            return validateHelper.getTextPlaceholder(passwordInput,expectText);
         } catch (Exception e) {
             logTest.error("[FAIL] Password placeholder doesn't match");
         }
@@ -136,6 +137,8 @@ public class LoginPage {
         return false;
     }
 
+
+    // ---- Get page element ----
     @Step("Get text error message")
     public String getTextErrorMessage(){
         return validateHelper.getTextElement(errorMessage);
@@ -146,13 +149,13 @@ public class LoginPage {
         return validateHelper.getTextElement(headerUsername);
     }
 
-    @Step("Create MyAccountPage class for linking by login (Open My Account Page)")
+    // ---- Action ----
+    @Step("Login to Hasaki.vn with email: '{0}' - Linking MyAccountPage")
     public MyAccountPage login_user(String username, String password) throws Exception {
-
-        validateHelper.Delay(2000);
 
         // Check page has asked cookie,
         try{
+            validateHelper.waitForElementVisible(acceptCookie,2);
             validateHelper.verifyElementIsExist(acceptCookie);
             validateHelper.clickElement(acceptCookie);
         } catch (Exception e) {
@@ -168,13 +171,14 @@ public class LoginPage {
         return new MyAccountPage(driver);
     }
 
-    @Step("Create MyAccountPage class for linking by login and remember password (Open My Account Page)")
+    @Step("Perform login and enable 'Remember Me' for user: {0} - Linking MyAccountPage")
     public MyAccountPage login_remember_user(String username, String password) throws Exception {
 
         validateHelper.Delay(2000);
 
         // Check page has asked cookie,
         try{
+            validateHelper.waitForElementVisible(acceptCookie,2);
             validateHelper.verifyElementIsExist(acceptCookie);
             validateHelper.clickElement(acceptCookie);
         } catch (Exception e) {
@@ -191,13 +195,12 @@ public class LoginPage {
         return new MyAccountPage(driver);
     }
 
-    @Step("By pass accept cookie pop-up")
+    @Step("Close cookie banner")
     public void bypass_Cookie() throws Exception {
-
-        validateHelper.Delay(2000);
 
         // Check page has asked cookie,
         try{
+            validateHelper.waitForElementVisible(acceptCookie,2);
             validateHelper.verifyElementIsExist(acceptCookie);
             validateHelper.clickElement(acceptCookie);
         } catch (Exception e) {
@@ -206,10 +209,9 @@ public class LoginPage {
 
         validateHelper.action_MovetoElement(popup_login);
         validateHelper.clickElement(popup_login_button);
-
     }
 
-    @Step("Go to cart page (Create CartPage class for linking page)")
+    @Step("Click on Cart icon to navigate to Shopping Cart - Linking CartPage")
     public CartPage quickGoToCart() {
         try {
             validateHelper.clickElement(cartBtn);
@@ -220,7 +222,4 @@ public class LoginPage {
             throw new RuntimeException(e);
         }
     }
-
-
-
 }

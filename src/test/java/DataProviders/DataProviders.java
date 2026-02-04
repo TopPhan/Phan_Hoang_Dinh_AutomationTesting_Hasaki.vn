@@ -123,7 +123,7 @@ public class DataProviders {
         return new Object[][]{
                 {"Chống nắng","sunplay","2"}, // Row 0, Column 0
                 {"Nước hoa nữ","Narciso Rodriguez","3"},       // Row 1, Column 0
-                {"Son thỏi","3CE","3"},        // Row 2, Column 0
+                {"Son thỏi","LIP ON LIP","3"},        // Row 2, Column 0
                 {"Sữa rửa mặt","cerave","4"}     // Row 3, Column 0
         };
     }
@@ -177,7 +177,7 @@ public class DataProviders {
         String[][] allItems = {
                 {"Chống nắng", "sunplay", "2"},
                 {"Nước hoa nữ", "Narciso Rodriguez", "3"},
-                {"Son thỏi", "3CE", "3"},
+                {"Son thỏi", "LIP ON LIP", "3"},
                 {"Sữa rửa mặt", "cerave", "4"}
         };
 

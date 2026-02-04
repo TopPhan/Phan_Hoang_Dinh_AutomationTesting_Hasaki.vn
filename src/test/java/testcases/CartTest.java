@@ -14,12 +14,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.LoginPage;
-import pages.ProductDetailPage;
-
 
 public class CartTest extends multipleThread_baseSetup {
     private ValidateHelper validateHelper;
-    private JavascriptExecutor js;
     private String emailXml;
     private String passXml;
     private String browserXml;
@@ -29,9 +26,9 @@ public class CartTest extends multipleThread_baseSetup {
     public void setLoginPage(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
-        //driver = getDriver();
+
         validateHelper = new ValidateHelper(getDriver());
-        js = (JavascriptExecutor) getDriver() ;
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         this.emailXml = (email != null && !email.isEmpty()) ? email : PropertiesFile.getPropValue("username");
         this.passXml = (password != null && !password.isEmpty()) ? password : PropertiesFile.getPropValue("password");
         this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
