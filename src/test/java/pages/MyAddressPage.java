@@ -72,7 +72,15 @@ public class MyAddressPage {
     // --- Error message ---
     // errorPhoneNumber
     private By errorPhoneNumber = By.xpath("//p[contains(text(),'Vui lòng điền số điện thoại')]");
+    // close error popup
     private By closeAddrressPopUp = By.xpath("//button[contains(text(),'Hủy')]");
+
+    // ---- Dynamic xpath ----
+    String fullNameIndex = "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][%d]//p[@class='text-sm font-bold']";
+    String fullAddressIndex = "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][%d]//p[@class='text-muted-foreground text-sm leading-normal']";
+    String removeBtnIndex = "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][%d]//button[@aria-label='delete button']";
+
+
 
     public MyAddressPage(WebDriver driver) {
         this.driver = driver;
@@ -88,6 +96,29 @@ public class MyAddressPage {
         }
     }
 
+    // ---- Get Page Element ----
+    @Step("Get fullName by index")
+    public String getFullNameIndex(int index) {
+        By fullNameLocator = By.xpath(String.format(fullNameIndex, index));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(fullNameLocator));
+        return validateHelper.getTextElement(fullNameLocator);
+    }
+
+    @Step("Get fullAddress by index")
+    public String getFullAddressIndex(int index) {
+        By fullAddressLocator = By.xpath(String.format(fullAddressIndex, index));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(fullAddressLocator));
+        return validateHelper.getTextElement(fullAddressLocator);
+    }
+
+    @Step("Get remove button by index")
+    public String getRemoveBtnIndex(int index) {
+        By removeBtnLocator = By.xpath(String.format(removeBtnIndex, index));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(removeBtnLocator));
+        return validateHelper.getTextElement(removeBtnLocator);
+    }
+
+    // ---- Verify Page ----
     @Step("Verify address tab url")
     public boolean verify_AddressTab_Url() {
         try {
@@ -120,6 +151,7 @@ public class MyAddressPage {
     }
 
 
+    // ---- Page Action ----
     @Step("Add new address on MyAccount page")
     public void addNewAddress(String phoneNumber, String fullname, String city, String district, String ward, String address) throws InterruptedException {
 
@@ -189,19 +221,9 @@ public class MyAddressPage {
         for (int i=1;i<=list_Address.size();i++){
 
             //Get fullname
-
-            By fullnameLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//p[@class='text-sm font-bold']");
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(fullnameLocator));
-            String getFullName = driver.findElement(fullnameLocator).getText();
-
-            //Get fulladdress
-            By fullAddressLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//p[@class='text-muted-foreground text-sm leading-normal']");
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(fullAddressLocator));
-            String getFullAddress = driver.findElement(fullAddressLocator).getText();
+            String getFullName = getFullNameIndex(i);
+            //Get full address
+            String getFullAddress = getFullAddressIndex(i);
 
             // If address is found return true
             if (getFullName.trim().contains(fullname) && getFullAddress.trim().contains(fullAddress)) {
@@ -232,22 +254,11 @@ public class MyAddressPage {
         for (int i=1;i<=list_Address.size();i++){
 
             //Get fullname
-            By fullnameLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//p[@class='text-sm font-bold']");
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(fullnameLocator));
-            String getFullName = driver.findElement(fullnameLocator).getText();
-
-            //Get fulladdress
-            By fullAddressLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//p[@class='text-muted-foreground text-sm leading-normal']");
-
+            String getFullName = getFullNameIndex(i);
+            //Get full address
+            String getFullAddress = getFullAddressIndex(i);
             //Get Remove address button
-            By removeAddressButtonLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//button[@aria-label='delete button']");
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(fullAddressLocator));
-            String getFullAddress = driver.findElement(fullAddressLocator).getText();
+            By removeAddressButtonLocator = By.xpath(String.format(removeBtnIndex,i));
 
             // If address is found return true
             if (getFullName.trim().contains(fullname) && getFullAddress.trim().contains(fullAddress)) {
@@ -281,20 +292,10 @@ public class MyAddressPage {
         Boolean isFullAddressSaved = false;
 
         for (int i=1;i<=list_Address.size();i++){
-
             //Get fullname
-            By fullnameLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//p[@class='text-sm font-bold']");
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(fullnameLocator));
-            String getFullName = driver.findElement(fullnameLocator).getText();
-
-            //Get fulladdress
-            By fullAddressLocator = By.xpath(
-                    "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]']["+i+"]//p[@class='text-muted-foreground text-sm leading-normal']");
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(fullAddressLocator));
-            String getFullAddress = driver.findElement(fullAddressLocator).getText();
+            String getFullName = getFullNameIndex(i);
+            //Get full address
+            String getFullAddress = getFullAddressIndex(i);
 
             // If address is found return true
             if (!(getFullName.trim().contains(fullname) && getFullAddress.trim().contains(fullAddress))) {

@@ -53,9 +53,6 @@ public class LoginPage {
         return acceptCookie;
     }
 
-
-
-
     // Constructor need to create at each test in test class
     public LoginPage(WebDriver driver) {
         this.driver = driver;

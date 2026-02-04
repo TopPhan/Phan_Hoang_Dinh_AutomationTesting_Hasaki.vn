@@ -24,7 +24,6 @@ public class ValidateHelper {
     public ValidateHelper(WebDriver driver){
         this.driver = driver;
 
-
             try{//Get Config File Timeout and interval for explicit wait
             long timeout = Long.parseLong(PropertiesFile.getPropValue("timeout"));
             long interval = Long.parseLong(PropertiesFile.getPropValue("refreshInterval"));
@@ -104,7 +103,6 @@ public class ValidateHelper {
 
 
     // ---- Convert Group ----
-    @Step("Convert string '{0}' to Long for calculation")
     public long parseCurrencyToLong(String currencyText) {
         try {
             String cleanString = currencyText.replaceAll("[^0-9]", "");
@@ -115,7 +113,7 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Convert string '{0}' to Int for calculation")
+
     public int parseStringToInt(String currencyText) {
         try {
             String cleanString = currencyText.replaceAll("[^0-9]", "");
@@ -128,7 +126,6 @@ public class ValidateHelper {
 
 
     // ---- Wait Group ----
-    @Step("Wait for element invinsible")
     public void waitForElementInvisible(By locator) {
         try{
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
@@ -137,7 +134,7 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Wait for element {0} to be visible in {1} seconds")
+
     public void waitForElementVisible(By by, int timeOutInSeconds) {
         try {
             WebDriverWait waitCustom = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
@@ -149,7 +146,7 @@ public class ValidateHelper {
     }
 
     // ---- Set Group ----
-    @Step("Set slider '{0}' to X axis: '{1}' and Y axis: '{2}'")
+
     public void setSlider(By locator, int x, int y){
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -160,7 +157,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Set text '{1}' into element '{0}'")
     public void setTextByActions(By locator, String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         WebElement element = driver.findElement(locator);
@@ -172,7 +168,6 @@ public class ValidateHelper {
                 .perform();
     }
 
-    @Step("Set text '{1}' into locator '{0}'")
     public void setText(By locator, String text){
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -198,7 +193,6 @@ public class ValidateHelper {
     }
 
     // ---- Get Group ----
-    @Step("Get shadow element with shadow host locator: '{0}' and inner css selector: '{1}'")
     public WebElement getShadowElement(By ShadowHostLocator, String innerCssSelector) {
         try {
             // 1. Find Shadow Host (tag include shadow-root)
@@ -217,7 +211,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Verify value of placeholder")
     public boolean getTextPlaceholder(By locator, String expect){
         try {
 
@@ -229,7 +222,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Get text of locator '{0}'")
     public String getTextElement(By locator) {
         try {
             String strErrorMsg = null;
@@ -242,7 +234,6 @@ public class ValidateHelper {
         return "";
     }
 
-    @Step("Get attribute '{1}' of element {0}")
     public String getElementAttribute(By locator, String attributeName) {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -257,7 +248,6 @@ public class ValidateHelper {
 
 
     // ---- Click Group ----
-    @Step("Click nornal on locator '{0}'")
     public void clickElement(By locator){
         try {
 
@@ -271,7 +261,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Click js on locator '{0}'")
     public void clickElement_js(By locator){
         try {
 
@@ -284,7 +273,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Click nornal on element '{0}'")
     public void clickElement(WebElement element){
         try {
 
@@ -298,7 +286,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Click js on element '{0}'")
     public void clickElement_js(WebElement element){
         try {
 
@@ -313,7 +300,6 @@ public class ValidateHelper {
 
 
     // ---- JavaScript Scroll ----
-    @Step("Scroll to element '{0}' by js")
     public void ScrollToElement_js(WebElement element){
         try {
 
@@ -325,7 +311,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Scroll to locator '{0}' by js")
     public void ScrollToElement_js(By locator){
         try {
 
@@ -337,7 +322,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Scroll to top of the page")
     public void scrollToTopPage_js() {
         try {
             js.executeScript("window.scrollTo(0, 0);");
@@ -347,7 +331,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Scroll to bottom of the page")
     public void scrollToBottomPage_js() {
         try {
             js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -357,7 +340,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Scroll to middle of the page")
     public void scrollToMiddlePage_js() {
         try {
             js.executeScript("window.scrollTo(0, document.body.scrollHeight / 2);");
@@ -368,7 +350,6 @@ public class ValidateHelper {
     }
 
     // ---- Handle Dropdown Group ----
-    @Step("Select dropdown by locator '{0}' and index '{1}'")
     public void SelectDropdownByIndex(By locator, int value) {
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -379,7 +360,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Select dropdown by locator '{0}' and value '{1}'")
     public void SelectDropdownByValue(By locator, String value) {
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -390,7 +370,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Select dropdown by locator '{0}' and text '{1}'")
     public void SelectDropdownByVisibleText(By locator, String value) {
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -494,7 +473,6 @@ public class ValidateHelper {
     }
 
     // ---- Handle Frame Group ----
-    @Step("Switch to frame by locator '{0}'")
     public void switchToFrame(By locator) {
         try {
             // Đợi cho iframe sẵn sàng rồi mới nhảy vào
@@ -505,7 +483,6 @@ public class ValidateHelper {
         }
     }
 
-    @Step("Switch to default content frame")
     public void switchToDefaultContent() {
         try {
             driver.switchTo().defaultContent();
@@ -516,7 +493,6 @@ public class ValidateHelper {
     }
 
     // ---- Hard Delay Group ----
-    @Step("Delay in '{0}' miliseconds")
     public void Delay(int time) throws InterruptedException {Thread.sleep(time);           }
 
    /* @Step("Wait for page loaded ()")

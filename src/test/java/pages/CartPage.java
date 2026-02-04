@@ -11,8 +11,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import pojoClass.ProductModel;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage {
@@ -39,7 +41,7 @@ public class CartPage {
     private By allItems = By.xpath("//tbody//tr");
     private By cartEmptyText = By.xpath("//p[contains(text(),'Bạn chưa chọn sản phẩm')]");
     private By cartTotalPrice = By.xpath("//div[contains(text(),'Tạm tính:')]//span");
-
+    private By checkoutBtn = By.xpath("//div[contains(text(),'Tạm tính:')]/following-sibling::button");
 
     // --- Dynamic xpath ---
     String itemBrand = "//tbody//tr[%d]//a[@aria-label='Go brand page']";
@@ -262,6 +264,38 @@ public class CartPage {
         }
     }
 
+    @Step("Get detailed List product in cart")
+    public List<ProductModel> getDetailedListProductInCart() {
+        List<ProductModel> products = new ArrayList<>();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
+        if (validateHelper.verifyElementIsExist(allItems)) {
+            List<WebElement> rows = driver.findElements(allItems);
+            for (int i = 1; i < rows.size(); i++) {
+                String brand = getBrandItemsInCartByIndex(i);
+                String name = getNameItemsInCartByIndex(i);
+                long price = getUnitPriceItemsInCartByIndex(i);
+                long qty = getQuantityItemsInCartByIndex(i);
+                products.add(new ProductModel(brand, name, price, qty));
+                logTest.info(products.get(i-1).toString());
+            }
+            return products;
+        } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
+            logTest.info("Cart page empty");
+        }
+        return products;
+    }
 
+    // -------- Linking page -----------
+    @Step("Check out product (Create CheckoutPage class for linking page)")
+    public CheckoutPage quickCheckOutProduct() {
+        try {
+            validateHelper.clickElement(checkoutBtn);
+            logTest.info("[PASS] Go to checkout product");
+            return new CheckoutPage(driver);
+        } catch (Exception e) {
+            logTest.error("[FAIL] Can't checkout product");
+            throw new RuntimeException(e);
+        }
+    }
 
 }

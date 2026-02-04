@@ -172,6 +172,20 @@ public class DataProviders {
         // ... code tiếp theo
     }*/
 
+    @DataProvider(name = "multiSearchData")
+    public Object[][] multiSearchData() {
+        String[][] allItems = {
+                {"Chống nắng", "sunplay", "2"},
+                {"Nước hoa nữ", "Narciso Rodriguez", "3"},
+                {"Son thỏi", "3CE", "3"},
+                {"Sữa rửa mặt", "cerave", "4"}
+        };
+
+        return new Object[][]{
+                { allItems }
+        };
+    }
+
 
 
 

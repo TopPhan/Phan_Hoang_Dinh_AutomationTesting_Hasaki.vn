@@ -24,7 +24,6 @@ public class LoginTest extends multipleThread_baseSetup {
 
     @BeforeMethod
     public void createHelper() {
-        //driver = getDriver();
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
     }

@@ -10,9 +10,9 @@
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.CheckoutTest">
+            <class name="testcases.CartTest">
                 <methods>
-                    <include name="CheckoutTest_VerifyItemListMatchCart"/>
+                    <include name="CartTest_VerifyDeleteAllCart"/>
                 </methods>
             </class>
         </classes>

@@ -79,7 +79,6 @@ public class AddressModel {
         return executed;
     }
 
-    // 5. Ghi đè phương thức toString (Hữu ích khi bạn muốn log dữ liệu ra console/Allure)
     @Override
     public String toString() {
         return "AddressModel{" +
