@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
 
-@Epic("Web Ecommerce")
+@Epic("Web Ecommerce Hasaki.vn")
 @Feature("Logout Functionality")
 @Owner("Hoàng Đỉnh Automation")
 public class LogoutTest extends multipleThread_baseSetup {
@@ -27,8 +27,8 @@ public class LogoutTest extends multipleThread_baseSetup {
     private String browserXml;
 
     @Parameters({"email", "password","browserType"})
-    @BeforeMethod
-    public void setLoginPage(@Optional("") String email,
+    @BeforeMethod(alwaysRun = true)
+    public void setupLogout(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
         validateHelper = new ValidateHelper(getDriver());

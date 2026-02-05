@@ -17,13 +17,13 @@ import pages.MyAccountPage;
 import DataProviders.DataProviders;
 import pojoClass.LoginModel;
 
-@Epic("Web Ecommerce")
+@Epic("Web Ecommerce Hasaki.vn")
 @Feature("Login Functionality")
 @Owner("Hoàng Đỉnh Automation")
 public class LoginTest extends multipleThread_baseSetup {
 
-    @BeforeMethod
-    public void createHelper() {
+    @BeforeMethod(alwaysRun = true)
+    public void setupLogin() {
         ValidateHelper validateHelper = new ValidateHelper(getDriver());
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
     }
@@ -121,7 +121,7 @@ public class LoginTest extends multipleThread_baseSetup {
         logTest.info("Verify Email/phone placeholder");
         softAssert.assertTrue(loginPage.verify_EmailPhone_placeholder("Nhập email hoặc số điện thoại"),"Email/Phone placeholder is not correct");
         logTest.info("Verify password placeholder");
-        softAssert.assertTrue(loginPage.verify_Password_placeholder("Nhập password"),"Password placeholder is not correct");
+        softAssert.assertTrue(loginPage.verify_Password_placeholder("Nhập password"),"Password placeholder is not correct");
 
         // Verify all main label is display correctly
         logTest.info("Verify all main label is display correctly");
@@ -131,7 +131,7 @@ public class LoginTest extends multipleThread_baseSetup {
         softAssert.assertAll();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result){
         try {
             logTest.info("Cleaning up after row: " + result.getName());

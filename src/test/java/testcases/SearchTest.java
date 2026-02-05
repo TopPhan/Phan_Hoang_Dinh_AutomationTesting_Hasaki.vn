@@ -19,7 +19,7 @@ import pages.SearchPage;
 import pojoClass.SearchModel;
 
 
-@Epic("Web Ecommerce")
+@Epic("Web Ecommerce Hasaki.vn")
 @Feature("Search Functionality")
 @Owner("Hoàng Đỉnh Automation")
 public class SearchTest extends multipleThread_baseSetup {
@@ -27,7 +27,7 @@ public class SearchTest extends multipleThread_baseSetup {
     private JavascriptExecutor js;
 
     @BeforeMethod(alwaysRun = true)
-    public void setupTest() {
+    public void setupSearch() {
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver();
     }

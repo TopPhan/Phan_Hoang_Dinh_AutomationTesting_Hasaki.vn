@@ -188,7 +188,6 @@ public class DataProviders {
 
 
 
-
     //-------------------  Data From Json -----------------
 
     @DataProvider(name = "searchDataFromJson", parallel = false)

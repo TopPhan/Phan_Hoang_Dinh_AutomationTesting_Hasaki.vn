@@ -46,6 +46,8 @@ public class LoginPage {
     // ---- Verify Page ----
     @Step("Check if user is successfully logged in")
     public boolean isLoggedIn() {
+        validateHelper.waitForElementVisible(headerUsername,2);
+        validateHelper.waitForElementVisible(headerUsernameAddress,2);
         return validateHelper.verifyElementIsExist(headerUsername) || validateHelper.verifyElementIsExist(headerUsernameAddress) ;
     }
 

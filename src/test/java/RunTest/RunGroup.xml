@@ -16,7 +16,7 @@
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.SearchTest"> </class>
+            <class name="testcases.MyAddressTest"> </class>
         </classes>
     </test>
 

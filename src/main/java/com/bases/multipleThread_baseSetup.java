@@ -35,7 +35,7 @@ public class multipleThread_baseSetup {
             return ((org.openqa.selenium.remote.RemoteWebDriver) getDriver()).getCapabilities().getBrowserName();
         }
 
-        //Hàm này để tùy chọn Browser. Cho chạy trước khi gọi class này (BeforeClass)
+        //Optional Browser. run in @BeforeClass
         private void setDriver(String browserType, String appURL) {
             WebDriver driver;
             switch (browserType) {
@@ -65,7 +65,7 @@ public class multipleThread_baseSetup {
             driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
         }
 
-        //Khởi tạo cấu hình của các Browser để đưa vào Switch Case
+        //Config Browser input to Switch Case
         private  WebDriver initChromeDriver(String appURL) {
             logTest.info("Launching Chrome browser...");
             //Using offline chrome driver
@@ -128,7 +128,7 @@ public class multipleThread_baseSetup {
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-geolocation");
 
-        // 3. Khởi tạo ĐÚNG class EdgeDriver
+        // 3. Init Edge driver
         WebDriver driver = new EdgeDriver(options);
 
         setupBrowser(driver, appURL);
@@ -136,18 +136,18 @@ public class multipleThread_baseSetup {
     }
 
 
-        // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
+        // Primary initializeTestBaseSetup before class test call.
         @Parameters({ "browserType", "appURL" })
         @BeforeClass(alwaysRun = true)
         public void initializeTestBaseSetup(@Optional("") String browserType,@Optional("") String appURL) {
             try {
 
-                // Kiểm tra browserType: Nếu XML rỗng thì lấy từ file Properties
+                //Check browserType: If XML empty then get data from Properties file.
                 String finalBrowser = (browserType != null && !browserType.isEmpty())
                         ? browserType
                         : PropertiesFile.getPropValue("browser");
 
-                // Kiểm tra appURL: Nếu XML rỗng thì lấy từ file Properties
+                //Check appUrl: If XML empty then get data from Properties file.
                 String finalURL = (appURL != null && !appURL.isEmpty())
                         ? appURL
                         : PropertiesFile.getPropValue("url");// i t

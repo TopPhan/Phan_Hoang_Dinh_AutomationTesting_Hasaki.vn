@@ -33,27 +33,17 @@ public class SearchPage {
         this.action = new Actions(driver);
     }
 
-    // SearchTest textbox
+    // --- Page Elements ---
     private By searchBar = By.id("search");
-    // SearchTest button
     private By searchButton = By.xpath("//button[@title='Search']");
-    // List items in page
     private By listItems = By.xpath("//div[@class='grid grid-cols-4 gap-2.5 px-2.5 mt-5']//div/a");
-    // Text not found item in search
     private By testNotFoundItem = By.xpath("//p[contains(text(),'không tìm thấy sản phẩm từ')]");
-    // Items not existed
     private By itemsNotExisted = By.xpath("//span[@class='text-orange font-bold']");
 
-
-
     // --- Filer ---
-    // Start price
     private By startPrice = By.xpath("//input[@name='priceFrom']");
-    // End price
     private By endPrice = By.xpath("//input[@name='priceTo']");
-    // Apply price
     private By applyPrice = By.xpath("//button[contains(text(),'Áp dụng')]");
-    // --- List price of item
     private By listPrice = By.xpath("//div[@class='grid grid-cols-4 gap-2.5 px-2.5 mt-5']//a//span[@class='text-orange font-bold text-sm']");
 
     // --- Search on product detailed page ---
@@ -61,19 +51,19 @@ public class SearchPage {
     private By searchButtonProduct = By.xpath("//button[@aria-label='Search Button']");
 
 
-    @Step("SearchTest product with keyword: '{0}'")
+    @Step("Search for product with keyword: '{0}'")
     public void searchProduct(String product) {
         validateHelper.setText(searchBar,product);
         validateHelper.clickElement(searchButton);
     }
 
-    @Step("SearchTest product with keyword: '{0}'")
+    @Step("Search for product with keyword: '{0}'")
     public void searchOnProductDetailedPage(String product) {
         validateHelper.setText(textboxProductDetail,product);
         validateHelper.clickElement(searchButtonProduct);
     }
 
-    @Step("Search and click first product with keyword: '{0}' (Open Product Detail Page)")
+    @Step("Search and select the first product for keyword: '{0}' - Linking ProductDetailPage")
     public ProductDetailPage searchAndReturnFirstProduct(String product) throws InterruptedException {
         try {
             validateHelper.setText(searchBar, product);
@@ -92,7 +82,7 @@ public class SearchPage {
         return null;
     }
 
-    @Step("Go to next page")
+    @Step("Navigate to the next results page")
     public Boolean goToNextPage() throws InterruptedException {
         // Wait pagination panel display
         validateHelper.verifyElementIsDisplay(By.xpath("//div[@class='flex justify-center mt-5']"));
@@ -124,7 +114,7 @@ public class SearchPage {
     }
 
     // Check keyword is matching with product name
-    @Step("Count product match with keyword: '{0}'")
+    @Step("Verify search accuracy: Count products containing keyword '{0}'")
     public int countMatchingProducts(String keyword) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(listItems));
         List<WebElement> items = driver.findElements(listItems);
@@ -144,7 +134,7 @@ public class SearchPage {
         return driver.findElements(listItems).size();
     }
 
-    @Step("Set price range of products from '{0}' to '{1}'")
+    @Step("Apply price filter from {0} to {1}")
     public void filterByPriceRange(String min, String max) throws InterruptedException {
 
         // Wait for price display
@@ -190,7 +180,7 @@ public class SearchPage {
         }
     }
 
-    @Step("Verify price range list of search products from '{0}' to '{1}'")
+    @Step("Verify all products on page are within price range: {0} - {1}")
     public boolean verifyPriceRange(String min, String max) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(listPrice));
         List<WebElement> priceElements = driver.findElements(listPrice);
@@ -214,7 +204,7 @@ public class SearchPage {
         return true;
     }
 
-    @Step("Negative test: Page will message 'Rất tiếc, không tìm thấy sản phẩm...' when search noneless keyword")
+    @Step("Verify 'Rất tiếc, không tìm thấy sản phẩm...' message is displayed")
     public boolean verifyNoProductFound() {
         try {
 
@@ -224,11 +214,11 @@ public class SearchPage {
             Boolean Message = validateHelper.verifyElementIsDisplay(testNotFoundItem);
             Boolean itemFound = validateHelper.verifyElementIsDisplay(itemsNotExisted);
 
-            logTest.info("[PASS] Message: "+ errorText +" is display after search noneless keyword");
+            logTest.info("[PASS] Message: "+ errorText +" is display after search invalid keyword");
             return Message && itemFound;
 
         } catch (Exception e) {
-            logTest.error("[FAIL] Message 'Rất tiếc, không tìm thấy sản phẩm...' is not display after search noneless keyword");
+            logTest.error("[FAIL] Message 'Rất tiếc, không tìm thấy sản phẩm...' is not display after search invalid keyword");
             return false;
         }
     }

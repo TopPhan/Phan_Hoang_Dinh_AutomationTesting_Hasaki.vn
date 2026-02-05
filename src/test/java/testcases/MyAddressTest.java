@@ -17,6 +17,9 @@ import pages.MyAccountPage;
 import pages.MyAddressPage;
 import pojoClass.AddressModel;
 
+@Epic("Web Ecommerce Hasaki.vn")
+@Feature("MyAddress Functionality")
+@Owner("Hoàng Đỉnh Automation")
 public class MyAddressTest extends multipleThread_baseSetup {
 
     private ValidateHelper validateHelper;
@@ -26,7 +29,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
     private String browserXml;
 
     @Parameters({"email", "password","browserType"})
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setLoginPage(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
@@ -38,14 +41,17 @@ public class MyAddressTest extends multipleThread_baseSetup {
         this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
     }
 
-    @Test(priority = 0)
-    @Feature("MyAddressTest")
-    @Story("Verify address page UI")
+    @Test(
+            priority = 0,
+            groups = {"smoke", "regression"}
+    )
+    @Story("UI Verification")
     @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify Address page UI elements, correct URL navigation and Page Title.")
     public void MyAddress_verifyAddressUI() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Quick verify address page UI"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Quick verify address page UI & URL"));
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
@@ -69,10 +75,15 @@ public class MyAddressTest extends multipleThread_baseSetup {
         Assert.assertTrue(myAddressPage.isTitleAddressTab(),"Address tab title doesn't exist");
     }
 
-    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,priority = 1)
-    @Feature("MyAddressTest")
-    @Story("Validate Add address on page")
+    @Test(
+            dataProvider = "AddressDataFromExcel",
+            dataProviderClass = DataProviders.class,
+            priority = 1,
+            groups = {"regression"}
+    )
+    @Story("Add Address Validation")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Validate that a user can successfully add a new delivery address with full details.")
     public void MyAddress_verifyAddNewAddress(AddressModel addressModel) throws Exception {
 
         // Checking execute column ( Y/N )
@@ -82,7 +93,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
         }
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Verify add address"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName(String.format("TC2: Add Address for '%s'", addressModel.getFullName())));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
@@ -92,8 +103,8 @@ public class MyAddressTest extends multipleThread_baseSetup {
         MyAddressPage myAddressPage ;
         if (!loginPage.isLoggedIn()) {
             logTest.info("Session not available, proceed Login for: " + emailXml);
-            myAccountPage = loginPage.login_user(emailXml, passXml);
             validateHelper.clickElement(loginPage.getAcceptCookie());
+            myAccountPage = loginPage.login_user(emailXml, passXml);
             myAddressPage = myAccountPage.goToMyAddressTab();
         } else {
             logTest.info("(Session reused), skip logged in step.");
@@ -128,10 +139,15 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
     }
 
-    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class,priority = 2)
-    @Feature("MyAddressTest")
-    @Story("Validate Delete address on page")
+    @Test(
+            dataProvider = "AddressDataFromExcel",
+            dataProviderClass = DataProviders.class,
+            priority = 2,
+            groups = {"regression"}
+    )
+    @Story("Delete Address Validation")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Validate that a user can successfully delete an existing address from the list.")
     public void MyAddress_verifyDeleteAddress(AddressModel addressModel) throws Exception {
 
         // Checking execute column ( Y/N )
@@ -141,7 +157,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
         }
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Verify delete address"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName(String.format("TC3: Delete Address of '%s'", addressModel.getFullName())));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
@@ -152,8 +168,8 @@ public class MyAddressTest extends multipleThread_baseSetup {
         MyAddressPage myAddressPage ;
         if (!loginPage.isLoggedIn()) {
             logTest.info("Session not available, proceed Login for: " + emailXml);
-            myAccountPage = loginPage.login_user(emailXml, passXml);
             validateHelper.clickElement(loginPage.getAcceptCookie());
+            myAccountPage = loginPage.login_user(emailXml, passXml);
             myAddressPage = myAccountPage.goToMyAddressTab();
         } else {
             logTest.info("(Session reused), skip logged in step.");
@@ -188,10 +204,15 @@ public class MyAddressTest extends multipleThread_baseSetup {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "AddressDataFromExcel",dataProviderClass = DataProviders.class, priority = 3)
-    @Feature("MyAddressTest")
-    @Story("Negative Test: Validate error message on add address page")
+    @Test(
+            dataProvider = "AddressDataFromExcel",
+            dataProviderClass = DataProviders.class,
+            priority = 3,
+            groups = {"negative", "regression"}
+    )
+    @Story("Negative Validation")
     @Severity(SeverityLevel.MINOR)
+    @Description("Verify that the system shows an error message when attempting to add an address without a phone number.")
     public void MyAddress_validationLeavePhoneNumberBlank(AddressModel addressModel) throws Exception {
 
         // Checking execute column ( Y/N )
@@ -201,7 +222,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
         }
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Validate error message on add address page"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Validate error message when phone is blank"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
@@ -211,8 +232,8 @@ public class MyAddressTest extends multipleThread_baseSetup {
         MyAddressPage myAddressPage ;
         if (!loginPage.isLoggedIn()) {
             logTest.info("Session not available, proceed Login for: " + emailXml);
-            myAccountPage = loginPage.login_user(emailXml, passXml);
             validateHelper.clickElement(loginPage.getAcceptCookie());
+            myAccountPage = loginPage.login_user(emailXml, passXml);
             myAddressPage = myAccountPage.goToMyAddressTab();
         } else {
             logTest.info("(Session reused), skip logged in step.");
@@ -230,19 +251,14 @@ public class MyAddressTest extends multipleThread_baseSetup {
                 addressModel.getAddress()),"[FAIL] error test when address without phone number doesn't display");
 
         softAssert.assertAll();
-
     }
-
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result){
         try {
             logTest.info("Finish Test: " + result.getName());
             getDriver().navigate().to(PropertiesFile.getPropValue("address_url"));
-
         } catch (Exception e) {
             logTest.error("[FAIL]Error while reload address page.");
         }
-
     }
-
 }
