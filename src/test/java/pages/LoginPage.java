@@ -11,40 +11,24 @@ public class LoginPage {
     private final WebDriver driver;
     private final ValidateHelper validateHelper;
 
-    // Hasaki logo
     private By hasakiLogo = By.xpath("//a[@class='logo']//img[@class='loading']");
-    // Popup LoginTest panel
     private By popup_login = By.xpath("//a[@href='#'][@class='icon_header']");
-    // Popup LoginTest button
     private By popup_login_button = By.xpath("//a[@id='hskLoginButton']");
-    // Email input textbox
     private By emailInput = By.xpath("//input[@id='username']");
-    // Password input textbox
     private By passwordInput = By.xpath("//input[@id='password']");
-    // Sign-in button
     private By signinBtn = By.xpath("//button[contains(text(),'Đăng nhập')]");
-    // Sign-up link
     private By signUpLinkBtn = By.xpath("//a[contains(text(),'Đăng ký ngay')]/preceding::form[@id='form-head-LoginTest']");
-    // Forgot password link
     private By forgotPasswordLinkBtn = By.xpath("//a[contains(text(),'Quên mật khẩu')]");
-    // Remember password checkbox
     private By rememberPasswordCheckbox = By.xpath("//label[contains(.,'Nhớ mật khẩu')]//input[@type='checkbox']");
-    // Header username
     private By headerUsername = By.xpath("//span[@class='header_username']");
     private By headerUsernameAddress = By.xpath("//span[normalize-space()='Chào']");
-    // Show error message
     private By errorMessage = By.xpath("//div[@class='alert alert-danger']");
-    // Cart button
     private By cartBtn = By.xpath("//a[@href='https://hasaki.vn/checkout/cart']");
 
 
-
     //---- Label Group ---
-    // LoginTest with hasaki.vn
     private By labelLogin = By.xpath("//form[@id='form-head-login']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')]");
-    // remember password label
     private By labelRememberPassword = By.xpath("//label[contains(.,'Nhớ mật khẩu')]");
-    // you not have account
     private By labelYouNotHaveAccount = By.xpath("//form[@id='form-head-login']");
 
     //--- Start popup ---
@@ -53,7 +37,7 @@ public class LoginPage {
         return acceptCookie;
     }
 
-    // Constructor need to create at each test in test class
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         this.validateHelper  = new ValidateHelper(driver);
@@ -211,7 +195,7 @@ public class LoginPage {
         validateHelper.clickElement(popup_login_button);
     }
 
-    @Step("Click on Cart icon to navigate to Shopping Cart - Linking CartPage")
+    @Step("Click on Cart icon redirect to Cart Page - Linking CartPage")
     public CartPage quickGoToCart() {
         try {
             validateHelper.clickElement(cartBtn);

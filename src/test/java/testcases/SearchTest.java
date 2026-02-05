@@ -14,25 +14,38 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.ProductDetailPage;
 import pages.SearchPage;
 import pojoClass.SearchModel;
 
-public class SearchTest extends multipleThread_baseSetup {
 
+@Epic("Web Ecommerce")
+@Feature("Search Functionality")
+@Owner("Hoàng Đỉnh Automation")
+public class SearchTest extends multipleThread_baseSetup {
     private ValidateHelper validateHelper;
     private JavascriptExecutor js;
 
-    @BeforeMethod
-    public void createHelper() {
+    @BeforeMethod(alwaysRun = true)
+    public void setupTest() {
         validateHelper = new ValidateHelper(getDriver());
-        js = (JavascriptExecutor) getDriver() ;
+        js = (JavascriptExecutor) getDriver();
     }
 
-    @Test(dataProvider = "SearchDataFromExcel",dataProviderClass = DataProviders.class, priority = 0)
-    @Feature("SearchTest")
-    @Story("SearchTest with various keyword")
+    @Test(
+            dataProvider = "SearchDataFromExcel",
+            dataProviderClass = DataProviders.class,
+            priority = 0,
+            groups = {"regression"}
+    )
+    @Story("Search Accuracy Validation")
     @Severity(SeverityLevel.BLOCKER)
-    public void Search_testFunctionality(SearchModel searchModel) throws Exception {
+    @Description("Multiple scenarios Search Test:\n1. " +
+                 "Search with dynamic keyword + type\n2." +
+                 "Calculate matching rate on the first page\n3. " +
+                 "Go through all pages to calculate global accuracy rate\n4." +
+                 "Validate against expected threshold.")
+    public void search_verifyResultsAccuracyWithMultipleKeywords(SearchModel searchModel) throws Exception {
 
         // Checking execute column ( Y/N )
         if (searchModel.getExecuted().equalsIgnoreCase("N")) {
@@ -96,23 +109,27 @@ public class SearchTest extends multipleThread_baseSetup {
             softAssert.assertAll();
     }
 
-    @Test(dataProvider = "Search_By_price",dataProviderClass = DataProviders.class, priority = 1)
-    @Feature("SearchTest")
-    @Story("SearchTest with min and max price")
+    @Test(
+            dataProvider = "Search_By_price",
+            dataProviderClass = DataProviders.class,
+            priority = 1,
+            groups = {"regression"}
+    )
+    @Story("Price Filter Validation")
     @Severity(SeverityLevel.NORMAL)
-    public void Search_testFilerMinMaxPrice(String name, String minPrice,String maxPrice) throws Exception {
-
+    @Description("Verify if products are correctly filtered within the specified price range ('min' - 'max')")
+    public void search_verifyPriceFilterFunctionality(String name, String minPrice,String maxPrice) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC5 Verify search by price"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName(
+                String.format("TC5 filter price: [%s] | Range: %s - %s", name, minPrice, maxPrice)
+        ));
 
         LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
 
         SearchPage searchPage = new SearchPage(getDriver());
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
-
-        logTest.info("TC5 Verify search by price");
 
         // 1. Find element in first page.
         // SearchTest items
@@ -136,38 +153,18 @@ public class SearchTest extends multipleThread_baseSetup {
         }
     }
 
-    @Test(priority = 2)
-    @Feature("SearchTest")
-    @Story("SearchTest with none less keyword")
+    @Test(
+            priority = 2,
+            groups = {"negative","regression"}
+    )
+    @Story("Negative Search Scenarios")
     @Severity(SeverityLevel.NORMAL)
-    public void Search_Negative_TestWithNoneLessKeyword() {
-
-        // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC6 Negative Test: SearchTest with none less keyword"));
-
-        LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
-
-        SearchPage searchPage = new SearchPage(getDriver());
-        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
-
-        logTest.info("TC6 Negative Test: SearchTest with none less keyword");
+    @Description("Verify system behavior with invalid keywords")
+    public void search_verifyNoResultsForInvalidKeyword() {
 
         String keyword = "ádefsDFFFsdf";
-        searchPage.searchProduct(keyword);
-
-        Assert.assertTrue(searchPage.verifyNoProductFound(),"[FAIL]Error message is not display after search noneless keyword");
-
-    }
-
-    @Test(priority = 3)
-    @Feature("SearchTest")
-    @Story("Search and click first items")
-    @Severity(SeverityLevel.NORMAL)
-    public void Search_ClickFirstItems() throws InterruptedException {
-
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC6 Negative Test: SearchTest with none less keyword"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC6 Negative Search: '" + keyword + "'"));
 
         LoginPage loginPage = new LoginPage(getDriver());
         validateHelper.clickElement(loginPage.getAcceptCookie());
@@ -175,29 +172,48 @@ public class SearchTest extends multipleThread_baseSetup {
         SearchPage searchPage = new SearchPage(getDriver());
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
 
-        logTest.info("TC7 SearchTest and click firsh items");
-
-        String keyword = "Sữa rửa mặt cerave";
-        searchPage.searchAndReturnFirstProduct(keyword);
-
+        searchPage.searchProduct(keyword);
+        Assert.assertTrue(searchPage.verifyNoProductFound(),"[FAIL]Error message is not display after search noneless keyword");
     }
 
-    @AfterMethod
+    @Test(
+            priority = 3,
+            groups = {"smoke", "regression"}
+    )
+    @Feature("Search Functionality")
+    @Story("Product Navigation")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that user can search for a product and successfully click on the first result to view details.")
+    public void search_verifyNavigationToProductDetail() throws InterruptedException {
+
+        String keyword = "rửa mặt";
+        String brand = "cerave";
+        // Overite testcase name display on Allure report by testcode and description.
+        Allure.getLifecycle().updateTestCase(result -> result.setName(String.format("TC7 Search & Navigate: [%s] [%s]", keyword,brand)));
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+
+        SearchPage searchPage = new SearchPage(getDriver());
+        CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
+
+        ProductDetailPage productDetailPage = searchPage.searchAndReturnFirstProduct(keyword+" "+brand);
+        Assert.assertTrue(productDetailPage.getProductBrand().trim().equalsIgnoreCase(brand), "Product brand is not correct");
+        Assert.assertTrue(productDetailPage.getProductName().trim().toLowerCase().contains(keyword), "Product name is not correct");
+    }
+
+    @AfterMethod(alwaysRun = true)
     public void closeSearch(ITestResult result) {
         try {
             logTest.info("Cleaning up after row: " + result.getName());
             getDriver().manage().deleteAllCookies();
-
             if (!result.isSuccess()) {
                 ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
             }
-
             getDriver().navigate().to("https://hasaki.vn/");
-
         } catch (Exception e) {
             logTest.error("Error while cleaning up after row: " + result.getName());
         }
     }
-
 
 }

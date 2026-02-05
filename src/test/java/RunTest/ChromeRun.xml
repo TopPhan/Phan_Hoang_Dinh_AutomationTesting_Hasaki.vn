@@ -1,4 +1,4 @@
-<suite name="Page Object test example" parallel="none" thread-count="1">
+<suite name="Page Object test example" parallel="tests" thread-count="2">
 
     <listeners>
         <listener class-name="com.listener.Standard_Mode_Listener"></listener>
@@ -10,10 +10,12 @@
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.LoginTest">
+            <class name="testcases.SearchTest">
                 <methods>
-                    <include name="login_verifyMultipleAuthenticationScenarios"/>
-                    <include name="login_verifyUILayoutAndPlaceholders"/>
+                    <include name="search_verifyResultsAccuracyWithMultipleKeywords"/>
+                    <include name="search_verifyPriceFilterFunctionality"/>
+                    <include name="search_verifyNoResultsForInvalidKeyword"/>
+                    <include name="search_verifyNavigationToProductDetail"/>
                 </methods>
             </class>
         </classes>

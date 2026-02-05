@@ -17,6 +17,9 @@ import pages.MyAccountPage;
 import DataProviders.DataProviders;
 import pojoClass.LoginModel;
 
+@Epic("Web Ecommerce")
+@Feature("Login Functionality")
+@Owner("Hoàng Đỉnh Automation")
 public class LoginTest extends multipleThread_baseSetup {
 
     @BeforeMethod
@@ -31,7 +34,6 @@ public class LoginTest extends multipleThread_baseSetup {
             dataProviderClass = DataProviders.class,
             priority = 0
     )
-    @Epic("Web Ecommerce")
     @Feature("Login")
     @Story("Login Data Driven")
     @Owner("Hoàng Đỉnh Automation")
@@ -100,7 +102,6 @@ public class LoginTest extends multipleThread_baseSetup {
             groups = {"smoke", "gui"},
             priority = 1
     )
-    @Epic("Web Ecommerce")
     @Feature("Login")
     @Story("Login Page UI")
     @Owner("Hoàng Đỉnh Automation")

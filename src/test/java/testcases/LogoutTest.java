@@ -5,6 +5,7 @@ import com.log.logTest;
 import com.utility.CustomSoftAssert;
 import com.utility.Helpers.ValidateHelper;
 import com.utility.PropertiesFile;
+import io.qameta.allure.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -14,6 +15,9 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
 
+@Epic("Web Ecommerce")
+@Feature("Logout Functionality")
+@Owner("Hoàng Đỉnh Automation")
 public class LogoutTest extends multipleThread_baseSetup {
 
     private ValidateHelper validateHelper;
@@ -27,7 +31,6 @@ public class LogoutTest extends multipleThread_baseSetup {
     public void setLoginPage(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
-        //driver = getDriver();
         validateHelper = new ValidateHelper(getDriver());
         js = (JavascriptExecutor) getDriver() ;
         this.emailXml = (email != null && !email.isEmpty()) ? email : PropertiesFile.getPropValue("username");
@@ -35,18 +38,28 @@ public class LogoutTest extends multipleThread_baseSetup {
         this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
     }
 
-    @Test(priority = 0)
-    public void Logout_testFunctionality() throws Exception {
+    @Test(
+            priority = 0,
+            groups = {"smoke", "regression"}
+    )
+    @Feature("Logout")
+    @Story("Log out from system")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify that a logged-in user can log out successfully.")
+    public void logout_verifyUserCanLogoutSuccessfully() throws Exception {
 
         LoginPage loginPage = new LoginPage(getDriver());
+        Allure.getLifecycle().updateTestCase(result -> result.setName("Logout Test: Verify session termination for " + emailXml));
+
         logTest.info("--- Test log-out flow ---");
         logTest.info("Email: " + emailXml);
-        logTest.info("Password: "+ passXml);
+        //logTest.info("Password: "+ passXml);
 
         MyAccountPage myAccountPage = loginPage.login_user(emailXml, passXml);
         myAccountPage.LogOut();
         Assert.assertTrue(myAccountPage.verify_LogoutSuccess());
 
+        Allure.addAttachment("Logout Status", "Account " + emailXml + " logged out successfully.");
     }
 
 }

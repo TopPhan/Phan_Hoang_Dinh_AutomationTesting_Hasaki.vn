@@ -138,7 +138,7 @@ public class multipleThread_baseSetup {
 
         // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
         @Parameters({ "browserType", "appURL" })
-        @BeforeClass
+        @BeforeClass(alwaysRun = true)
         public void initializeTestBaseSetup(@Optional("") String browserType,@Optional("") String appURL) {
             try {
 
@@ -162,7 +162,7 @@ public class multipleThread_baseSetup {
             }
         }
 
-        @AfterClass
+        @AfterClass(alwaysRun = true)
         public void tearDown() throws Exception {
             if (getDriver() != null) {
                 Thread.sleep(2000);
