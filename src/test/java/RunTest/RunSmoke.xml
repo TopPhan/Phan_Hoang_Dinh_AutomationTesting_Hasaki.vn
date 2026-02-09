@@ -1,0 +1,38 @@
+
+<suite name="Hasaki Smoke Suite" parallel="tests" thread-count="2">
+
+    <listeners>
+        <listener class-name="com.listener.Standard_Mode_Listener" />
+    </listeners>
+
+    <groups>
+        <run>
+            <include name="smoke" />
+        </run>
+    </groups>
+
+    <test name="Smoke Test - Chrome" preserve-order="true">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="topphanst@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <classes>
+            <class name="testcases.LoginTest" />
+            <class name="testcases.SearchTest" />
+            <class name="testcases.LogoutTest" />
+        </classes>
+    </test>
+
+    <test name="Smoke Test - Edge" preserve-order="true">
+        <parameter name="browserType" value="msedge" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="swata44@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <classes>
+            <class name="testcases.LoginTest" />
+            <class name="testcases.SearchTest" />
+            <class name="testcases.LogoutTest" />
+        </classes>
+    </test>
+
+</suite>

@@ -57,31 +57,31 @@ public class CheckoutPage {
     String itemQuantity = "//div//article[@class='mt-2.5'][%d]//div//span[1]";
 
     // ---- Action Dynamic ----
-    @Step("Get brand items on checkout page by index")
+    @Step("Retrieve brand of product at position #{index}")
     public String getBrandItemsInCheckoutByIndex(int index) {
         By itemBrandLocator = By.xpath(String.format(itemBrand, index));
         return validateHelper.getTextElement(itemBrandLocator);
     }
 
-    @Step("Get name items on checkout page by index")
+    @Step("Retrieve name of product at position #{index}")
     public String getNameItemsInCheckoutByIndex(int index) {
         By itemNameLocator = By.xpath(String.format(itemName, index));
         return validateHelper.getTextElement(itemNameLocator);
     }
 
-    @Step("Get quantity items on checkout page by index")
+    @Step("Retrieve quantity of product at position #{index}")
     public long getQuantityItemsInCheckoutByIndex(int index) {
         By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemQuantityLocator));
     }
 
-    @Step("Get unit price of items on checkout page by index")
+    @Step("Retrieve unit price for product at position #{index}")
     public long getUnitPriceItemsInCheckoutByIndex(int index) {
         By itemUnitPriceLocator = By.xpath(String.format(itemUnitPrice, index));
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemUnitPriceLocator));
     }
 
-    @Step("Get unit discount price of items on checkout page by index")
+    @Step("Retrieve discounted price for product at position #{index}")
     public long getUnitDiscountPriceItemsInCheckoutByIndex(int index) {
         By itemUnitDiscountPriceLocator = By.xpath(String.format(itemUnitDiscoutPrice, index));
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemUnitDiscountPriceLocator));
@@ -89,32 +89,32 @@ public class CheckoutPage {
 
 
     // ---- Get Page Element ----
-    @Step("Get name address")
+    @Step("Extract name from shipping address")
     public String getNameReceive() {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(nameReceive));
         return validateHelper.getTextElement(nameReceive);
     }
 
-    @Step("Get full address")
+    @Step("Extract full shipping address details")
     public String getFullAddress() {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(fullAddress));
         return validateHelper.getTextElement(fullAddress);
     }
 
-    @Step("Get total price")
+    @Step("Retrieve Grand Total price (VAT included)")
     public long getTotalPrice() {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(TotalPrice));
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(TotalPrice));
     }
 
     // ---- Verify Page ----
-    @Step("Verify product page url contains: /checkout ")
+    @Step("Validate Checkout page URL")
     public boolean verify_CheckoutPage_Url() {
         try {
             boolean urlContains = validateHelper.verifyUrl("hasaki.vn/checkout");
             if (urlContains){
                 logTest.info("[PASS] Url: hasaki.vn/checkout is display");
-                return validateHelper.verifyUrl("hasaki.vn/checkout");
+                return true;
             }
         } catch (Exception e) {
             logTest.error("[FAIL] actual Url is: " + driver.getCurrentUrl());
@@ -123,7 +123,7 @@ public class CheckoutPage {
         return false;
     }
 
-    @Step("Verify checkout page title is display")
+    @Step("Validate visibility of 'Thanh toán' header")
     public boolean verify_CheckoutTitle() {
         try {
             validateHelper.scrollToTopPage_js();
@@ -139,7 +139,7 @@ public class CheckoutPage {
         return false;
     }
 
-    @Step("Verify address title is display")
+    @Step("Validate visibility of 'Địa chỉ nhận hàng' section")
     public boolean verify_addressTitle() {
         try {
             boolean isTitleDisplay = validateHelper.verifyElementIsDisplay(addressText);
@@ -154,7 +154,7 @@ public class CheckoutPage {
         return false;
     }
 
-    @Step("Verify payment method title is display")
+    @Step("Validate visibility of 'Hình thức thanh toán' section")
     public boolean verify_paymentMethodTitle() {
         try {
             boolean isTitleDisplay = validateHelper.verifyElementIsDisplay(paymentText);
@@ -169,7 +169,7 @@ public class CheckoutPage {
         return false;
     }
 
-    @Step("Verify 'Đặt Hàng' button is enable and display")
+    @Step("Check if 'Đặt Hàng' button is active and visible")
     public boolean verify_paymentBtnIsEnable() {
         try {
             boolean isCheckoutBtnIsEnable = validateHelper.verifyElementEnabled(checkoutBtn);
@@ -186,7 +186,7 @@ public class CheckoutPage {
     }
 
     // ---- Get all product in checkout page ----
-    @Step("Get detailed List product in checkout")
+    @Step("Gather all product details from Checkout list")
     public List<ProductModel> getDetailedListProductInCheckout() {
         List<ProductModel> products = new ArrayList<>();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
@@ -207,6 +207,7 @@ public class CheckoutPage {
                 products.add(new ProductModel(brand, name, price, qty));
                 logTest.info(products.get(i-1).toString());
             }
+            logTest.info("Total products found in Checkout: " + products.size());
             return products;
         } else {
             logTest.info("Checkout page empty");
@@ -214,6 +215,7 @@ public class CheckoutPage {
         return products;
     }
 
+    @Step("Compare Product List between Cart and Checkout")
     public void compareProductLists(List<ProductModel> cartList, List<ProductModel> checkoutList) {
         // 1. Compare quantity between Cart and Checkout page
         softAssert.assertEquals(checkoutList.size(), cartList.size(),
@@ -250,9 +252,6 @@ public class CheckoutPage {
         }
         softAssert.assertAll();
     }
-
-
-
 
 }
 

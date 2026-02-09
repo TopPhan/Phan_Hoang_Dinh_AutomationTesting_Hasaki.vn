@@ -10,12 +10,9 @@
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.SearchTest">
+            <class name="testcases.CheckoutTest">
                 <methods>
-                    <include name="search_verifyResultsAccuracyWithMultipleKeywords"/>
-                    <include name="search_verifyPriceFilterFunctionality"/>
-                    <include name="search_verifyNoResultsForInvalidKeyword"/>
-                    <include name="search_verifyNavigationToProductDetail"/>
+                    <include name="CheckoutTest_VerifyUI"/>
                 </methods>
             </class>
         </classes>

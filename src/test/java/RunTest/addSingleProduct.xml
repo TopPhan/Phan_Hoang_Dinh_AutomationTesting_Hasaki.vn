@@ -12,7 +12,7 @@
         <classes>
             <class name="testcases.ProductDetailTest">
                 <methods>
-                    <include name="ProductDetail_AddSingleToCart"/>
+                    <include name="ProductDetail_addSingleUnit"/>
                 </methods>
             </class>
         </classes>

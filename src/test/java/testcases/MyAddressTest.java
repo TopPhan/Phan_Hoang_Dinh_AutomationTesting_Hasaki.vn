@@ -142,8 +142,8 @@ public class MyAddressTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "AddressDataFromExcel",
             dataProviderClass = DataProviders.class,
-            priority = 2,
-            groups = {"regression"}
+            priority = 99,
+            groups = {"cleanup"}
     )
     @Story("Delete Address Validation")
     @Severity(SeverityLevel.CRITICAL)

@@ -24,62 +24,40 @@ public class MyAddressPage {
     // My account panel
     private By myAccountPanel = By.xpath("//div[@class='item_header item_login user-info-group ']");
     private By myAddress = By.xpath("//a[contains(text(),'Địa chỉ giao hàng')]");
-    // Log-out button
+
 
     // --- Add address ---
-    // Address title
     private By addressTitle = By.xpath("//h2[contains(text(),'Sổ địa chỉ')]");
-    // Add new address
     private By addNewAddress = By.xpath("//button[@aria-label='add address button']");
-    // input Phone number
     private By inputPhoneNumber = By.xpath("//input[@placeholder='Số điện thoại']");
-    // input Full name
     private By inputFullName = By.xpath("//input[@placeholder='Họ và tên']");
-    // Dropdown list input City / Province
     private By inputCityProvinceBtn = By.xpath("//button[contains(.,'Chọn Tỉnh/ TP, Quận/ Huyện')]");
-    // Textbox input City / Province
     private By inputCityProvinceTxt = By.xpath("//input[@placeholder='Tìm kiếm Tỉnh/ TP, Quận/ Huyện ...']");
-    // Dropdown list input Ward
     private By inputWardBtn = By.xpath("//button[contains(.,'Chọn Phường/ Xã')]");
-    // Textbox input Ward
     private By inputWardTxt = By.xpath("//input[@placeholder='Tìm kiếm Chọn Phường/ Xã ...']");
-    // Button number house address and street
     private By inputHouseNumberBtn = By.xpath("//button[@name='address']");
-    // Textbox input House number and street
     private By inputHouseNumberTxt = By.xpath("//input[@placeholder='Nhập vị trí của bạn']");
-    // Button continue
     private By btnContinue = By.xpath("//button[@type='button'][contains(text(),'Tiếp tục')]");
-    // Button save
     private By btnSave = By.xpath("//button[contains(text(),'Tiếp tục')]");
 
 
     // --- Verify Address ---
-    // Update button
     private By modifyBtn = By.xpath("//button[@aria-label='update button']");
-    // Receive name
     private By receiveName = By.xpath("//p[@class='text-sm font-bold']");
-    // Address text
     private By addressTxt = By.xpath("//p[@class='text-muted-foreground text-sm leading-normal']");
-    // Close success update pop-up
     private By closeSuccessUpdatePopUp = By.xpath("//div[@class='grid gap-1']/following-sibling::button");
-    // List of address
     private By listAddress = By.xpath("//div[@class='grid gap-5 grid-cols-2 w-full']/div");
-    // Default address
     private By defaultAddress = By.xpath("//div[contains(text(),'Địa chỉ mặc định')]");
-    // Confirm delete address
     private By confirmDeleteAddress = By.xpath("//button[contains(text(),'Xác nhận')]");
 
     // --- Error message ---
-    // errorPhoneNumber
     private By errorPhoneNumber = By.xpath("//p[contains(text(),'Vui lòng điền số điện thoại')]");
-    // close error popup
     private By closeAddrressPopUp = By.xpath("//button[contains(text(),'Hủy')]");
 
     // ---- Dynamic xpath ----
     String fullNameIndex = "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][%d]//p[@class='text-sm font-bold']";
     String fullAddressIndex = "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][%d]//p[@class='text-muted-foreground text-sm leading-normal']";
     String removeBtnIndex = "//div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][%d]//button[@aria-label='delete button']";
-
 
 
     public MyAddressPage(WebDriver driver) {
@@ -97,14 +75,14 @@ public class MyAddressPage {
     }
 
     // ---- Get Page Element ----
-    @Step("Get fullName by index")
+    @Step("Get full name of address at index: {0}")
     public String getFullNameIndex(int index) {
         By fullNameLocator = By.xpath(String.format(fullNameIndex, index));
         wait.until(ExpectedConditions.visibilityOfElementLocated(fullNameLocator));
         return validateHelper.getTextElement(fullNameLocator);
     }
 
-    @Step("Get fullAddress by index")
+    @Step("Get address details at index: {0}")
     public String getFullAddressIndex(int index) {
         By fullAddressLocator = By.xpath(String.format(fullAddressIndex, index));
         wait.until(ExpectedConditions.visibilityOfElementLocated(fullAddressLocator));
@@ -119,11 +97,12 @@ public class MyAddressPage {
     }
 
     // ---- Verify Page ----
-    @Step("Verify address tab url")
+    @Step("Verify the current URL is Address Management page")
     public boolean verify_AddressTab_Url() {
         try {
             validateHelper.verifyElementIsDisplay(addressTitle);
-            if(validateHelper.verifyUrl("hasaki.vn/customer/address")) {
+            boolean isUrlDisplay = validateHelper.verifyUrl("hasaki.vn/customer/address");
+            if(isUrlDisplay) {
                 logTest.info("[PASS] Url: hasaki.vn/customer/address is display");
                 return true ;
             }
@@ -134,7 +113,7 @@ public class MyAddressPage {
         return false;
     }
 
-    @Step("Verify title on Address Tab ")
+    @Step("Verify the page title 'Sổ địa chỉ' is displayed")
     public boolean isTitleAddressTab() {
         try {
 
@@ -150,9 +129,8 @@ public class MyAddressPage {
         }
     }
 
-
     // ---- Page Action ----
-    @Step("Add new address on MyAccount page")
+    @Step("Add new delivery address for: {1} (Phone: {0})")
     public void addNewAddress(String phoneNumber, String fullname, String city, String district, String ward, String address) throws InterruptedException {
 
         // Wait for address page load
@@ -204,7 +182,7 @@ public class MyAddressPage {
         }
     }
 
-    @Step("Verify address is saved")
+    @Step("Verify that address of '{0}' is correctly saved in the list")
     public boolean verifyAddressIsSaved(String fullname, String city, String district, String ward, String address) {
 
         // Get all address on page
@@ -238,7 +216,7 @@ public class MyAddressPage {
     }
 
 
-    @Step("Delete address by fullName and fullAddress")
+    @Step("Delete the address of: {0}")
     public void deleteAddressByNameAndAddressString(String fullname, String city, String district, String ward, String address) {
 
         // Get all address on page
@@ -277,7 +255,7 @@ public class MyAddressPage {
 
     }
 
-    @Step("Verify address is deleted")
+    @Step("Verify that address of '{0}' has been removed from the list")
     public boolean verifyAddressIsDeleted(String fullname, String city, String district, String ward, String address) {
 
         // Get all address on page
@@ -307,7 +285,7 @@ public class MyAddressPage {
         return false;
     }
 
-    @Step("Negative Test: Validata add address without phone number")
+    @Step("[Negative] Attempt to add address with BLANK phone number for: {0}")
     public boolean addAddressWithoutPhoneNumber(String fullname, String city, String district, String ward, String address) throws InterruptedException {
 
         // Wait for address page load

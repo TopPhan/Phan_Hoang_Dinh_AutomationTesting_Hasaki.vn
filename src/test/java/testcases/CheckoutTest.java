@@ -6,7 +6,7 @@ import com.log.logTest;
 import com.utility.CustomSoftAssert;
 import com.utility.Helpers.ValidateHelper;
 import com.utility.PropertiesFile;
-import io.qameta.allure.Allure;
+import io.qameta.allure.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -19,6 +19,9 @@ import pojoClass.SearchModel;
 
 import java.util.List;
 
+@Epic("Web Ecommerce Hasaki.vn")
+@Feature("Checkout & Payment Process")
+@Owner("Hoàng Đỉnh Automation")
 public class CheckoutTest extends multipleThread_baseSetup {
     private ValidateHelper validateHelper;
     private JavascriptExecutor js;
@@ -27,7 +30,7 @@ public class CheckoutTest extends multipleThread_baseSetup {
     private String browserXml;
 
     @Parameters({"email","password","browserType"})
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setLoginPage(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
@@ -39,26 +42,35 @@ public class CheckoutTest extends multipleThread_baseSetup {
         this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
     }
 
-    @Test(priority = 0)
-    public void CheckoutTest_VerifyUI() throws Exception {
+    @Step("Handle Smart Login for Checkout session")
+    private void handleSmartLogin(LoginPage loginPage, ValidateHelper validateHelper) throws Exception {
+        validateHelper.clickElement(loginPage.getAcceptCookie());
+        if (!loginPage.isLoggedIn()) {
+            loginPage.login_user(emailXml, passXml);
+        } else {
+            logTest.info("(Session reused), skip login.");
+        }
+    }
+
+    @Test(
+            priority = 0,
+            groups = {"smoke", "regression"}
+    )
+    @Story("Checkout UI Integrity")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify all primary UI elements on Checkout page are visible and enabled.")
+    public void CheckoutTest_verifyCheckoutUIComponents() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Quick verify Checkout page UI"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC1: Integrity Check - Checkout Page UI"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
         logTest.info("Test case: Verify Checkout page UI on browser: " + browserXml);
 
-        // --- SMART LOGIN LOGIC ---
-        if (!loginPage.isLoggedIn()) {
-            logTest.info("Session not available, proceed Login for: " + emailXml);
-            loginPage.login_user(emailXml, passXml);
-        } else {
-            logTest.info("(Session reused), skip logged in step.");
-        }
-        // -------------------------
+        // --- Smart login ---
+        handleSmartLogin(loginPage, validateHelper);
 
         CartPage cartPage = loginPage.quickGoToCart();
         CheckoutPage checkoutPage = cartPage.quickCheckOutProduct();
@@ -71,17 +83,22 @@ public class CheckoutTest extends multipleThread_baseSetup {
         softAssert.assertAll();
     }
 
-    @Test(priority = 1)
-    public void CheckoutTest_VerifyDefaultAddress() throws Exception {
+    @Test(
+            priority = 1,
+            groups = {"regression","smoke"}
+    )
+    @Story("Address Information")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify that the checkout page correctly pulls the default address from the user profile.")
+    public void CheckoutTest_verifyAddressSyncFromProfile() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Verify default address on checkout page"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC2: Data Sync - Default Address Validation"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Test case: Verify Checkout page default address on browser: " + browserXml);
+        logTest.info("Test case: Verifying profile address matches checkout address on browser: " + browserXml);
 
         MyAccountPage myAccountPage = loginPage.login_user(emailXml, passXml);
         MyAddressPage myAddressPage = myAccountPage.goToMyAddressTab();
@@ -103,25 +120,26 @@ public class CheckoutTest extends multipleThread_baseSetup {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "multiSearchData",dataProviderClass = DataProviders.class,priority = 1)
-    public void CheckoutTest_VerifyItemListMatchCart(String[][] items) throws Exception {
+    @Test(
+            dataProvider = "multiSearchData",
+            dataProviderClass = DataProviders.class,
+            priority = 2,
+            groups = {"regression"}
+    )
+    @Story("E2E Data Integrity")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Ensure all products in the cart are correctly carried over to the Checkout page.")
+    public void CheckoutTest_verifyItemListIntegrityAfterCheckout(String[][] items) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Verify E2E Flow - Shopping Cart & Checkout Data Integrity"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: E2E Flow - Item List Integrity (Cart -> Checkout)"));
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Test case: Add single product to cart on browser" + browserXml);
+        logTest.info("Test case: Validating item list migration for" + items.length +" items."+ browserXml);
 
-        // --- SMART LOGIN LOGIC ---
-        if (!loginPage.isLoggedIn()) {
-            logTest.info("Session not available, proceed Login for: " + emailXml);
-            loginPage.login_user(emailXml, passXml);
-        } else {
-            logTest.info("(Session reused), skip logged in step.");
-        }
-        // -------------------------
+        // --- Smart login ---
+        handleSmartLogin(loginPage, validateHelper);
 
         SearchPage searchPage = new SearchPage(getDriver());
         ProductDetailPage productDetailPage = new ProductDetailPage(getDriver());
@@ -146,28 +164,29 @@ public class CheckoutTest extends multipleThread_baseSetup {
         List<ProductModel> checkoutList = checkoutPage.getDetailedListProductInCheckout();
 
         checkoutPage.compareProductLists(cartList, checkoutList);
-
+        logTest.info("[PASS] Product lists are identical.");
     }
 
-    @Test(dataProvider = "multiSearchData",dataProviderClass = DataProviders.class,priority = 1)
-    public void CheckoutTest_VerifyTotalPriceMatchCart(String[][] items) throws Exception {
+    @Test(
+            dataProvider = "multiSearchData",
+            dataProviderClass = DataProviders.class,
+            priority = 3,
+            groups = {"regression"}
+    )
+    @Story("E2E Price Integrity")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify that the total price calculated in the cart matches the total price on the Checkout page.")
+    public void CheckoutTest_verifyGrandTotalMatchWithCart(String[][] items) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
         Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Verify E2E Flow - Shopping Cart & Checkout Total Price"));
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
-        validateHelper.clickElement(loginPage.getAcceptCookie());
 
-        logTest.info("Test case: Add single product to cart on browser" + browserXml);
+        logTest.info("Test case: Validating total price between Cart and Checkout. on browser" + browserXml);
 
-        // --- SMART LOGIN LOGIC ---
-        if (!loginPage.isLoggedIn()) {
-            logTest.info("Session not available, proceed Login for: " + emailXml);
-            loginPage.login_user(emailXml, passXml);
-        } else {
-            logTest.info("(Session reused), skip logged in step.");
-        }
-        // -------------------------
+        // --- Smart login ---
+        handleSmartLogin(loginPage, validateHelper);
 
         SearchPage searchPage = new SearchPage(getDriver());
         ProductDetailPage productDetailPage = new ProductDetailPage(getDriver());
@@ -190,8 +209,9 @@ public class CheckoutTest extends multipleThread_baseSetup {
         long totalPriceInCart = cartPage.getTotalPriceAllItemsInCart();
         CheckoutPage checkoutPage = cartPage.quickCheckOutProduct();
         long totalPriceInCheckout = checkoutPage.getTotalPrice();
-        Assert.assertEquals(totalPriceInCart, totalPriceInCheckout, "Total price in cart is not equal to total price in checkout");
-
+        logTest.info(String.format("Comparison - Cart: %d, Checkout: %d", totalPriceInCart, totalPriceInCheckout));
+        Assert.assertEquals(totalPriceInCart, totalPriceInCheckout, "Total price synchronization failed!");
+        logTest.info("[PASS] Total price is synchronization between Cart and Checkout page.");
     }
 
 }

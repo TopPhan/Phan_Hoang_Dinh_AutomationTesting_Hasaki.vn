@@ -29,7 +29,7 @@ public class LoginTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            groups = {"regression", "data_driven"},
+            groups = {"regression"},
             dataProvider = "dataLogin",
             dataProviderClass = DataProviders.class,
             priority = 0
@@ -99,7 +99,7 @@ public class LoginTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            groups = {"smoke", "gui"},
+            groups = {"smoke","regression"},
             priority = 1
     )
     @Feature("Login")
@@ -135,7 +135,7 @@ public class LoginTest extends multipleThread_baseSetup {
     public void tearDown(ITestResult result){
         try {
             logTest.info("Cleaning up after row: " + result.getName());
-            getDriver().manage().deleteAllCookies();
+            //getDriver().manage().deleteAllCookies();
             if (!result.isSuccess()) {
                 ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
             }

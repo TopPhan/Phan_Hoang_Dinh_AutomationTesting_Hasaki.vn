@@ -56,7 +56,7 @@ public class CartPage {
     String onlyByOneItems = "//tbody//tr[%d]//p[.='Sản phẩm chỉ được mua tối đa là 1']";
 
     // ---- Action Dynamic ----
-    @Step("Delete items on cart page by index")
+    @Step("Execute: Remove item from cart at row index {0}")
     public void deleteItemsInCartByIndex(int index) {
         By itemDeleteBtnLocator = By.xpath(String.format(itemDeleteBtn, index));
         WebElement itemDelete = driver.findElement(itemDeleteBtnLocator);
@@ -65,37 +65,37 @@ public class CartPage {
         wait.until(ExpectedConditions.stalenessOf(itemDelete));
     }
 
-    @Step("Get brand items on cart page by index")
+    @Step("Retrieve Brand name of product at row {0}")
     public String getBrandItemsInCartByIndex(int index) {
         By itemBrandLocator = By.xpath(String.format(itemBrand, index));
         return validateHelper.getTextElement(itemBrandLocator);
     }
 
-    @Step("Get name items on cart page by index")
+    @Step("Retrieve Product name at row {0}")
     public String getNameItemsInCartByIndex(int index) {
         By itemNameLocator = By.xpath(String.format(itemName, index));
         return validateHelper.getTextElement(itemNameLocator);
     }
 
-    @Step("Get quantity items on cart page by index")
+    @Step("Retrieve current Quantity at row {0}")
     public long getQuantityItemsInCartByIndex(int index) {
         By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
         return validateHelper.parseCurrencyToLong(validateHelper.getElementAttribute(itemQuantityLocator, "value"));
     }
 
-    @Step("Get unit price of items on cart page by index")
+    @Step("Retrieve Unit Price at row {0}")
     public long getUnitPriceItemsInCartByIndex(int index) {
         By itemUnitPriceLocator = By.xpath(String.format(itemUnitPrice, index));
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemUnitPriceLocator));
     }
 
-    @Step("Get total price of items on cart page by index")
+    @Step("Retrieve Subtotal Price (UI) at row {0}")
     public long getTotalPriceItemsInCartByIndex(int index) {
         By itemTotalPriceLocator = By.xpath(String.format(itemTotalPrice, index));
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemTotalPriceLocator));
     }
 
-    @Step("Increase items on cart page by index {0} and {1} times")
+    @Step("Action: Increase quantity at row {0} by {1} times")
     public void increaseItemsInCartByIndex(int index, int times) {
         By itemIncreaseLocator = By.xpath(String.format(increaseQuantityBtn, index));
         By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
@@ -103,9 +103,10 @@ public class CartPage {
            validateHelper.clickElement(itemIncreaseLocator);
            validateHelper.waitForElementVisible(itemQuantityLocator,1);
         }
+        logTest.info("Increased quantity at row " + index + " by " + times);
     }
 
-    @Step("Decrease items on cart page by index {0} and {1} times")
+    @Step("Action: Decrease quantity at row {0} by {1} times")
     public void DecreaseItemsInCartByIndex(int index, int times) {
         By itemDecreaseLocator = By.xpath(String.format(decreaseQuantityBtn, index));
         By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
@@ -113,55 +114,59 @@ public class CartPage {
             validateHelper.clickElement(itemDecreaseLocator);
             validateHelper.waitForElementVisible(itemQuantityLocator,1);
         }
+        logTest.info("Decreased quantity at row " + index + " by " + times);
     }
 
-    @Step("Verify total price items on cart page by index")
-    public boolean verifyTotalPriceItemsInCartByIndex(int index) {
+    @Step("Validate calculation logic for item at row {0}")
+    public boolean verifyTotalPriceItemsInCartByIndex(int index) throws InterruptedException {
         long expectedTotalPrice = getQuantityItemsInCartByIndex(index) * getUnitPriceItemsInCartByIndex(index);
+        validateHelper.Delay(500);
         long actualTotalPrice = getTotalPriceItemsInCartByIndex(index);
+        logTest.info(String.format("Verification at row %d - Expected: %d, Actual UI: %d", index, expectedTotalPrice, actualTotalPrice));
         return expectedTotalPrice == actualTotalPrice;
     }
 
-    @Step("Get subtotal price items on cart page by index")
+    @Step("Retrieve calculated Subtotal for row {0} (Qty * UnitPrice)")
     public long getSubTotalPriceItemsInCartByIndex(int index) {
-        long subTotalPrice = getQuantityItemsInCartByIndex(index) * getUnitPriceItemsInCartByIndex(index);
-        return subTotalPrice;
+        return getQuantityItemsInCartByIndex(index) * getUnitPriceItemsInCartByIndex(index);
     }
 
-    @Step("Get total price all items on cart page")
+    @Step("Retrieve Grand Total Price from UI")
     public long getTotalPriceAllItemsInCart() {
         return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(cartTotalPrice));
     }
 
-    @Step("Verify cart page is empty")
+    @Step("Check if Cart is empty")
     public boolean verifyCartIsEmpty() {
-        return validateHelper.verifyElementIsExist(cartEmptyText);
+        boolean isEmpty = validateHelper.verifyElementIsExist(cartEmptyText);
+        logTest.info("Cart empty status: " + isEmpty);
+        return isEmpty;
     }
 
 
     // ---------- VERIFY PAGE --------------
-    @Step("Verify product page url contains: /checkout/cart ")
+    @Step("Validate Cart Page URL")
     public boolean verify_ProductPage_Url() {
         try {
             boolean urlContains = validateHelper.verifyUrl("hasaki.vn/checkout/cart");
             if (urlContains){
                 logTest.info("[PASS] Url: hasaki.vn/checkout/cart is display");
-                return validateHelper.verifyUrl("hasaki.vn/checkout/cart");
+                return true;
             }
         } catch (Exception e) {
-            logTest.error("[FAIL] actual Url is: " + driver.getCurrentUrl());
+            logTest.error("[FAIL] Cart URL mismatch: " + driver.getCurrentUrl());
             return false;
         }
         return false;
     }
 
-    @Step("Verify cart page title is display")
+    @Step("Validate Cart Title 'Giỏ hàng' is displayed")
     public boolean verify_cartTitle() {
         try {
             boolean isTitleDisplay = validateHelper.verifyElementIsDisplay(cartTitle);
             if (isTitleDisplay){
                 logTest.info("[PASS] Title 'Giỏ hàng' is display");
-                return isTitleDisplay;
+                return true;
             }
         } catch (Exception e) {
             logTest.error("[FAIL] Title 'Giỏ hàng' is not display");
@@ -171,7 +176,7 @@ public class CartPage {
     }
 
     // ---- ACTION LOOP ALL ITEMS IN CART ----
-    @Step("Delete all item in cart")
+    @Step("Execute: Clear all items from cart")
     public void deleteAllItemInCart() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(allItems));
         List<WebElement> listItems = driver.findElements(allItems);
@@ -185,12 +190,12 @@ public class CartPage {
                 }
             }
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
-            logTest.info("Cart page empty");
+            logTest.info("Nothing to delete, cart is already empty.");
         }
     }
 
-    @Step("Verify all item calculation price in cart")
-    public boolean verifyCalculationPriceAllItemInCart() {
+    @Step("Execute: Validate pricing calculation for ALL items in cart")
+    public boolean verifyCalculationPriceAllItemInCart() throws InterruptedException {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
         if (validateHelper.verifyElementIsExist(allItems)){
             List<WebElement> listItems = driver.findElements(allItems);
@@ -198,7 +203,7 @@ public class CartPage {
                 // By pass if item is a gift
                 By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
                 if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
-                    logTest.info("Row " + i + " is a Gift item. Skipping...");
+                    logTest.info("Row " + i + " is a Gift (No price). Skipping...");
                     continue;
                 }
                 boolean isCalculateTrue = verifyTotalPriceItemsInCartByIndex(i);
@@ -209,13 +214,13 @@ public class CartPage {
             }
             return true;
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
-            logTest.info("Cart page empty");
+            logTest.info("Nothing to delete, cart is already empty.");
         }
         return false;
     }
 
-    @Step("Get total price in cart")
-    public long getPreCalculatePriceAllItemInCart() {
+    @Step("Calculate expected Grand Total by summing all item subtotals")
+    public long getPreCalculatePriceAllItemInCart() throws InterruptedException {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
         if (validateHelper.verifyElementIsExist(allItems)){
             List<WebElement> listItems = driver.findElements(allItems);
@@ -224,21 +229,23 @@ public class CartPage {
                 // By pass if item is a gift
                 By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
                 if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
-                    logTest.info("Row " + i + " is a Gift item. Skipping...");
+                    logTest.info("Row " + i + " is a Gift (No price). Skipping...");
                     continue;
                 }
+                validateHelper.Delay(500);
                 totalPrice += getSubTotalPriceItemsInCartByIndex(i);
             }
+            logTest.info("Calculated sum of all items: " + totalPrice);
             return totalPrice;
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
-            logTest.info("Cart page empty");
+            logTest.info("Nothing to delete, cart is already empty.");
             return 0;
         }
         return 0;
     }
 
-    @Step("Verify increase quantity of item in cart by 3")
-    public void verifyIncreaseQuantityOfItemInCart() {
+    @Step("Execute: Increase quantity for the valid item by {0}")
+    public void verifyIncreaseQuantityOfItemInCart(int quantity) {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
         if (validateHelper.verifyElementIsExist(allItems)){
             List<WebElement> listItems = driver.findElements(allItems);
@@ -246,25 +253,25 @@ public class CartPage {
                 // By pass if item is a gift
                 By isUnitPriceExist = By.xpath(String.format(itemUnitPrice, i));
                 if (!validateHelper.verifyElementIsExist(isUnitPriceExist)) {
-                    logTest.info("Row " + i + " is a Gift item. Skipping...");
+                    logTest.info("Row " + i + " is a Gift (No price). Skipping...");
                     continue;
                 }
                 // Increase quantity of item by 3 = 4
-                increaseItemsInCartByIndex(i,3);
+                increaseItemsInCartByIndex(i,quantity);
                 By isOnlyByOneItems = By.xpath(String.format(onlyByOneItems,i));
                 if (validateHelper.verifyElementIsExist(isOnlyByOneItems)) {
-                    logTest.info("Row " + i + " is a Only by one item. Skipping...");
+                    logTest.info("Row " + i + " has purchase limit of 1. Reverting...");
                     DecreaseItemsInCartByIndex(i,3);
                     continue;
                 }
                 break;
             }
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
-            logTest.info("Cart page empty");
+            logTest.info("Nothing to delete, cart is already empty.");
         }
     }
 
-    @Step("Get detailed List product in cart")
+    @Step("Retrieve all product details from cart as a list")
     public List<ProductModel> getDetailedListProductInCart() {
         List<ProductModel> products = new ArrayList<>();
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(allItems));
@@ -286,11 +293,11 @@ public class CartPage {
     }
 
     // -------- Linking page -----------
-    @Step("Check out product (Create CheckoutPage class for linking page)")
+    @Step("Proceed to Checkout page - Linking CheckoutPage")
     public CheckoutPage quickCheckOutProduct() {
         try {
             validateHelper.clickElement(checkoutBtn);
-            logTest.info("[PASS] Go to checkout product");
+            logTest.info("Clicked Checkout button. Linking to CheckoutPage...");
             return new CheckoutPage(driver);
         } catch (Exception e) {
             logTest.error("[FAIL] Can't checkout product");

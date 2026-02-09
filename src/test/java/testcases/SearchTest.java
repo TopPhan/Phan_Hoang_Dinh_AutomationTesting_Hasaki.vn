@@ -206,7 +206,7 @@ public class SearchTest extends multipleThread_baseSetup {
     public void closeSearch(ITestResult result) {
         try {
             logTest.info("Cleaning up after row: " + result.getName());
-            getDriver().manage().deleteAllCookies();
+            //getDriver().manage().deleteAllCookies();
             if (!result.isSuccess()) {
                 ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
             }

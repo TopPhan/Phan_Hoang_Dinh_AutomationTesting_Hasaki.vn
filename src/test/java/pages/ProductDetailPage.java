@@ -50,8 +50,6 @@ public class ProductDetailPage {
     private By numberOfItems = By.xpath("//span[contains(text(),'Cart Icon')]/following-sibling::span");
     private By productBrand = By.xpath("//a[@aria-label='now free 2h']/following-sibling::a");
 
-
-
     // --- Test Element ---
     private By onlyBuyOne = By.xpath("//div[contains(text(),'Sản phẩm chỉ được mua tối đa là 1')]");
     private By closePopupBuyOne = By.xpath("//button/preceding::div[contains(text(),'Sản phẩm chỉ được mua tối đa là 1')]");
@@ -61,13 +59,13 @@ public class ProductDetailPage {
 
 
     // ---------- VERIFY PAGE --------------
-    @Step("Verify product page url contains: /san-pham ")
+    @Step("Verify that product page URL contains '/san-pham/'")
     public boolean verify_ProductPage_Url() {
         try {
             boolean urlContains = validateHelper.verifyUrl("hasaki.vn/san-pham/");
             if (urlContains){
                 logTest.info("[PASS] Url: hasaki.vn/san-pham/... is display");
-                return validateHelper.verifyUrl("hasaki.vn/san-pham/");
+                return true;
             }
         } catch (Exception e) {
             logTest.error("[FAIL] actual Url is: " + driver.getCurrentUrl());
@@ -76,7 +74,7 @@ public class ProductDetailPage {
         return false;
     }
 
-    @Step("Verify product name is display correctly")
+    @Step("Verify that product name displays correctly as: '{0}'")
     public boolean isProductNameDisplay(String name) {
         try {
 
@@ -92,7 +90,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Verify button Add Cart display correctly")
+    @Step("Check if 'Added to Cart' button is displayed and enabled")
     public boolean isAddCartEnable() {
         try {
 
@@ -109,7 +107,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Verify popup add to cart is display")
+    @Step("Verify that 'Added to Cart' success popup is visible")
     public boolean isPopupAddToCartDisplay() {
         try {
             Boolean popupFound = validateHelper.verifyElementIsDisplay(successPopup);
@@ -124,7 +122,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Verify is product allow only buy one")
+    @Step("Check if product has a purchase limit of 1 (Only Buy One popup)")
     public boolean isProductAllowOnlyBuyOne() {
         try {
             validateHelper.waitForElementVisible(onlyBuyOne,3);
@@ -141,7 +139,7 @@ public class ProductDetailPage {
     }
 
     // --------------- ACTION -----------------
-    @Step("Add single product to cart (Create CartPage class for linking page)")
+    @Step("Click on 'Add to Cart' button - Linking CartPage")
     public CartPage addProductToCart() {
         try {
             validateHelper.clickElement(productAdd);
@@ -153,7 +151,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Get product quantity")
+    @Step("Retrieve current product quantity from input field")
     public int getProductQuantity() {
         try {
             validateHelper.scrollToTopPage_js();
@@ -170,7 +168,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Get cart quantity")
+    @Step("Retrieve total items count from cart badge")
     public int getCartQuantity() {
         try {
             validateHelper.scrollToTopPage_js();
@@ -178,7 +176,7 @@ public class ProductDetailPage {
             String rawText = validateHelper.getTextElement(numberOfItems).trim();
             logTest.info("Raw cart text: '" + rawText + "'");
             if (rawText.isEmpty() || !rawText.matches("\\d+")) {
-                logTest.warn("[WARN] Cart is empty or contains non-numeric text. Returning 0.");
+                logTest.warn("[WARN] Cart badge is empty. Returning 0.");
                 return 0;
             }
             return Integer.parseInt(rawText);
@@ -188,7 +186,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Get product brand")
+    @Step("Retrieve product brand name")
     public String getProductBrand() {
         try {
             validateHelper.scrollToTopPage_js();
@@ -206,7 +204,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Get product name")
+    @Step("Retrieve product name from header")
     public String getProductName() {
         try {
             validateHelper.scrollToTopPage_js();
@@ -224,7 +222,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Get product name")
+    @Step("Retrieve product price and convert to long")
     public long getProductPrice() {
         try {
             validateHelper.scrollToTopPage_js();
@@ -245,19 +243,19 @@ public class ProductDetailPage {
     }
 
 
-    @Step("Close success popup")
+    @Step("Close the success 'Added to Cart' popup")
     public void closeSuccessPopup() {
         validateHelper.clickElement(closePopup);
         validateHelper.waitForElementInvisible(closePopup);
     }
 
-    @Step("Close only buy one popup")
+    @Step("Close the 'Purchase Limit' (Only Buy One) popup")
     public void closeOnlyBuyOnePopup() {
         validateHelper.clickElement(closePopupBuyOne);
         validateHelper.waitForElementInvisible(closePopupBuyOne);
     }
 
-    @Step("Add '{0}' product to cart")
+    @Step("Set product quantity to: {0} using 'Increase' button")
     public void setProductQuantity(String quantity) {
         try {
             int intQty = Integer.parseInt(quantity);
@@ -274,7 +272,7 @@ public class ProductDetailPage {
 
 
     // -------- Linking page -----------
-    @Step("Check out product (Create CheckoutPage class for linking page)")
+    @Step("Click 'Checkout' and navigate to Checkout Page")
     public CheckoutPage quickCheckOutProduct() {
         try {
             validateHelper.clickElement(productCheckout);
@@ -286,7 +284,7 @@ public class ProductDetailPage {
         }
     }
 
-    @Step("Go to cart page (Create CartPage class for linking page)")
+    @Step("Click on cart icon and navigate to Cart Page")
     public CartPage quickGoToCart() {
         try {
             validateHelper.clickElement(cartButton);

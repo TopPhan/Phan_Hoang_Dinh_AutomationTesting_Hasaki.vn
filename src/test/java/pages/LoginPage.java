@@ -70,9 +70,10 @@ public class LoginPage {
     public boolean verify_SignInPage_Url(){
         try {
             validateHelper.verifyElementIsDisplay(hasakiLogo);
-            if(validateHelper.verifyUrl("hasaki.vn")){
+            boolean isUrlDisplay = validateHelper.verifyUrl("hasaki.vn");
+            if(isUrlDisplay){
                 logTest.info("[PASS] sign in page url match");
-                return validateHelper.verifyUrl("hasaki.vn");
+                return true;
             };
         } catch (Exception e) {
             logTest.error("[FAIL] sign in page url doesn't match");
