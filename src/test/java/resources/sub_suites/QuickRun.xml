@@ -1,0 +1,21 @@
+<suite name="Page Object test example" parallel="tests" thread-count="2">
+
+    <listeners>
+        <listener class-name="com.listener.Standard_Mode_Listener"></listener>
+    </listeners>
+
+    <test name="sample test on chrome">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="topphanst@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <classes>
+            <class name="testcases.CheckoutTest">
+                <methods>
+                    <include name="CheckoutTest_VerifyUI"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

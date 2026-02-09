@@ -39,10 +39,8 @@ public class LogoutTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 0,
             groups = {"smoke", "regression"}
     )
-    @Feature("Logout")
     @Story("Log out from system")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that a logged-in user can log out successfully.")

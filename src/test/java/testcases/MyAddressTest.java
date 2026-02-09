@@ -42,7 +42,6 @@ public class MyAddressTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 0,
             groups = {"smoke", "regression"}
     )
     @Story("UI Verification")
@@ -78,7 +77,6 @@ public class MyAddressTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "AddressDataFromExcel",
             dataProviderClass = DataProviders.class,
-            priority = 1,
             groups = {"regression"}
     )
     @Story("Add Address Validation")
@@ -142,7 +140,6 @@ public class MyAddressTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "AddressDataFromExcel",
             dataProviderClass = DataProviders.class,
-            priority = 99,
             groups = {"cleanup"}
     )
     @Story("Delete Address Validation")
@@ -157,11 +154,10 @@ public class MyAddressTest extends multipleThread_baseSetup {
         }
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName(String.format("TC3: Delete Address of '%s'", addressModel.getFullName())));
+        Allure.getLifecycle().updateTestCase(result -> result.setName(String.format("Delete Address of '%s'", addressModel.getFullName())));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
-
 
         // --- SMART LOGIN LOGIC ---
         MyAccountPage myAccountPage;
@@ -207,7 +203,6 @@ public class MyAddressTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "AddressDataFromExcel",
             dataProviderClass = DataProviders.class,
-            priority = 3,
             groups = {"negative", "regression"}
     )
     @Story("Negative Validation")
@@ -222,7 +217,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
         }
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Validate error message when phone is blank"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("TC3: Validate error message when phone is blank"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());

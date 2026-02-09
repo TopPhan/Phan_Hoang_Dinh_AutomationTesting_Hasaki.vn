@@ -9,10 +9,8 @@ import com.utility.PropertiesFile;
 import io.qameta.allure.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pages.*;
 import pojoClass.ProductModel;
 import pojoClass.SearchModel;
@@ -53,7 +51,6 @@ public class CheckoutTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 0,
             groups = {"smoke", "regression"}
     )
     @Story("Checkout UI Integrity")
@@ -84,7 +81,6 @@ public class CheckoutTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 1,
             groups = {"regression","smoke"}
     )
     @Story("Address Information")
@@ -123,7 +119,6 @@ public class CheckoutTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "multiSearchData",
             dataProviderClass = DataProviders.class,
-            priority = 2,
             groups = {"regression"}
     )
     @Story("E2E Data Integrity")
@@ -170,7 +165,6 @@ public class CheckoutTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "multiSearchData",
             dataProviderClass = DataProviders.class,
-            priority = 3,
             groups = {"regression"}
     )
     @Story("E2E Price Integrity")
@@ -212,6 +206,21 @@ public class CheckoutTest extends multipleThread_baseSetup {
         logTest.info(String.format("Comparison - Cart: %d, Checkout: %d", totalPriceInCart, totalPriceInCheckout));
         Assert.assertEquals(totalPriceInCart, totalPriceInCheckout, "Total price synchronization failed!");
         logTest.info("[PASS] Total price is synchronization between Cart and Checkout page.");
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(ITestResult result){
+        try {
+            logTest.info("Finished row: " + result.getName());
+            if (!result.isSuccess()) {
+                logTest.error("Test failed, clearing cookies and stopping window...");
+                //getDriver().manage().deleteAllCookies();
+                ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
+            }
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
+        } catch (Exception e) {
+            logTest.error("Error while cleaning up after row: " + result.getName());
+        }
     }
 
 }

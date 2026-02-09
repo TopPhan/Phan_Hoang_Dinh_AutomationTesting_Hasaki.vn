@@ -1,0 +1,6 @@
+<suite name="Master Run Regression Suite" parallel="none"  >
+    <suite-files>
+        <suite-file path="../sub_suites/PreCondition_Setup.xml" />
+        <suite-file path="../sub_suites/Regression_Suite.xml" />
+    </suite-files>
+</suite>

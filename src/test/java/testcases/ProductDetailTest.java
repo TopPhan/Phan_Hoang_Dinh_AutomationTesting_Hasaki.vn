@@ -50,7 +50,6 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "searchData",
             dataProviderClass = DataProviders.class,
-            priority = 0,
             groups = {"smoke", "regression"}
     )
     @Story("UI Verification")
@@ -86,7 +85,6 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "searchData",
             dataProviderClass = DataProviders.class,
-            priority = 0,
             groups = {"regression", "smoke"}
     )
     @Story("Cart Functionality")
@@ -128,7 +126,6 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "searchData",
             dataProviderClass = DataProviders.class,
-            priority = 2,
             groups = {"regression"}
     )
     @Story("Cart Functionality")
@@ -183,7 +180,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
                 //getDriver().manage().deleteAllCookies();
                 ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
             }
-            getDriver().navigate().to("https://hasaki.vn/");
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
         } catch (Exception e) {
             logTest.error("Error while cleaning up after row: " + result.getName());
         }

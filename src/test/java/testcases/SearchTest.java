@@ -5,6 +5,7 @@ import com.bases.multipleThread_baseSetup;
 import com.log.logTest;
 import com.utility.CustomSoftAssert;
 import com.utility.Helpers.ValidateHelper;
+import com.utility.PropertiesFile;
 import io.qameta.allure.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -35,7 +36,6 @@ public class SearchTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "SearchDataFromExcel",
             dataProviderClass = DataProviders.class,
-            priority = 0,
             groups = {"regression"}
     )
     @Story("Search Accuracy Validation")
@@ -112,7 +112,6 @@ public class SearchTest extends multipleThread_baseSetup {
     @Test(
             dataProvider = "Search_By_price",
             dataProviderClass = DataProviders.class,
-            priority = 1,
             groups = {"regression"}
     )
     @Story("Price Filter Validation")
@@ -154,7 +153,6 @@ public class SearchTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 2,
             groups = {"negative","regression"}
     )
     @Story("Negative Search Scenarios")
@@ -177,7 +175,6 @@ public class SearchTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 3,
             groups = {"smoke", "regression"}
     )
     @Feature("Search Functionality")
@@ -210,7 +207,7 @@ public class SearchTest extends multipleThread_baseSetup {
             if (!result.isSuccess()) {
                 ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
             }
-            getDriver().navigate().to("https://hasaki.vn/");
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
         } catch (Exception e) {
             logTest.error("Error while cleaning up after row: " + result.getName());
         }

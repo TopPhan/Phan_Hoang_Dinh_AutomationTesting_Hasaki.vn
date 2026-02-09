@@ -178,7 +178,7 @@ public class CartPage {
     // ---- ACTION LOOP ALL ITEMS IN CART ----
     @Step("Execute: Clear all items from cart")
     public void deleteAllItemInCart() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(allItems));
+        validateHelper.waitForElementVisible(allItems,3);
         List<WebElement> listItems = driver.findElements(allItems);
         if (!listItems.isEmpty()) {
            while (validateHelper.verifyElementIsExist(By.xpath("//button[contains(text(),'Xóa')]"))) {

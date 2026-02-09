@@ -4,6 +4,7 @@ import com.bases.multipleThread_baseSetup;
 import com.log.logTest;
 import com.utility.CustomSoftAssert;
 import com.utility.Helpers.ValidateHelper;
+import com.utility.PropertiesFile;
 import io.qameta.allure.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -31,10 +32,8 @@ public class LoginTest extends multipleThread_baseSetup {
     @Test(
             groups = {"regression"},
             dataProvider = "dataLogin",
-            dataProviderClass = DataProviders.class,
-            priority = 0
+            dataProviderClass = DataProviders.class
     )
-    @Feature("Login")
     @Story("Login Data Driven")
     @Owner("Hoàng Đỉnh Automation")
     @Description("Comprehensive Authentication Test Suite: \n" +
@@ -99,10 +98,8 @@ public class LoginTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            groups = {"smoke","regression"},
-            priority = 1
+            groups = {"smoke","regression"}
     )
-    @Feature("Login")
     @Story("Login Page UI")
     @Owner("Hoàng Đỉnh Automation")
     @Description("Verify UI elements like placeholders, labels and cookies on Login Page")
@@ -135,11 +132,11 @@ public class LoginTest extends multipleThread_baseSetup {
     public void tearDown(ITestResult result){
         try {
             logTest.info("Cleaning up after row: " + result.getName());
-            //getDriver().manage().deleteAllCookies();
+            getDriver().manage().deleteAllCookies();
             if (!result.isSuccess()) {
                 ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
             }
-            getDriver().navigate().to("https://hasaki.vn/");
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
         } catch (Exception e) {
             logTest.error("Error while cleaning up after row: " + result.getName());
         }

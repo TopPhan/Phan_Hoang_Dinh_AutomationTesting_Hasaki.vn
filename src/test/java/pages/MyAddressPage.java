@@ -223,36 +223,37 @@ public class MyAddressPage {
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(listAddress)));
         List<WebElement> list_Address = driver.findElements(listAddress);
-        String fullAddress = address +", "+ward+", "+district+", "+city;
+        if( list_Address.size() > 1) {
+            String fullAddress = address + ", " + ward + ", " + district + ", " + city;
 
-        // Set logic
-        Boolean isFullNameSaved = false;
-        Boolean isFullAddressSaved = false;
+            // Set logic
+            Boolean isFullNameSaved = false;
+            Boolean isFullAddressSaved = false;
 
-        for (int i=1;i<=list_Address.size();i++){
+            for (int i = 1; i <= list_Address.size(); i++) {
 
-            //Get fullname
-            String getFullName = getFullNameIndex(i);
-            //Get full address
-            String getFullAddress = getFullAddressIndex(i);
-            //Get Remove address button
-            By removeAddressButtonLocator = By.xpath(String.format(removeBtnIndex,i));
+                //Get fullname
+                String getFullName = getFullNameIndex(i);
+                //Get full address
+                String getFullAddress = getFullAddressIndex(i);
+                //Get Remove address button
+                By removeAddressButtonLocator = By.xpath(String.format(removeBtnIndex, i));
 
-            // If address is found return true
-            if (getFullName.trim().contains(fullname) && getFullAddress.trim().contains(fullAddress)) {
-                try{
-                    validateHelper.clickElement(removeAddressButtonLocator);
-                    validateHelper.clickElement(confirmDeleteAddress);
-                    validateHelper.waitForElementInvisible(confirmDeleteAddress);
-                    logTest.info("Deleted fullname: "+getFullName);
-                    logTest.info("Deleted address: "+getFullAddress);
-                    logTest.info("[PASS] Deleted address at position: " + i);
-                } catch (Exception e) {
-                    logTest.info("[FAIL] Not found matching address");
+                // If address is found return true
+                if (getFullName.trim().contains(fullname) && getFullAddress.trim().contains(fullAddress)) {
+                    try {
+                        validateHelper.clickElement(removeAddressButtonLocator);
+                        validateHelper.clickElement(confirmDeleteAddress);
+                        validateHelper.waitForElementInvisible(confirmDeleteAddress);
+                        logTest.info("Deleted fullname: " + getFullName);
+                        logTest.info("Deleted address: " + getFullAddress);
+                        logTest.info("[PASS] Deleted address at position: " + i);
+                    } catch (Exception e) {
+                        logTest.info("[FAIL] Not found matching address");
+                    }
                 }
             }
-        }
-
+        } else logTest.info("Only contains default address! Continues...");
     }
 
     @Step("Verify that address of '{0}' has been removed from the list")

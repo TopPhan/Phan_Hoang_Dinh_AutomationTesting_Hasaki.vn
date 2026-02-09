@@ -46,7 +46,6 @@ public class CartTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 0,
             groups = {"smoke", "regression"}
     )
     @Story("Cart UI & Navigation")
@@ -73,7 +72,6 @@ public class CartTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 0,
             groups = {"smoke","regression"}
     )
     @Story("Price Calculation Logic")
@@ -101,7 +99,6 @@ public class CartTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 1,
             groups = {"regression"}
     )
     @Story("Quantity Update Functionality")
@@ -131,7 +128,6 @@ public class CartTest extends multipleThread_baseSetup {
     }
 
     @Test(
-            priority = 99,
             groups = {"cleanup"}
     )
     @Story("Clear Cart Functionality")
@@ -140,7 +136,7 @@ public class CartTest extends multipleThread_baseSetup {
     public void CartTest_DeleteAllItems() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
-        Allure.getLifecycle().updateTestCase(result -> result.setName("TC4: Functional - Clear All Items from Cart"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("Clear All Items from Cart"));
 
         CustomSoftAssert softAssert = new CustomSoftAssert(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
@@ -155,6 +151,21 @@ public class CartTest extends multipleThread_baseSetup {
         cartPage.deleteAllItemInCart();
         Assert.assertTrue(cartPage.verifyCartIsEmpty(),"Cart still has items after deletion!");
         logTest.info("[PASS] Cart is empty as expected.");
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(ITestResult result){
+        try {
+            logTest.info("Finished row: " + result.getName());
+            if (!result.isSuccess()) {
+                logTest.error("Test failed, clearing cookies and stopping window...");
+                //getDriver().manage().deleteAllCookies();
+                ((org.openqa.selenium.JavascriptExecutor) getDriver()).executeScript("window.stop();");
+            }
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
+        } catch (Exception e) {
+            logTest.error("Error while cleaning up after row: " + result.getName());
+        }
     }
 
 

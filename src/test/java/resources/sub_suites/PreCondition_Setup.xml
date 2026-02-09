@@ -1,0 +1,44 @@
+
+<suite name="Environment Cleanup"
+       parallel="tests"
+       thread-count="2"
+       groupbyinstances="true"
+       preserve-order="true"
+>
+    <listeners>
+        <listener class-name="com.listener.Standard_Mode_Listener" />
+    </listeners>
+
+    <test name="Cleanup environment before test - CHROME" preserve-order="true">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="topphanst@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <groups>
+            <run>
+                <include name="cleanup" />
+            </run>
+        </groups>
+        <classes>
+            <class name="testcases.CartTest" />
+            <class name="testcases.MyAddressTest" />
+        </classes>
+    </test>
+
+    <test name="Cleanup environment before test - MS EDGE" preserve-order="true">
+        <parameter name="browserType" value="msedge" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="swata44@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <groups>
+            <run>
+                <include name="cleanup" />
+            </run>
+        </groups>
+        <classes>
+            <class name="testcases.CartTest" />
+            <class name="testcases.MyAddressTest" />
+        </classes>
+    </test>
+
+</suite>

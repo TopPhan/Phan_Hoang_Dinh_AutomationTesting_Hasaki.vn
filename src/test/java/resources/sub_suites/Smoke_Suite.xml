@@ -1,0 +1,54 @@
+
+<suite name="Hasaki.vn Smoke Suite"
+       parallel="tests"
+       thread-count="2"
+       groupbyinstances="true"
+       preserve-order="true"
+>
+    <listeners>
+        <listener class-name="com.listener.Standard_Mode_Listener" />
+    </listeners>
+
+    <test name="Smoke Test - Chrome" preserve-order="true">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="topphanst@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+		<groups>
+            <run>
+                <include name="smoke" />
+            </run>
+        </groups>
+        <classes>
+            <class name="testcases.LoginTest" />
+            <class name="testcases.SearchTest" />
+            <class name="testcases.MyAddressTest" />
+            <class name="testcases.ProductDetailTest" />
+            <class name="testcases.CartTest" />
+            <class name="testcases.CheckoutTest" />
+            <class name="testcases.LogoutTest" />
+        </classes>
+    </test>
+
+    <test name="Smoke Test - Edge" preserve-order="true">
+        <parameter name="browserType" value="msedge" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="swata44@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <groups>
+            <run>
+                <include name="smoke" />
+            </run>
+        </groups>
+        <classes>
+            <class name="testcases.LoginTest" />
+            <class name="testcases.SearchTest" />
+            <class name="testcases.MyAddressTest" />
+            <class name="testcases.ProductDetailTest" />
+            <class name="testcases.CartTest" />
+            <class name="testcases.CheckoutTest" />
+            <class name="testcases.LogoutTest" />
+        </classes>
+    </test>
+
+</suite>
