@@ -192,6 +192,7 @@ public class CartPage {
         } else if (validateHelper.verifyElementIsDisplay(cartEmptyText)) {
             logTest.info("Nothing to delete, cart is already empty.");
         }
+        validateHelper.waitForElementVisible(cartTitle,1);
     }
 
     @Step("Execute: Validate pricing calculation for ALL items in cart")

@@ -48,17 +48,17 @@ public class PurchaseEndToEndTest extends multipleThread_baseSetup {
     @Story("Complete User Purchase Flow")
     @Severity(SeverityLevel.CRITICAL)
     @Description("""
-        ### [E2E] Full Purchase Journey & Data Integrity Audit
-        **Objective:** Validate the entire e-commerce flow from product discovery to the final checkout stage, ensuring no data loss or price mismatches occur during transitions.
+        ### [E2E] Full Purchase Flow & Data Integrity Check
+        **Objective:** Validate the entire e-commerce flow from product search to the final checkout stage, ensuring no data loss or price mismatches occur during transitions.
         
         **Test Workflow:**
-        1. **Session Management:** Execute Smart Login to maintain authentication throughout the journey.
-        2. **Product Acquisition:** Dynamically search and aggregate multiple products into the shopping cart.
-        3. **Cart Validation:** Perform a mathematical audit on subtotals and verify data mapping into Product Models (POJOs).
+        1. **Session Management:** Execute Smart Login to maintain authentication throughout the flow.
+        2. **Product Acquisition:** Dynamically search and add multiple products into the shopping cart.
+        3. **Cart Validation:** Perform an audit on subtotals and verify data mapping into Product Models (POJOs).
         4. **Checkout Integration:** Transfer all cart data to the Checkout page.
-        5. **Final Integrity Check:** Execute a **Deep Comparison** between the Cart snapshot and Checkout reality (Matching Name, Price, and SKU).
+        5. **Final Integrity Check:** Execute a **Deep Comparison** between the Cart data and Checkout data (Matching Name, Price, and SKU).
         
-        **Business Goal:** Ensure a seamless and error-free transaction process for the customer.
+        **Business Goal:** Ensure a seamless and error-free, smoothly process for the customer.
         """)
     public void endToEndPurchaseFlow(String[][] items) throws Exception {
 
