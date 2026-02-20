@@ -26,7 +26,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
 
     @Parameters({"email", "password","browserType"})
     @BeforeMethod(alwaysRun = true)
-    public void setProductDetail(@Optional("") String email,
+    public void setupProductDetail(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
         //driver = getDriver();
@@ -37,7 +37,7 @@ public class ProductDetailTest extends multipleThread_baseSetup {
         this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
     }
 
-    @Step("Handle Smart Login for Cart Test")
+    @Step("Handle Smart Login for ProductDetail section")
     private void handleSmartLogin(LoginPage loginPage, ValidateHelper validateHelper) throws Exception {
         validateHelper.clickElement(loginPage.getAcceptCookie());
         if (!loginPage.isLoggedIn()) {
@@ -54,7 +54,17 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     )
     @Story("UI Verification")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify Product detail page UI elements, Name display and Add to Cart button status.")
+    @Description("""
+        ### [UI] Product Detail Page Check
+        **Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+        
+        **Test Steps:**
+        1. **Navigation:** Search and navigate to the PDP of a specific product.
+        2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+        3. **Availability:** Confirm the "Add to Cart" button is visible and enabled.
+        
+        **Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+        """)
     public void ProductDetail_VerifyUI(String keyword,String brand,String quantity) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -89,7 +99,17 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     )
     @Story("Cart Functionality")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify adding a 1 unit of a product to the cart and checking the mini-cart badge update.")
+    @Description("""
+        ### [Cart] Add Single Item to Cart
+        **Objective:** Verify that the cart quantity increases correctly when adding one unit.
+        
+        **Test Steps:**
+        1. **Pre-check:** Capture the current items count in the mini-cart.
+        2. **Action:** Click "Add to Cart" and verify the success popup appears.
+        3. **Sync Check:** Close the popup and re-verify the cart quantity.
+        
+        **Expected Result:** The cart badge must increase by exactly (+1) unit.
+        """)
     public void ProductDetail_addSingleUnit(String keyword,String brand,String quantity) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -130,7 +150,18 @@ public class ProductDetailTest extends multipleThread_baseSetup {
     )
     @Story("Cart Functionality")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify adding multiple units of a product and checking for purchase limits.")
+    @Description("""
+        ### [Cart] Add Multiple Items & Purchase Limit Handling
+        **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+       \s
+        **Test Steps:**
+        1. **Set Quantity:** Input a specific number of units from the DataProvider.
+        2. **Action:** Attempt to add the bulk quantity to the cart.
+        3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+            - Otherwise, verify the cart count increases by the specified amount.
+           \s
+        **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+       \s""")
     public void ProductDetail_addMultipleUnits(String keyword,String brand, String quantity) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.

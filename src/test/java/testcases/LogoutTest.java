@@ -43,7 +43,17 @@ public class LogoutTest extends multipleThread_baseSetup {
     )
     @Story("Log out from system")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify that a logged-in user can log out successfully.")
+    @Description("""
+        ### [Function] Logout & Session Termination
+        **Objective:** Verify that the system terminates the user session correctly upon logging out.
+        
+        **Test Steps:**
+        1. **Login:** Access the system with a valid account.
+        2. **Logout Action:** Navigate to the Logout function within the My Account page.
+        3. **Verification:** Confirm the user is redirected and the session is cleared successfully.
+        
+        **Expected Result:** User is logged out.The session is terminated, redirected to the login page.
+        """)
     public void logout_verifyUserCanLogoutSuccessfully() throws Exception {
 
         LoginPage loginPage = new LoginPage(getDriver());

@@ -24,7 +24,7 @@ public class CartTest extends multipleThread_baseSetup {
 
     @Parameters({"email", "password","browserType"})
     @BeforeMethod(alwaysRun = true)
-    public void setLoginPage(@Optional("") String email,
+    public void setupCartTestPage(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
 
@@ -35,7 +35,7 @@ public class CartTest extends multipleThread_baseSetup {
         this.browserXml = (browserXml != null && !browserXml.isEmpty()) ? browser : PropertiesFile.getPropValue("browser");
     }
 
-    @Step("Handle Smart Login for Cart Test")
+    @Step("Handle Smart Login for Cart section")
     private void handleSmartLogin(LoginPage loginPage, ValidateHelper validateHelper) throws Exception {
         validateHelper.clickElement(loginPage.getAcceptCookie());
         if (!loginPage.isLoggedIn()) {
@@ -50,7 +50,17 @@ public class CartTest extends multipleThread_baseSetup {
     )
     @Story("Cart UI & Navigation")
     @Severity(SeverityLevel.NORMAL)
-    @Description("Verify that the Cart page loads correctly with valid URL and Title.")
+    @Description("""
+        ### [UI] Cart Page Accessibility & State Verification
+        **Objective:** Verify that the Cart page loads correctly and the Page Object is properly initialized.
+        
+        **Test Steps:**
+        1. **Smart Authentication:** Reuse existing session or login via `handleSmartLogin`.
+        2. **Navigation:** Navigate directly to the Cart page via `quickGoToCart()`.
+        3. **UI Check:** Verify the page URL and ensure the Cart Title element is displayed.
+        
+        **Target:** Confirm the cart environment is ready for functional and logic testing.
+        """)
     public void CartTest_VerifyUI() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -76,7 +86,17 @@ public class CartTest extends multipleThread_baseSetup {
     )
     @Story("Price Calculation Logic")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that subtotal for each item and total grand price are calculated correctly.")
+    @Description("""
+        ### [Logic] Calculation Accuracy & Pricing Audit
+        **Objective:** Validate that the system calculates subtotals and the grand total without any discrepancies.
+        
+        **Test Steps:**
+        1. **Data Collection:** Scan all items currently present in the cart.
+        2. **Subtotal Audit:** Calculate (Price * Quantity) for each product and compare with the system's subtotal.
+        3. **Grand Total Check:** Cross-check the sum of subtotals against the displayed Grand Total Price.
+        
+        **Target:** Ensure 100% pricing accuracy and catch potential rounding errors.
+        """)
     public void CartTest_CalculationCheck() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -103,7 +123,17 @@ public class CartTest extends multipleThread_baseSetup {
     )
     @Story("Quantity Update Functionality")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify that increasing an item's quantity updates the price correctly.")
+    @Description("""
+        ### [Function] Quantity Update & Price Synchronization
+        **Objective:** Verify that increasing item quantities triggers correct price recalculations.
+        
+        **Test Steps:**
+        1. **Action:** Increase the quantity of a specific product in the cart.
+        2. **Sync Check:** Wait for the system to process the update and reflect new values.
+        3. **Recalculation:** Re-verify the subtotal and grand total based on the updated quantity.
+        
+        **Target:** Ensure the dynamic cart update logic is synchronized with the pricing engine.
+        """)
     public void CartTest_UpdateQuantity() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -132,7 +162,17 @@ public class CartTest extends multipleThread_baseSetup {
     )
     @Story("Clear Cart Functionality")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify the ability to delete all items from the cart and confirm it's empty.")
+    @Description("""
+        ### [Cleanup] Cart empty & Final State Check
+        **Objective:** Validate the ability to clear the entire cart and reset the shopping session.
+        
+        **Test Steps:**
+        1. **Action:** Execute the "Delete All" function to remove all items from the cart.
+        2. **Status Check:** Verify that no product elements remain in the cart list.
+        3. **UI Verification:** Confirm the "Empty Cart" message or placeholder is displayed.
+        
+        **Target:** Ensure the cart can be fully cleared for a clean test environment.
+        """)
     public void CartTest_DeleteAllItems() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.

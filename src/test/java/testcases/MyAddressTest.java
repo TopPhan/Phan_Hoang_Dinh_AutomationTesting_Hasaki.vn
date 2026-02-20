@@ -30,7 +30,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
 
     @Parameters({"email", "password","browserType"})
     @BeforeMethod(alwaysRun = true)
-    public void setLoginPage(@Optional("") String email,
+    public void setupMyAddress(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
         //driver = getDriver();
@@ -46,7 +46,17 @@ public class MyAddressTest extends multipleThread_baseSetup {
     )
     @Story("UI Verification")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify Address page UI elements, correct URL navigation and Page Title.")
+    @Description("""
+        ### [UI] Address Page Verification
+        **Objective:** Ensure the Address Management page loads correctly with valid URL and Title.
+        
+        **Test Steps:**
+        1. **Smart Login:** Reuse session or login to access the account.
+        2. **Navigation:** Navigate to the "My Address" tab.
+        3. **UI Check:** Verify the page URL and the presence of the Address Tab title.
+        
+        **Expected Result:** User is on the correct Address Management page without UI broken.
+        """)
     public void MyAddress_verifyAddressUI() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -81,7 +91,18 @@ public class MyAddressTest extends multipleThread_baseSetup {
     )
     @Story("Add Address Validation")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Validate that a user can successfully add a new delivery address with full details.")
+    @Description("""
+        ### [Function] Add New Delivery Address
+        **Objective:** Validate that a user can successfully create and save a new shipping address.
+        
+        **Test Steps:**
+        1. **Smart Login:** Ensure the session is active.
+        2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+        3. **Submission:** Click save to store the new address.
+        4. **Verification:** Verify the saved information matches the input data exactly.
+        
+        **Expected Result:** New address is saved and displayed correctly in the address list.
+        """)
     public void MyAddress_verifyAddNewAddress(AddressModel addressModel) throws Exception {
 
         // Checking execute column ( Y/N )
@@ -144,7 +165,17 @@ public class MyAddressTest extends multipleThread_baseSetup {
     )
     @Story("Delete Address Validation")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Validate that a user can successfully delete an existing address from the list.")
+    @Description("""
+        ### [Cleanup] Delete Existing Address
+        **Objective:** Ensure the system can remove an address from the user's account.
+        
+        **Test Steps:**
+        1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+        2. **Execution:** Click delete and confirm the removal.
+        3. **Post-check:** Verify the address no longer exists in the list.
+        
+        **Expected Result:** The targeted address is completely removed from the UI and system.
+        """)
     public void MyAddress_verifyDeleteAddress(AddressModel addressModel) throws Exception {
 
         // Checking execute column ( Y/N )
@@ -207,7 +238,17 @@ public class MyAddressTest extends multipleThread_baseSetup {
     )
     @Story("Negative Validation")
     @Severity(SeverityLevel.MINOR)
-    @Description("Verify that the system shows an error message when attempting to add an address without a phone number.")
+    @Description("""
+        ### [Negative] Missing Phone Number Validation
+        **Objective:** Verify that the system prevents saving an address when the phone number is missing.
+        
+        **Test Steps:**
+        1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+        2. **Submit:** Attempt to save the address.
+        3. **Validation:** Capture and check the specific error message.
+        
+        **Expected Result:** System blocks the submission and displays a clear "Required" warning for the phone field.
+        """)
     public void MyAddress_validationLeavePhoneNumberBlank(AddressModel addressModel) throws Exception {
 
         // Checking execute column ( Y/N )

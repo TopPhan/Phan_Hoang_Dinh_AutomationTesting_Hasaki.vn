@@ -29,7 +29,7 @@ public class CheckoutTest extends multipleThread_baseSetup {
 
     @Parameters({"email","password","browserType"})
     @BeforeMethod(alwaysRun = true)
-    public void setLoginPage(@Optional("") String email,
+    public void setupCheckOutPage(@Optional("") String email,
                              @Optional("") String password,
                              @Optional("") String browser) throws Exception {
         //driver = getDriver();
@@ -55,7 +55,17 @@ public class CheckoutTest extends multipleThread_baseSetup {
     )
     @Story("Checkout UI Integrity")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify all primary UI elements on Checkout page are visible and enabled.")
+    @Description("""
+        ### [UI] Checkout Page Integrity & Critical Components
+        **Objective:** Verify that the Checkout page is fully rendered with all necessary functional components for payment.
+        
+        **Test Steps:**
+        1. **Smart Authentication:** Reuse current session via `handleSmartLogin`.
+        2. **Navigation Flow:** Transition from Homepage -> Cart -> Checkout page.
+        3. **Component Validation:** Audit the presence of key UI anchors: Shipping Address, Payment Methods, and the 'Order' button.
+        
+        **Target:** Ensure the checkout interface is stable and all mandatory elements are enabled for user interaction.
+        """)
     public void CheckoutTest_verifyCheckoutUIComponents() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -85,7 +95,17 @@ public class CheckoutTest extends multipleThread_baseSetup {
     )
     @Story("Address Information")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify that the checkout page correctly pulls the default address from the user profile.")
+    @Description("""
+        ### [Data-Sync] Profile Address & Checkout Consistency
+        **Objective:** Validate that the system correctly pulls and synchronizes the default shipping address from the user profile to the Checkout page.
+        
+        **Test Steps:**
+        1. **Profile Audit:** Access 'My Address' tab to extract the default Name and Address string.
+        2. **Data Comparison:** Navigate to Checkout and capture the automatically populated address info.
+        3. **Verification:** Perform a string-match comparison between the Profile Data and Checkout Data.
+        
+        **Target:** Ensure seamless data synchronization across the account management and checkout modules.
+        """)
     public void CheckoutTest_verifyAddressSyncFromProfile() throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -102,7 +122,7 @@ public class CheckoutTest extends multipleThread_baseSetup {
         String DefaultPlace = myAddressPage.getFullAddressIndex(1).split("-")[0].trim();
 
         logTest.info(String.format("Default Name: %s, Default Place: %s", DefaultName, DefaultPlace));
-        getDriver().navigate().to("https://hasaki.vn/");
+        getDriver().navigate().to(PropertiesFile.getPropValue("url"));
         CartPage cartPage = loginPage.quickGoToCart();
         CheckoutPage checkoutPage = cartPage.quickCheckOutProduct();
 
@@ -123,7 +143,17 @@ public class CheckoutTest extends multipleThread_baseSetup {
     )
     @Story("E2E Data Integrity")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Ensure all products in the cart are correctly carried over to the Checkout page.")
+    @Description("""
+        ### [E2E] Item List Migration & Integrity (Cart to Checkout)
+        **Objective:** Ensure that all products added to the cart are accurately carried over to the Checkout stage without data loss.
+        
+        **Test Steps:**
+        1. **Data Acquisition:** Dynamically search and add multiple items from Data provider to the cart.
+        2. **Cart Snapshot:** Extract a detailed list of products (Name, SKU, Price) using the `ProductModel` POJO.
+        3. **Deep Comparison:** Transition to Checkout and perform a 1-on-1 comparison between the Cart List and Checkout List.
+        
+        **Target:** Guarantee 100% data integrity for product metadata throughout the purchase journey.
+        """)
     public void CheckoutTest_verifyItemListIntegrityAfterCheckout(String[][] items) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -150,7 +180,7 @@ public class CheckoutTest extends multipleThread_baseSetup {
             // Add single product to cart
             productDetailPage.addProductToCart();
             productDetailPage.closeSuccessPopup();
-            getDriver().get("https://hasaki.vn/");
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
         }
 
         CartPage cartPage = loginPage.quickGoToCart();
@@ -158,8 +188,9 @@ public class CheckoutTest extends multipleThread_baseSetup {
         CheckoutPage checkoutPage = cartPage.quickCheckOutProduct();
         List<ProductModel> checkoutList = checkoutPage.getDetailedListProductInCheckout();
 
+        // ---- Compare list product in cart and checkout ----
         checkoutPage.compareProductLists(cartList, checkoutList);
-        logTest.info("[PASS] Product lists are identical.");
+
     }
 
     @Test(
@@ -169,7 +200,17 @@ public class CheckoutTest extends multipleThread_baseSetup {
     )
     @Story("E2E Price Integrity")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that the total price calculated in the cart matches the total price on the Checkout page.")
+    @Description("""
+        ### [E2E] Financial Synchronization (Price Integrity)
+        **Objective:** Verify that the final total price calculated in the Cart matches exactly with the value on the Checkout page.
+        
+        **Test Steps:**
+        1. **Bulk Purchase:** Add a variety of items to the cart to create a complex pricing scenario.
+        2. **Cart Pricing:** Capture the `totalPriceInCart` as the source of truth.
+        3. **Checkout Verification:** Compare the source price against the `totalPriceInCheckout` after the page transition.
+        
+        **Target:** Prevent any pricing discrepancies errors during the final steps of the flow.
+        """)
     public void CheckoutTest_verifyGrandTotalMatchWithCart(String[][] items) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -196,7 +237,7 @@ public class CheckoutTest extends multipleThread_baseSetup {
             // Add single product to cart
             productDetailPage.addProductToCart();
             productDetailPage.closeSuccessPopup();
-            getDriver().get("https://hasaki.vn/");
+            getDriver().navigate().to(PropertiesFile.getPropValue("url"));
         }
 
         CartPage cartPage = loginPage.quickGoToCart();

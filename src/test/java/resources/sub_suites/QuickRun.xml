@@ -1,18 +1,32 @@
-<suite name="Page Object test example" parallel="tests" thread-count="2">
+<suite name="Page Object test example" parallel="none" thread-count="1">
 
     <listeners>
         <listener class-name="com.listener.Standard_Mode_Listener"></listener>
     </listeners>
 
-    <test name="sample test on chrome">
+    <test name="Preconditon setup on chrome">
         <parameter name="browserType" value="chrome" />
         <parameter name="appURL" value="https://hasaki.vn/" />
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.CheckoutTest">
+            <class name="testcases.CartTest">
                 <methods>
-                    <include name="CheckoutTest_VerifyUI"/>
+                    <include name="CartTest_DeleteAllItems"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="quick run test on chrome">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="topphanst@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <classes>
+            <class name="testcases.PurchaseEndToEndTest">
+                <methods>
+                    <include name="endToEndPurchaseFlow"/>
                 </methods>
             </class>
         </classes>

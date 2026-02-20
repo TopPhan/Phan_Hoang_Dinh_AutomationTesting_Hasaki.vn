@@ -36,12 +36,18 @@ public class LoginTest extends multipleThread_baseSetup {
     )
     @Story("Login Data Driven")
     @Owner("Hoàng Đỉnh Automation")
-    @Description("Comprehensive Authentication Test Suite: \n" +
-            "1. Valid credentials (TC1)\n" +
-            "2. Empty fields handling (TC2, TC3, TC4)\n" +
-            "3. Invalid email formats (TC5)\n" +
-            "4. Boundary testing with spaces (TC6)\n" +
-            "5. Security check with wrong passwords (TC7)")
+    @Description("""
+        ### [Data-Driven] Login Functionality Scenarios
+        **Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+        
+        **Test Scenarios:**
+        - **Positive Case:** Login with valid account.
+        - **Empty Fields:** Leave Email or Password blank to check error messages.
+        - **Invalid Format:** Enter email without '@' or wrong format.
+        - **Security & Boundary:** Check wrong passwords and trailing spaces.
+        
+        **Data Source:** LoginModel (Dynamic Data Provider).
+        """)
     @Severity(SeverityLevel.BLOCKER)
     public void login_verifyMultipleAuthenticationScenarios(LoginModel loginModel) throws Exception {
 
@@ -102,7 +108,15 @@ public class LoginTest extends multipleThread_baseSetup {
     )
     @Story("Login Page UI")
     @Owner("Hoàng Đỉnh Automation")
-    @Description("Verify UI elements like placeholders, labels and cookies on Login Page")
+    @Description("""
+        ### [UI] Login Page Layout & Elements Check
+        **Objective:** Verify that all UI elements are displayed correctly before user interaction.
+        
+        **Key Checks:**
+        - Validate placeholders for Email/Phone and Password fields.
+        - Check if all main labels are displayed correctly in Vietnamese.
+        - Handle cookies popup to ensure a clean UI state.
+        """)
     @Severity(SeverityLevel.NORMAL)
     public void login_verifyUILayoutAndPlaceholders() throws Exception {
 

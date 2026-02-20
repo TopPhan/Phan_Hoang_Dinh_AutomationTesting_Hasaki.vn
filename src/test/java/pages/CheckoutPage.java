@@ -84,7 +84,11 @@ public class CheckoutPage {
     @Step("Retrieve discounted price for product at position #{index}")
     public long getUnitDiscountPriceItemsInCheckoutByIndex(int index) {
         By itemUnitDiscountPriceLocator = By.xpath(String.format(itemUnitDiscoutPrice, index));
-        return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemUnitDiscountPriceLocator));
+        List<WebElement> discountElements = driver.findElements(itemUnitDiscountPriceLocator);
+        if (!discountElements.isEmpty() && !discountElements.get(0).getText().trim().isEmpty()) {
+            return validateHelper.parseCurrencyToLong(validateHelper.getTextElement(itemUnitDiscountPriceLocator));
+        }
+        return 0;
     }
 
 

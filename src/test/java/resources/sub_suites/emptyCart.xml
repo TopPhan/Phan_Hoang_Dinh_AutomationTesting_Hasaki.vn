@@ -12,7 +12,7 @@
         <classes>
             <class name="testcases.CartTest">
                 <methods>
-                    <include name="CartTest_VerifyDeleteAllCart"/>
+                    <include name="CartTest_DeleteAllItems"/>
                 </methods>
             </class>
         </classes>

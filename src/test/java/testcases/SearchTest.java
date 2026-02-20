@@ -40,11 +40,18 @@ public class SearchTest extends multipleThread_baseSetup {
     )
     @Story("Search Accuracy Validation")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Multiple scenarios Search Test:\n1. " +
-                 "Search with dynamic keyword + type\n2." +
-                 "Calculate matching rate on the first page\n3. " +
-                 "Go through all pages to calculate global accuracy rate\n4." +
-                 "Validate against expected threshold.")
+    @Description("""
+        ### [Data-Driven] Search Accuracy & Matching Rate
+        **Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+        
+        **Test Steps:**
+        1. **Dynamic Search:** Execute search using keywords and types from Excel.
+        2. **First Page Audit:** Calculate matching percentage for the initial result set.
+        3. **Deep Pagination:** Traverse through all available pages to compute the "Global Accuracy Rate".
+        4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+        
+        **Target:** Ensure search results remain relevant across multiple pages.
+        """)
     public void search_verifyResultsAccuracyWithMultipleKeywords(SearchModel searchModel) throws Exception {
 
         // Checking execute column ( Y/N )
@@ -116,7 +123,17 @@ public class SearchTest extends multipleThread_baseSetup {
     )
     @Story("Price Filter Validation")
     @Severity(SeverityLevel.NORMAL)
-    @Description("Verify if products are correctly filtered within the specified price range ('min' - 'max')")
+    @Description("""
+        ### [Filter] Price Range Validation
+        **Objective:** Verify that the price filter correctly restricts products within the specified min-max range.
+        
+        **Test Steps:**
+        1. **Search & Filter:** Search for a product and apply a price range filter.
+        2. **Multi-page Verification:** Loop through all result pages.
+        3. **Price Comparison:** Parse and verify every single product price against the filter boundary.
+        
+        **Expected Result:** No product price falls outside the [Min - Max] range across all pages.
+        """)
     public void search_verifyPriceFilterFunctionality(String name, String minPrice,String maxPrice) throws Exception {
 
         // Overite testcase name display on Allure report by testcode and description.
@@ -157,7 +174,16 @@ public class SearchTest extends multipleThread_baseSetup {
     )
     @Story("Negative Search Scenarios")
     @Severity(SeverityLevel.NORMAL)
-    @Description("Verify system behavior with invalid keywords")
+    @Description("""
+        ### [Negative] Invalid Keyword Handling
+        **Objective:** Ensure the system displays a proper "No Results Found" message for invalid/random strings.
+        
+        **Test Steps:**
+        1. **Input:** Search with a non-existent/random keyword.
+        2. **Verification:** Check for the presence of the "No Product Found" placeholder/message.
+        
+        **Expected Result:** System handles invalid input gracefully without crashing or showing blank pages.
+        """)
     public void search_verifyNoResultsForInvalidKeyword() {
 
         String keyword = "ádefsDFFFsdf";
@@ -180,7 +206,17 @@ public class SearchTest extends multipleThread_baseSetup {
     @Feature("Search Functionality")
     @Story("Product Navigation")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Verify that user can search for a product and successfully click on the first result to view details.")
+    @Description("""
+        ### [Navigation] Search to Product Detail
+        **Objective:** Ensure the user can reach the correct Product Detail Page (PDP) from the search results.
+        
+        **Test Steps:**
+        1. **Search:** Input specific keyword and brand.
+        2. **Selection:** Click on the first product in the results list.
+        3. **Data Sync:** Verify that the PDP displays the correct Product Name and Brand.
+        
+        **Expected Result:** Smooth transition from Search to PDP with 100% data consistency.
+        """)
     public void search_verifyNavigationToProductDetail() throws InterruptedException {
 
         String keyword = "rửa mặt";
