@@ -4,29 +4,15 @@
         <listener class-name="com.listener.Standard_Mode_Listener"></listener>
     </listeners>
 
-    <test name="Preconditon setup on chrome">
+    <test name="sample test on chrome">
         <parameter name="browserType" value="chrome" />
         <parameter name="appURL" value="https://hasaki.vn/" />
         <parameter name="email" value="topphanst@gmail.com"/>
         <parameter name="password" value="topphan93"/>
         <classes>
-            <class name="testcases.CartTest">
+            <class name="testcases.LogoutTest">
                 <methods>
-                    <include name="CartTest_DeleteAllItems"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="quick run test on chrome">
-        <parameter name="browserType" value="chrome" />
-        <parameter name="appURL" value="https://hasaki.vn/" />
-        <parameter name="email" value="topphanst@gmail.com"/>
-        <parameter name="password" value="topphan93"/>
-        <classes>
-            <class name="testcases.PurchaseEndToEndTest">
-                <methods>
-                    <include name="endToEndPurchaseFlow"/>
+                    <include name="logout_verifyUserCanLogoutSuccessfully"/>
                 </methods>
             </class>
         </classes>

@@ -1,0 +1,6 @@
+<suite name="Master Run E2E Purchase" parallel="none"  >
+    <suite-files>
+        <suite-file path="../sub_suites/PreCondition_Setup.xml" />
+        <suite-file path="../sub_suites/E2E_Purchase.xml" />
+    </suite-files>
+</suite>

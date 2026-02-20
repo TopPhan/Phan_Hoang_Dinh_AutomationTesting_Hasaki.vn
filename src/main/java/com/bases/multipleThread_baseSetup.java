@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.Properties;
 
 import com.log.logTest;
 import com.utility.PropertiesFile;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.ThreadContext;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,6 +27,12 @@ public class multipleThread_baseSetup {
         // Set ThreadLocal webdriver list to run parallel
         private static final ThreadLocal<WebDriver> driver_parallel = new ThreadLocal<>();
         protected JavascriptExecutor js;
+
+        // Set flag config in properties file
+        private final boolean isHeadless = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.headless"));
+        private final boolean isIncognito = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.incognito"));
+        private final boolean isMaximize = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.maximize"));
+        private final String windowSize = PropertiesFile.getPropValue("browser.window.size"); // e.g., 1920x1080
 
         static String driverPath = PropertiesFile.getPropValue("driverPath");
         public static WebDriver getDriver() {
@@ -42,9 +50,6 @@ public class multipleThread_baseSetup {
                 case "chrome":
                     driver = initChromeDriver(appURL);
                     break;
-                case "firefox":
-                    driver = initFirefoxDriver(appURL);
-                    break;
                 case "msedge":
                     driver = initEdgeDriver(appURL);
                     break;
@@ -57,10 +62,9 @@ public class multipleThread_baseSetup {
         }
 
         private void setupBrowser(WebDriver driver, String appURL) {
-            driver.manage().window().maximize();
+            if (isMaximize) driver.manage().window().maximize();
             driver.navigate().to(appURL);
             js = (JavascriptExecutor) driver ;
-            js.executeScript("document.body.style.zoom='70%'");
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
             driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
         }
@@ -74,11 +78,20 @@ public class multipleThread_baseSetup {
 
             ChromeOptions options = new ChromeOptions();
 
-            options.addArguments("--disable-gpu"); // accelerate hardware
+            // Get config from Properties
+            if (isHeadless) {
+                options.addArguments("--headless=new");
+                options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
+            }
+            if (isIncognito) options.addArguments("--incognito");
+            if (windowSize != null) options.addArguments("--window-size=" + windowSize);
+
+            options.addArguments("--disable-gpu"); // Disable GPU hardware acceleration
+            options.addArguments("--no-sandbox"); // Bypass OS security (CI/CD environments)
+            options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
             options.addArguments("--disable-notifications"); // disable notifications
 
             /* option run
-            options.addArguments("--headless=new"); // run in headless mode
             options.setAcceptInsecureCerts(true); // accept insecure certs: ssl,...
 
             File file = new.File(".crx filepath");
@@ -88,28 +101,6 @@ public class multipleThread_baseSetup {
             WebDriver driver = new ChromeDriver(options);
             setupBrowser(driver, appURL);
             return driver;
-        }
-
-        private  WebDriver initFirefoxDriver(String appURL) {
-            logTest.info("Launching Firefox browser...");
-            //Using offline firefox driver
-            System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver.exe");
-            //WebDriverManager.firefoxdriver().setup();
-
-            FirefoxOptions options = new FirefoxOptions();
-
-            // disable notifycation
-            options.addPreference("dom.webnotifications.enabled", false);
-            options.addPreference("dom.push.enabled", false);
-            // disable hardware acceleration
-            options.addPreference("layers.acceleration.disabled", true);
-
-            options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
-
-            WebDriver driver = new FirefoxDriver(options);
-            setupBrowser(driver, appURL);
-            return driver;
-
         }
 
     private WebDriver initEdgeDriver(String appURL) {
@@ -122,15 +113,23 @@ public class multipleThread_baseSetup {
 
         EdgeOptions options = new EdgeOptions();
 
-        // 2. Turn off Pop-up and Notification
+        // 2. Get config from Properties
+        if (isHeadless) {
+            options.addArguments("--headless=new");
+            options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0");
+        }
+        if (isIncognito) options.addArguments("-inprivate"); // Edge use -inprivate
+        if (windowSize != null) options.addArguments("--window-size=" + windowSize);
+
+        // 3. Turn off Pop-up and Notification
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-geolocation");
+        options.addArguments("--disable-gpu");
 
-        // 3. Init Edge driver
+        // 4. Init Edge driver
         WebDriver driver = new EdgeDriver(options);
-
         setupBrowser(driver, appURL);
         return driver;
     }

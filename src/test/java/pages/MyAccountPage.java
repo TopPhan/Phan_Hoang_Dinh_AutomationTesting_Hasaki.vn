@@ -3,6 +3,7 @@ package pages;
 import com.log.logTest;
 import com.utility.CustomSoftAssert;
 import com.utility.Helpers.ValidateHelper;
+import com.utility.PropertiesFile;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -37,10 +38,11 @@ public class MyAccountPage {
         validateHelper.verifyElementIsDisplay(myAccountPanel);
         validateHelper.action_MovetoElement(myAccountPanel);
         validateHelper.clickElement(logoutBtn);
+        //driver.get("https://hasaki.vn/customer/account/logout/");
     }
 
     @Step("Verify Logout status by checking Login/Register labels")
-    public boolean verify_LogoutSuccess() {
+    public boolean verify_LogoutSuccess() throws InterruptedException {
         logTest.info("--- Checking LoginTest & Register labels after LogoutTest ---");
 
         boolean isLoginDisplayed = validateHelper.verifyElementIsDisplay(labelLogin);

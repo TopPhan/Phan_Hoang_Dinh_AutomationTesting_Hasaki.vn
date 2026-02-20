@@ -1,0 +1,40 @@
+<suite name="Hasaki.vn - Purchase Flow"
+       parallel="tests"
+       thread-count="2"
+       groupbyinstances="true"
+       preserve-order="true"
+>
+
+    <listeners>
+        <listener class-name="com.listener.Standard_Mode_Listener"></listener>
+    </listeners>
+
+    <test name="E2E Purchase Flow - Chrome Execution">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="topphanst@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <classes>
+            <class name="testcases.PurchaseEndToEndTest">
+                <methods>
+                    <include name="endToEndPurchaseFlow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="E2E Purchase Flow - MS EDGE Execution">
+        <parameter name="browserType" value="chrome" />
+        <parameter name="appURL" value="https://hasaki.vn/" />
+        <parameter name="email" value="swata44@gmail.com"/>
+        <parameter name="password" value="topphan93"/>
+        <classes>
+            <class name="testcases.PurchaseEndToEndTest">
+                <methods>
+                    <include name="endToEndPurchaseFlow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
