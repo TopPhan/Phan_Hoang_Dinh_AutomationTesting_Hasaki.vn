@@ -74,6 +74,7 @@ public class multipleThread_baseSetup {
             logTest.info("Launching Chrome browser...");
             //Using offline chrome driver
             //System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
+
             WebDriverManager.chromedriver().setup();
 
             ChromeOptions options = new ChromeOptions();
