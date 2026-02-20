@@ -138,6 +138,7 @@ public class CartPage {
 
     @Step("Check if Cart is empty")
     public boolean verifyCartIsEmpty() {
+        validateHelper.waitForElementVisible(cartEmptyText,1);
         boolean isEmpty = validateHelper.verifyElementIsExist(cartEmptyText);
         logTest.info("Cart empty status: " + isEmpty);
         return isEmpty;

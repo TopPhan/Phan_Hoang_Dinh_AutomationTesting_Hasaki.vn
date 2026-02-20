@@ -102,7 +102,7 @@ public class Standard_Mode_Listener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        Object instance = result.getInstance();
+        /*Object instance = result.getInstance();
         if (instance instanceof multipleThread_baseSetup) {
             multipleThread_baseSetup baseSetup = (multipleThread_baseSetup) instance;
             String browserName = baseSetup.getBrowserName();
@@ -119,7 +119,7 @@ public class Standard_Mode_Listener implements ITestListener {
             } catch (Exception e) {
                 logTest.error("❌ Can't open screen record: " + e.getMessage());
             }
-        }
+        }*/
 
     }
 
@@ -128,7 +128,7 @@ public class Standard_Mode_Listener implements ITestListener {
 
         logTest.info("This test case is success : " + result.getName());
 
-        // Stop Record video
+       /* // Stop Record video
         stopRecordVideo();
 
         // Get currently Browser name
@@ -139,7 +139,7 @@ public class Standard_Mode_Listener implements ITestListener {
         String videoName = (String) result.getAttribute("videoName");
 
         // Delete video if test passed
-        CaptureVideo.deleteVideo(videoName);
+        CaptureVideo.deleteVideo(videoName);*/
 
     }
 
@@ -147,7 +147,7 @@ public class Standard_Mode_Listener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         logTest.error("[FAIL] This test case is failed: " + result.getName());
         // Stop Record video
-        stopRecordVideo();
+        // stopRecordVideo();
 
         // Get driver of current class on running test.
         Object currentClass = result.getInstance();
@@ -186,7 +186,7 @@ public class Standard_Mode_Listener implements ITestListener {
         logTest.info("This test case is skip: " + result.getName());
 
         // Stop Record video
-        stopRecordVideo();
+        // stopRecordVideo();
 
     }
 
