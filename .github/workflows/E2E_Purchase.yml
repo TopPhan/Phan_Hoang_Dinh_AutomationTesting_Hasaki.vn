@@ -1,0 +1,49 @@
+name: Hasaki Automation Regression
+on:
+  push:
+    branches: [develop/github_action] # Chạy khi bạn push code lên branch chính
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # Cho phép bạn bấm nút "Run" thủ công trên web GitHub
+
+jobs:
+  automation-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Install Chrome & Edge
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          # GitHub Runner thường có sẵn Chrome, bước này đảm bảo nó luôn có.
+
+      - name: Install Xvfb (Virtual Screen)
+        run: sudo apt-get install -y xvfb
+
+      - name: Run Maven Tests with Xvfb
+        # Đây là dòng lệnh quan trọng nhất để fix lỗi "Full HD" và "Logout"
+        run: |
+          xvfb-run --server-args="-screen 0 1920x1080x24" mvn test -DsuiteXmlFile=src/test/java/resources/sub_suites/QuickRun.xml
+        env:
+          # Truyền các biến môi trường nếu code bạn cần (ví dụ: headless=true)
+          HEADLESS: true 
+
+      - name: Upload Allure Report or Screenshots on Failure
+        if: failure() # Chỉ chạy bước này nếu test bị Fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-failure-artifacts
+          path: |
+            target/surefire-reports/
+            ScreenShots/
+            allure-results/
