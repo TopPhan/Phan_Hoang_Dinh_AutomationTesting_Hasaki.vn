@@ -33,7 +33,7 @@ jobs:
       - name: Run Maven Tests with Xvfb
         # Đây là dòng lệnh quan trọng nhất để fix lỗi "Full HD" và "Logout"
         run: |
-          xvfb-run --server-args="-screen 0 1920x1080x24" mvn test -DsuiteXmlFile=src/test/java/resources/sub_suites/QuickRun.xml
+          xvfb-run --server-args="-screen 0 1920x1080x24" mvn test -DsuiteXmlFile=src/test/java/resources/master/Master_E2E_Purchase.xml
         env:
           # Truyền các biến môi trường nếu code bạn cần (ví dụ: headless=true)
           HEADLESS: true 

@@ -12,7 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <suiteXmlFile>src/test/java/resources/master/Master_Smoke.xml</suiteXmlFile>
+        <suiteXmlFile>src/test/java/resources/master/Master_E2E_Purchase.xml</suiteXmlFile>
     </properties>
 
     <dependencies>
