@@ -73,8 +73,8 @@ public class multipleThread_baseSetup {
         private  WebDriver initChromeDriver(String appURL) {
             logTest.info("Launching Chrome browser...");
             //Using offline chrome driver
-            System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
-            //WebDriverManager.chromedriver().setup();
+            //System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
 
             ChromeOptions options = new ChromeOptions();
 
@@ -107,9 +107,9 @@ public class multipleThread_baseSetup {
         logTest.info("Launching Edge browser...");
 
         // 1. Set property for Edge driver
-        System.setProperty("webdriver.edge.driver", driverPath + "msedgedriver.exe");
+        //System.setProperty("webdriver.edge.driver", driverPath + "msedgedriver.exe");
 
-        // WebDriverManager.edgedriver().setup(); // run online driver.
+         WebDriverManager.edgedriver().setup(); // run online driver.
 
         EdgeOptions options = new EdgeOptions();
 
