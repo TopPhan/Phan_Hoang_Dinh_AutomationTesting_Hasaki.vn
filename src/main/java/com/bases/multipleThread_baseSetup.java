@@ -98,8 +98,7 @@ public class multipleThread_baseSetup {
             options.addArguments("--disable-notifications"); // disable notifications
             options.addArguments("--force-device-scale-factor=1");
             options.addArguments("--high-dpi-support=1");
-            options.addArguments("--disable-infobars");
-            options.addArguments("--hide-scrollbars");
+
 
             /* option run
             options.setAcceptInsecureCerts(true); // accept insecure certs: ssl,...
@@ -110,9 +109,8 @@ public class multipleThread_baseSetup {
 
             WebDriver driver = new ChromeDriver(options);
             driver.manage().window().setSize(new Dimension(1920,1080));
-            ((JavascriptExecutor) driver).executeScript(
-                    "document.body.style.zoom='100%'"
-            );
+            driver.manage().window().maximize();
+
             setupBrowser(driver, appURL);
             return driver;
         }
@@ -145,15 +143,12 @@ public class multipleThread_baseSetup {
         options.addArguments("--disable-gpu");
         options.addArguments("--force-device-scale-factor=1");
         options.addArguments("--high-dpi-support=1");
-        options.addArguments("--disable-infobars");
-        options.addArguments("--hide-scrollbars");
+
 
         // 4. Init Edge driver
         WebDriver driver = new EdgeDriver(options);
         driver.manage().window().setSize(new Dimension(1920,1080));
-        ((JavascriptExecutor) driver).executeScript(
-                "document.body.style.zoom='100%'"
-        );
+        driver.manage().window().maximize();
 
         setupBrowser(driver, appURL);
         return driver;
