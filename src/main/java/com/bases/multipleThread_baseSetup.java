@@ -86,8 +86,6 @@ public class multipleThread_baseSetup {
             // Get config from Properties
             if (isHeadless) {
                 options.addArguments("--headless=new");
-                options.addArguments("--start-maximized");
-                options.addArguments("--window-size=1920,1080");
                 options.addArguments("--force-device-scale-factor=1");
                 options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
             }
@@ -98,6 +96,10 @@ public class multipleThread_baseSetup {
             options.addArguments("--no-sandbox"); // Bypass OS security (CI/CD environments)
             options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
             options.addArguments("--disable-notifications"); // disable notifications
+            options.addArguments("--force-device-scale-factor=1");
+            options.addArguments("--high-dpi-support=1");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--hide-scrollbars");
 
             /* option run
             options.setAcceptInsecureCerts(true); // accept insecure certs: ssl,...
@@ -108,6 +110,9 @@ public class multipleThread_baseSetup {
 
             WebDriver driver = new ChromeDriver(options);
             driver.manage().window().setSize(new Dimension(1920,1080));
+            ((JavascriptExecutor) driver).executeScript(
+                    "document.body.style.zoom='100%'"
+            );
             setupBrowser(driver, appURL);
             return driver;
         }
@@ -127,8 +132,6 @@ public class multipleThread_baseSetup {
         // 2. Get config from Properties
         if (isHeadless) {
             options.addArguments("--headless=new");
-            options.addArguments("--start-maximized");
-            options.addArguments("--window-size=1920,1080");
             options.addArguments("--force-device-scale-factor=1");
             options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0");
         }
@@ -137,14 +140,21 @@ public class multipleThread_baseSetup {
 
         // 3. Turn off Pop-up and Notification
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-geolocation");
         options.addArguments("--disable-gpu");
+        options.addArguments("--force-device-scale-factor=1");
+        options.addArguments("--high-dpi-support=1");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--hide-scrollbars");
 
         // 4. Init Edge driver
         WebDriver driver = new EdgeDriver(options);
         driver.manage().window().setSize(new Dimension(1920,1080));
+        ((JavascriptExecutor) driver).executeScript(
+                "document.body.style.zoom='100%'"
+        );
+
         setupBrowser(driver, appURL);
         return driver;
     }
