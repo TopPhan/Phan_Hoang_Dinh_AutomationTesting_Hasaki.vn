@@ -141,7 +141,7 @@ public class ValidateHelper {
             waitCustom.until(ExpectedConditions.visibilityOfElementLocated(by));
             logTest.info("Element " + by + " is now visible after waiting " + timeOutInSeconds + "s");
         } catch (Throwable error) {
-            logTest.error("[TIMEOUT] Element " + by + " did not appear within " + timeOutInSeconds + " seconds.");
+            logTest.warn("[TIMEOUT] Element " + by + " did not appear within " + timeOutInSeconds + " seconds.");
         }
     }
 

@@ -24,7 +24,7 @@
     </test>
 
     <test name="E2E Purchase Flow - MS EDGE Execution">
-        <parameter name="browserType" value="chrome" />
+        <parameter name="browserType" value="msedge" />
         <parameter name="appURL" value="https://hasaki.vn/" />
         <parameter name="email" value="swata44@gmail.com"/>
         <parameter name="password" value="topphan93"/>

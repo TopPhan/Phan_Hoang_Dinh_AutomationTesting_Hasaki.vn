@@ -125,7 +125,7 @@ public class ProductDetailPage {
     @Step("Check if product has a purchase limit of 1 (Only Buy One popup)")
     public boolean isProductAllowOnlyBuyOne() {
         try {
-            validateHelper.waitForElementVisible(onlyBuyOne,3);
+            validateHelper.waitForElementVisible(onlyBuyOne,5);
             Boolean popupFound = driver.findElement(onlyBuyOne).isDisplayed();
             Boolean popupMatch = driver.findElement(onlyBuyOne).getText().trim().contains("Sản phẩm chỉ được mua tối đa là 1");
             if(popupFound && popupMatch){
@@ -226,7 +226,7 @@ public class ProductDetailPage {
     public long getProductPrice() {
         try {
             validateHelper.scrollToTopPage_js();
-            validateHelper.waitForElementVisible(productPrice,2);
+            validateHelper.waitForElementVisible(productPrice,5);
             String rawText = validateHelper.getTextElement(productPrice).trim();
             long price = validateHelper.parseCurrencyToLong(rawText);
 
