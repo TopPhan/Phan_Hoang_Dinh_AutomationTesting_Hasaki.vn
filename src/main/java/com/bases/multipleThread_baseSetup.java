@@ -86,7 +86,6 @@ public class multipleThread_baseSetup {
             // Get config from Properties
             if (isHeadless) {
                 options.addArguments("--headless=new");
-                options.addArguments("--force-device-scale-factor=1");
                 options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
             }
             if (isIncognito) options.addArguments("--incognito");
@@ -109,7 +108,6 @@ public class multipleThread_baseSetup {
 
             WebDriver driver = new ChromeDriver(options);
             driver.manage().window().setSize(new Dimension(1920,1080));
-            driver.manage().window().maximize();
 
             setupBrowser(driver, appURL);
             return driver;
@@ -130,7 +128,6 @@ public class multipleThread_baseSetup {
         // 2. Get config from Properties
         if (isHeadless) {
             options.addArguments("--headless=new");
-            options.addArguments("--force-device-scale-factor=1");
             options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0");
         }
         if (isIncognito) options.addArguments("-inprivate"); // Edge use -inprivate
@@ -148,7 +145,7 @@ public class multipleThread_baseSetup {
         // 4. Init Edge driver
         WebDriver driver = new EdgeDriver(options);
         driver.manage().window().setSize(new Dimension(1920,1080));
-        driver.manage().window().maximize();
+
 
         setupBrowser(driver, appURL);
         return driver;

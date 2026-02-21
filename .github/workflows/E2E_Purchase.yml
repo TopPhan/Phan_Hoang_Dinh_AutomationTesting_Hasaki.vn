@@ -23,21 +23,13 @@ jobs:
           cache: maven
 
       - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+        uses: browser-actions/setup-chrome@v1
 
-      # 🔥 KHỞI TẠO XVFB THỦ CÔNG (ỔN ĐỊNH HƠN xvfb-run)
-      - name: Start virtual display
+      - name: Run Maven Tests (Headless)
         run: |
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 3
-
-      - name: Run Maven Tests
-        run: |
-          export DISPLAY=:99
-          mvn clean test -DsuiteXmlFile=src/test/java/resources/master/Master_E2E_Purchase.xml
+          mvn clean test \
+          -DsuiteXmlFile=src/test/java/resources/master/Master_E2E_Purchase.xml \
+          -Dheadless=true
         continue-on-error: true
 
       - name: Upload Artifacts on Failure
