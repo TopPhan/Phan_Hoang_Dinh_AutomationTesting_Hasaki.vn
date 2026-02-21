@@ -39,7 +39,7 @@ public class CartPage {
     // --- PAGE ELEMENT ---
     private By cartTitle = By.xpath("//div[contains(text(),'Giỏ hàng')]");
     private By allItems = By.xpath("//tbody//tr");
-    private By cartEmptyText = By.xpath("//p[contains(text(),'Bạn chưa chọn sản phẩm')]");
+    private By cartEmptyText = By.xpath("//main//div//span[.='0 sản phẩm']");
     private By cartTotalPrice = By.xpath("//div[contains(text(),'Tạm tính:')]//span");
     private By checkoutBtn = By.xpath("//div[contains(text(),'Tạm tính:')]/following-sibling::button");
 
@@ -138,6 +138,7 @@ public class CartPage {
 
     @Step("Check if Cart is empty")
     public boolean verifyCartIsEmpty() {
+
         validateHelper.waitForElementVisible(cartEmptyText,5);
         boolean isEmpty = validateHelper.verifyElementIsExist(cartEmptyText);
         logTest.info("Cart empty status: " + isEmpty);
