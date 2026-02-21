@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  automation-test:
+  E2E_Purchase_Flow:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,11 +28,11 @@ jobs:
       - name: Run Maven Tests (Headless)
         run: |
           mvn clean test \
-          -DsuiteXmlFile=src/test/java/resources/master/Master_E2E_Purchase.xml \
+          -DsuiteXmlFile=src/test/java/resources/master/Master_Smoke.xml \
           -Dheadless=true
         continue-on-error: true
 
-      - name: Upload Artifacts on Failure
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: test-failure-artifacts
