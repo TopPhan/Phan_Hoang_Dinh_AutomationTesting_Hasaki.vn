@@ -85,7 +85,7 @@ public class multipleThread_baseSetup {
 
             // Get config from Properties
             if (isHeadless) {
-                options.addArguments("--headless=old");
+                options.addArguments("--headless");
                 options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
             }
             if (isIncognito) options.addArguments("--incognito");
@@ -129,7 +129,7 @@ public class multipleThread_baseSetup {
 
         // 2. Get config from Properties
         if (isHeadless) {
-            options.addArguments("--headless=old");
+            options.addArguments("--headless");
             options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0");
         }
         if (isIncognito) options.addArguments("-inprivate"); // Edge use -inprivate
