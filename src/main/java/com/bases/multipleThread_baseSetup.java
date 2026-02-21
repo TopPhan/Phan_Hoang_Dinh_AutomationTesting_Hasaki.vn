@@ -32,6 +32,7 @@ public class multipleThread_baseSetup {
         private final boolean isHeadless = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.headless"));
         private final boolean isIncognito = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.incognito"));
         private final boolean isMaximize = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.maximize"));
+        private final boolean isOffline = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.offline"));
         private final String windowSize = PropertiesFile.getPropValue("browser.window.size"); // e.g., 1920x1080
 
         static String driverPath = PropertiesFile.getPropValue("driverPath");
@@ -72,10 +73,13 @@ public class multipleThread_baseSetup {
         //Config Browser input to Switch Case
         private  WebDriver initChromeDriver(String appURL) {
             logTest.info("Launching Chrome browser...");
-            //Using offline chrome driver
-            //System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
 
-            WebDriverManager.chromedriver().setup();
+            if (isOffline) {
+                //Using offline chrome driver
+                System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
+            } else {
+                WebDriverManager.chromedriver().setup(); //run online driver.
+            }
 
             ChromeOptions options = new ChromeOptions();
 
@@ -107,10 +111,12 @@ public class multipleThread_baseSetup {
     private WebDriver initEdgeDriver(String appURL) {
         logTest.info("Launching Edge browser...");
 
-        // 1. Set property for Edge driver
-        //System.setProperty("webdriver.edge.driver", driverPath + "msedgedriver.exe");
-
-         WebDriverManager.edgedriver().setup(); // run online driver.
+        if (isOffline) {
+            //Using offline Edge driver
+            System.setProperty("webdriver.edge.driver", driverPath + "msedgedriver.exe");
+        } else {
+            WebDriverManager.edgedriver().setup(); // run online driver.
+        }
 
         EdgeOptions options = new EdgeOptions();
 
