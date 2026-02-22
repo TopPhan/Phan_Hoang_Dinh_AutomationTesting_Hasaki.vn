@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Smoke-Test:
+  E2E_Purchase_Flow:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +28,7 @@ jobs:
       - name: Run Maven Tests (Headless)
         run: |
           mvn clean test \
-          -DsuiteXmlFile=src/test/java/resources/master/Master_Smoke.xml \
+          -DsuiteXmlFile=src/test/java/resources/master/Master_E2E_Purchase.xml \
           -Dheadless=true
         continue-on-error: true
 

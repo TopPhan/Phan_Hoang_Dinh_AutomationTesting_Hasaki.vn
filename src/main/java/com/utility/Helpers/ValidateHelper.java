@@ -84,7 +84,7 @@ public class ValidateHelper {
             return total > 0;
 
         } catch (Exception e) {
-            logTest.error("[FAIL] to verifyElementIsExist with locator: " + locator.toString());
+            logTest.warn("[FAIL] to verifyElementIsExist with locator: " + locator.toString());
         }
         return false;
     }
