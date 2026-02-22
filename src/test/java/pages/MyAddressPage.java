@@ -257,18 +257,15 @@ public class MyAddressPage {
     }
 
     @Step("Verify that address of '{0}' has been removed from the list")
-    public boolean verifyAddressIsDeleted(String fullname, String city, String district, String ward, String address) {
+    public boolean verifyAddressIsDeleted(String fullname, String city, String district, String ward, String address) throws InterruptedException {
 
         // Get all address on page
+        validateHelper.Delay(1000);
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.visibilityOfElementLocated(listAddress)));
 
         List<WebElement> list_Address = driver.findElements(listAddress);
         String fullAddress = address +", "+ward+", "+district+", "+city;
-
-        // Set logic
-        Boolean isFullNameSaved = false;
-        Boolean isFullAddressSaved = false;
 
         for (int i=1;i<=list_Address.size();i++){
             //Get fullname

@@ -110,12 +110,12 @@ public class ProductDetailPage {
     @Step("Verify that 'Added to Cart' success popup is visible")
     public boolean isPopupAddToCartDisplay() {
         try {
-            Boolean popupFound = validateHelper.verifyElementIsDisplay(successPopup);
+            Boolean popupFound = validateHelper.verifyElementIsExist(successPopup);
             Boolean popupMatch = validateHelper.getTextElement(successPopup).trim().contains("Sản Phẩm đã được thêm vào giỏ hàng thành công");
             if(popupFound && popupMatch){
                 logTest.info("[PASS] Popup: " + validateHelper.getTextElement(successPopup) + " is display");
             }
-            return popupFound && popupMatch;
+            return  popupFound&&popupMatch;
         } catch (Exception e) {
             logTest.error("[FAIL] Popup is not display");
             return false;
@@ -172,7 +172,8 @@ public class ProductDetailPage {
     public int getCartQuantity() {
         try {
             validateHelper.scrollToTopPage_js();
-            wait.until(ExpectedConditions.elementToBeClickable(numberOfItems));
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(numberOfItems));
+            validateHelper.Delay(1000);
             String rawText = validateHelper.getTextElement(numberOfItems).trim();
             logTest.info("Raw cart text: '" + rawText + "'");
             if (rawText.isEmpty() || !rawText.matches("\\d+")) {

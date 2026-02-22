@@ -78,6 +78,7 @@ public class ValidateHelper {
     @Step("Verify element '{0}' is existed")
     public boolean verifyElementIsExist(By locator) {
         try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
             List<WebElement> elements = driver.findElements(locator);
             int total = elements.size();
             return total > 0;

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  E2E_Purchase_Flow:
+  Smoke-Test:
     runs-on: ubuntu-latest
 
     steps:
