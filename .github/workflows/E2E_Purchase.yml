@@ -25,10 +25,10 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
           
-                - name: Install Edge
-                run: |
-                  sudo apt-get update
-                  sudo apt-get install -y microsoft-edge-stable
+      - name: Install Edge
+        run: |
+         sudo apt-get update
+         sudo apt-get install -y microsoft-edge-stable
 
       - name: Run Maven Tests (Headless)
         run: |
