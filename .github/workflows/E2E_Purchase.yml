@@ -41,7 +41,6 @@ jobs:
             ScreenShots/
             allure-results/
 
-      # BẮT ĐẦU PHẦN SỬA LỖI THỤT LỀ TẠI ĐÂY
       - name: Checkout gh-pages
         uses: actions/checkout@v4
         if: always()
