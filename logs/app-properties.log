@@ -28974,3 +28974,680 @@ Session ID: 39e680077267cc7b35d108becab190cb
 [INFO] 22-02-2026 02:01:57 [] [main] Utils - [TestNG] Running:
   C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\master\Master_E2E_Purchase.xml
 
+[WARN] 23-02-2026 22:19:54 [] [main] TestNGContentHandler - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\master\Master_Smoke.xml] otherwise TestNG may fail or not work as expected.
+[WARN] 23-02-2026 22:19:54 [] [main] TestNGContentHandler - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\sub_suites\PreCondition_Setup.xml] otherwise TestNG may fail or not work as expected.
+[WARN] 23-02-2026 22:19:54 [] [main] TestNGContentHandler - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\sub_suites\Smoke_Suite.xml] otherwise TestNG may fail or not work as expected.
+[WARN] 23-02-2026 22:19:55 [] [main] TestNG - Ignoring duplicate listener : com.listener.Standard_Mode_Listener
+[INFO] 23-02-2026 22:19:55 [] [main] Utils - [TestNG] Running:
+  C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\sub_suites\PreCondition_Setup.xml
+
+[INFO] 23-02-2026 22:19:55 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:19:55 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:19:58 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:19:59 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:20:00 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:20:00 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:20:09 [MSEDGE] [TestNG-tests-2] CartTest - Executing 'Delete All' on browser
+[INFO] 23-02-2026 22:20:10 [CHROME] [TestNG-tests-1] CartTest - Executing 'Delete All' on browser
+[WARN] 23-02-2026 22:20:15 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:20:16 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:20:21 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:20:21 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:20:31 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:20:31 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:20:41 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[WARN] 23-02-2026 22:20:41 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[WARN] 23-02-2026 22:20:46 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:20:47 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:20:56 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[WARN] 23-02-2026 22:20:57 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:21:01 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:21:01 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:21:01 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //tbody//tr is now visible after waiting 5s
+[INFO] 23-02-2026 22:21:01 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //tbody//tr is now visible after waiting 5s
+[INFO] 23-02-2026 22:21:02 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:21:02 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:03 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[WARN] 23-02-2026 22:21:03 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:03 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:05 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:05 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:06 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:07 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:08 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:12 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:13 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:14 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:14 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:21:15 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //tbody/tr[1]//button[contains(text(),'Xóa')]
+[WARN] 23-02-2026 22:21:19 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:19 [CHROME] [TestNG-tests-1] CartTest - [PASS] Cart is empty as expected.
+[INFO] 23-02-2026 22:21:19 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : CartTest_DeleteAllItems
+[INFO] 23-02-2026 22:21:19 [CHROME] [TestNG-tests-1] CartTest - Finished row: CartTest_DeleteAllItems
+[INFO] 23-02-2026 22:21:23 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:21:23 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:21:23 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:21:23 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[WARN] 23-02-2026 22:21:26 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //button[contains(text(),'Xóa')]
+[INFO] 23-02-2026 22:21:26 [MSEDGE] [TestNG-tests-2] CartTest - [PASS] Cart is empty as expected.
+[INFO] 23-02-2026 22:21:26 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : CartTest_DeleteAllItems
+[INFO] 23-02-2026 22:21:26 [MSEDGE] [TestNG-tests-2] CartTest - Finished row: CartTest_DeleteAllItems
+[INFO] 23-02-2026 22:21:32 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:21:32 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:21:33 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:21:33 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[WARN] 23-02-2026 22:21:40 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:21:44 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:21:45 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:21:49 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:21:55 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:21:59 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:22:05 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[INFO] 23-02-2026 22:22:05 [CHROME] [TestNG-tests-1] MyAddressTest - Session not available, proceed Login for: topphanst@gmail.com
+[INFO] 23-02-2026 22:22:05 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:22:09 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[INFO] 23-02-2026 22:22:09 [MSEDGE] [TestNG-tests-2] MyAddressTest - Session not available, proceed Login for: swata44@gmail.com
+[INFO] 23-02-2026 22:22:09 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:22:12 [CHROME] [TestNG-tests-1] MyAddressTest - ---- Deleted new address ----
+[INFO] 23-02-2026 22:22:12 [CHROME] [TestNG-tests-1] MyAddressTest - Expect delete full name: Nguyễn Thị B
+[INFO] 23-02-2026 22:22:12 [CHROME] [TestNG-tests-1] MyAddressTest - Expect delete full address : For Demo Only, Xã Vĩnh Lộc A, Huyện Bình Chánh, Hồ Chí Minh
+[WARN] 23-02-2026 22:22:14 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][4]//button[@aria-label='delete button']
+[INFO] 23-02-2026 22:22:15 [CHROME] [TestNG-tests-1] MyAddressPage - Deleted fullname: Nguyễn Thị B - **********
+[INFO] 23-02-2026 22:22:15 [CHROME] [TestNG-tests-1] MyAddressPage - Deleted address: For Demo Only, Xã Vĩnh Lộc A, Huyện Bình Chánh, Hồ Chí Minh
+[INFO] 23-02-2026 22:22:15 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Deleted address at position: 4
+[INFO] 23-02-2026 22:22:15 [MSEDGE] [TestNG-tests-2] MyAddressTest - ---- Deleted new address ----
+[INFO] 23-02-2026 22:22:15 [MSEDGE] [TestNG-tests-2] MyAddressTest - Expect delete full name: Nguyễn Thị B
+[INFO] 23-02-2026 22:22:15 [MSEDGE] [TestNG-tests-2] MyAddressTest - Expect delete full address : For Demo Only, Xã Vĩnh Lộc A, Huyện Bình Chánh, Hồ Chí Minh
+[INFO] 23-02-2026 22:22:16 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Full name and full address aren't exist after deleted
+[INFO] 23-02-2026 22:22:16 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:16 [CHROME] [TestNG-tests-1] MyAddressTest - Finish Test: MyAddress_verifyDeleteAddress
+[WARN] 23-02-2026 22:22:17 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][4]//button[@aria-label='delete button']
+[INFO] 23-02-2026 22:22:18 [MSEDGE] [TestNG-tests-2] MyAddressPage - Deleted fullname: Nguyễn Thị B - **********
+[INFO] 23-02-2026 22:22:18 [MSEDGE] [TestNG-tests-2] MyAddressPage - Deleted address: For Demo Only, Xã Vĩnh Lộc A, Huyện Bình Chánh, Hồ Chí Minh
+[INFO] 23-02-2026 22:22:18 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Deleted address at position: 4
+[INFO] 23-02-2026 22:22:19 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Full name and full address aren't exist after deleted
+[INFO] 23-02-2026 22:22:19 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:19 [MSEDGE] [TestNG-tests-2] MyAddressTest - Finish Test: MyAddress_verifyDeleteAddress
+[WARN] 23-02-2026 22:22:21 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:22:21 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[normalize-space()='Chào'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:22:24 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:22:24 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[normalize-space()='Chào'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:22:32 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[INFO] 23-02-2026 22:22:32 [CHROME] [TestNG-tests-1] MyAddressTest - (Session reused), skip logged in step.
+[INFO] 23-02-2026 22:22:32 [CHROME] [TestNG-tests-1] MyAddressTest - ---- Deleted new address ----
+[INFO] 23-02-2026 22:22:32 [CHROME] [TestNG-tests-1] MyAddressTest - Expect delete full name: Trương Ngọc A
+[INFO] 23-02-2026 22:22:32 [CHROME] [TestNG-tests-1] MyAddressTest - Expect delete full address : For Demo Only, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội
+[WARN] 23-02-2026 22:22:33 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][3]//button[@aria-label='delete button']
+[INFO] 23-02-2026 22:22:34 [CHROME] [TestNG-tests-1] MyAddressPage - Deleted fullname: Trương Ngọc A - **********
+[INFO] 23-02-2026 22:22:34 [CHROME] [TestNG-tests-1] MyAddressPage - Deleted address: For Demo Only, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội
+[INFO] 23-02-2026 22:22:34 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Deleted address at position: 3
+[INFO] 23-02-2026 22:22:34 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Full name and full address aren't exist after deleted
+[INFO] 23-02-2026 22:22:34 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:34 [CHROME] [TestNG-tests-1] MyAddressTest - Finish Test: MyAddress_verifyDeleteAddress
+[WARN] 23-02-2026 22:22:34 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[INFO] 23-02-2026 22:22:34 [MSEDGE] [TestNG-tests-2] MyAddressTest - (Session reused), skip logged in step.
+[INFO] 23-02-2026 22:22:34 [MSEDGE] [TestNG-tests-2] MyAddressTest - ---- Deleted new address ----
+[INFO] 23-02-2026 22:22:34 [MSEDGE] [TestNG-tests-2] MyAddressTest - Expect delete full name: Trương Ngọc A
+[INFO] 23-02-2026 22:22:34 [MSEDGE] [TestNG-tests-2] MyAddressTest - Expect delete full address : For Demo Only, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội
+[WARN] 23-02-2026 22:22:36 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][3]//button[@aria-label='delete button']
+[INFO] 23-02-2026 22:22:37 [MSEDGE] [TestNG-tests-2] MyAddressPage - Deleted fullname: Trương Ngọc A - **********
+[INFO] 23-02-2026 22:22:37 [MSEDGE] [TestNG-tests-2] MyAddressPage - Deleted address: For Demo Only, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội
+[INFO] 23-02-2026 22:22:37 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Deleted address at position: 3
+[INFO] 23-02-2026 22:22:37 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Full name and full address aren't exist after deleted
+[INFO] 23-02-2026 22:22:37 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:37 [MSEDGE] [TestNG-tests-2] MyAddressTest - Finish Test: MyAddress_verifyDeleteAddress
+[WARN] 23-02-2026 22:22:40 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:22:40 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[normalize-space()='Chào'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:22:43 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:22:43 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[normalize-space()='Chào'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:22:50 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[INFO] 23-02-2026 22:22:50 [CHROME] [TestNG-tests-1] MyAddressTest - (Session reused), skip logged in step.
+[INFO] 23-02-2026 22:22:50 [CHROME] [TestNG-tests-1] MyAddressTest - ---- Deleted new address ----
+[INFO] 23-02-2026 22:22:50 [CHROME] [TestNG-tests-1] MyAddressTest - Expect delete full name: Nguyễn Tuấn T
+[INFO] 23-02-2026 22:22:50 [CHROME] [TestNG-tests-1] MyAddressTest - Expect delete full address : For Demo Only, Phường Cái Khế, Quận Ninh Kiều, Cần Thơ
+[WARN] 23-02-2026 22:22:52 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][2]//button[@aria-label='delete button']
+[INFO] 23-02-2026 22:22:53 [CHROME] [TestNG-tests-1] MyAddressPage - Deleted fullname: Nguyễn Tuấn T - **********
+[INFO] 23-02-2026 22:22:53 [CHROME] [TestNG-tests-1] MyAddressPage - Deleted address: For Demo Only, Phường Cái Khế, Quận Ninh Kiều, Cần Thơ
+[INFO] 23-02-2026 22:22:53 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Deleted address at position: 2
+[WARN] 23-02-2026 22:22:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[INFO] 23-02-2026 22:22:53 [MSEDGE] [TestNG-tests-2] MyAddressTest - (Session reused), skip logged in step.
+[INFO] 23-02-2026 22:22:53 [MSEDGE] [TestNG-tests-2] MyAddressTest - ---- Deleted new address ----
+[INFO] 23-02-2026 22:22:53 [MSEDGE] [TestNG-tests-2] MyAddressTest - Expect delete full name: Nguyễn Tuấn T
+[INFO] 23-02-2026 22:22:53 [MSEDGE] [TestNG-tests-2] MyAddressTest - Expect delete full address : For Demo Only, Phường Cái Khế, Quận Ninh Kiều, Cần Thơ
+[INFO] 23-02-2026 22:22:54 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Full name and full address aren't exist after deleted
+[INFO] 23-02-2026 22:22:54 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:54 [CHROME] [TestNG-tests-1] MyAddressTest - Finish Test: MyAddress_verifyDeleteAddress
+[WARN] 23-02-2026 22:22:55 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[@class='grid gap-5 grid-cols-2 w-full']//div[@class='w-full border rounded-[10px]'][2]//button[@aria-label='delete button']
+[INFO] 23-02-2026 22:22:56 [MSEDGE] [TestNG-tests-2] MyAddressPage - Deleted fullname: Nguyễn Tuấn T - **********
+[INFO] 23-02-2026 22:22:56 [MSEDGE] [TestNG-tests-2] MyAddressPage - Deleted address: For Demo Only, Phường Cái Khế, Quận Ninh Kiều, Cần Thơ
+[INFO] 23-02-2026 22:22:56 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Deleted address at position: 2
+[INFO] 23-02-2026 22:22:56 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:22:57 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Full name and full address aren't exist after deleted
+[INFO] 23-02-2026 22:22:57 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:57 [MSEDGE] [TestNG-tests-2] MyAddressTest - Finish Test: MyAddress_verifyDeleteAddress
+[INFO] 23-02-2026 22:22:59 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:22:59 [] [main] Utils - [TestNG] Running:
+  C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\sub_suites\Smoke_Suite.xml
+
+[INFO] 23-02-2026 22:22:59 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:22:59 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:22:59 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:22:59 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:22:59 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:22:59 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:23:10 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:23:10 [MSEDGE] [TestNG-tests-2] LoginTest - Verify Email/phone placeholder
+[INFO] 23-02-2026 22:23:10 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Email/Phone placeholder match
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] LoginTest - Verify password placeholder
+[INFO] 23-02-2026 22:23:11 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Password placeholder match
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] LoginTest - Verify all main label is display correctly
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')] is displayed.
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //label[contains(.,'Nhớ mật khẩu')] is displayed.
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login'] is displayed.
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Label LoginTest,Remember password,You not have account display
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')] is displayed.
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //label[contains(.,'Nhớ mật khẩu')] is displayed.
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login'] is displayed.
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : login_verifyUILayoutAndPlaceholders
+[INFO] 23-02-2026 22:23:11 [MSEDGE] [TestNG-tests-2] LoginTest - Cleaning up after row: login_verifyUILayoutAndPlaceholders
+[INFO] 23-02-2026 22:23:11 [CHROME] [TestNG-tests-1] LoginTest - Verify Email/phone placeholder
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Email/Phone placeholder match
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] LoginTest - Verify password placeholder
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Password placeholder match
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] LoginTest - Verify all main label is display correctly
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')] is displayed.
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //label[contains(.,'Nhớ mật khẩu')] is displayed.
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login'] is displayed.
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Label LoginTest,Remember password,You not have account display
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login']//div[contains(.,'Hoặc đăng nhập với Hasaki.vn')] is displayed.
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //label[contains(.,'Nhớ mật khẩu')] is displayed.
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //form[@id='form-head-login'] is displayed.
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : login_verifyUILayoutAndPlaceholders
+[INFO] 23-02-2026 22:23:12 [CHROME] [TestNG-tests-1] LoginTest - Cleaning up after row: login_verifyUILayoutAndPlaceholders
+[INFO] 23-02-2026 22:23:17 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:23:17 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:23:17 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:23:17 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:23:18 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:23:18 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:23:18 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:23:18 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:23:27 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:23:27 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:23:28 [CHROME] [TestNG-tests-1] ProductDetailPage - Prodcut brand text: 'CERAVE'
+[INFO] 23-02-2026 22:23:28 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:23:28 [CHROME] [TestNG-tests-1] ProductDetailPage - Product name text: 'Sữa Rửa Mặt CeraVe Sạch Sâu Cho Da Thường Đến Da Dầu 473ml'
+[INFO] 23-02-2026 22:23:28 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : search_verifyNavigationToProductDetail
+[INFO] 23-02-2026 22:23:28 [CHROME] [TestNG-tests-1] SearchTest - Cleaning up after row: search_verifyNavigationToProductDetail
+[INFO] 23-02-2026 22:23:28 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Prodcut brand text: 'CERAVE'
+[INFO] 23-02-2026 22:23:28 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:23:28 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Product name text: 'Sữa Rửa Mặt CeraVe Sạch Sâu Cho Da Thường Đến Da Dầu 473ml'
+[INFO] 23-02-2026 22:23:28 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : search_verifyNavigationToProductDetail
+[INFO] 23-02-2026 22:23:28 [MSEDGE] [TestNG-tests-2] SearchTest - Cleaning up after row: search_verifyNavigationToProductDetail
+[INFO] 23-02-2026 22:23:33 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:23:33 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:23:33 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:23:33 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:23:33 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:23:33 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:23:33 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:23:33 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[WARN] 23-02-2026 22:23:44 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:23:45 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:23:50 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:23:50 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:24:00 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:24:01 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:24:10 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[INFO] 23-02-2026 22:24:10 [MSEDGE] [TestNG-tests-2] MyAddressTest - Session not available, proceed Login for: swata44@gmail.com
+[WARN] 23-02-2026 22:24:11 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[INFO] 23-02-2026 22:24:11 [CHROME] [TestNG-tests-1] MyAddressTest - Session not available, proceed Login for: topphanst@gmail.com
+[WARN] 23-02-2026 22:24:15 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:24:16 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:24:26 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[WARN] 23-02-2026 22:24:27 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:24:30 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[INFO] 23-02-2026 22:24:30 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Url: hasaki.vn/customer/address is display
+[INFO] 23-02-2026 22:24:30 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[INFO] 23-02-2026 22:24:31 [MSEDGE] [TestNG-tests-2] MyAddressPage - [PASS] Title: Sổ địa chỉ is display
+[INFO] 23-02-2026 22:24:31 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : MyAddress_verifyAddressUI
+[INFO] 23-02-2026 22:24:31 [MSEDGE] [TestNG-tests-2] MyAddressTest - Finish Test: MyAddress_verifyAddressUI
+[INFO] 23-02-2026 22:24:32 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[INFO] 23-02-2026 22:24:32 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Url: hasaki.vn/customer/address is display
+[INFO] 23-02-2026 22:24:32 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Sổ địa chỉ')] is displayed.
+[INFO] 23-02-2026 22:24:32 [CHROME] [TestNG-tests-1] MyAddressPage - [PASS] Title: Sổ địa chỉ is display
+[INFO] 23-02-2026 22:24:32 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : MyAddress_verifyAddressUI
+[INFO] 23-02-2026 22:24:32 [CHROME] [TestNG-tests-1] MyAddressTest - Finish Test: MyAddress_verifyAddressUI
+[INFO] 23-02-2026 22:24:33 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:24:33 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:24:33 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:24:33 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:24:35 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:24:35 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:24:35 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:24:35 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:24:43 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Verify Address UI on browser: chrome
+[INFO] 23-02-2026 22:24:44 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Verify Address UI on browser: chrome
+[WARN] 23-02-2026 22:24:48 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:24:49 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:24:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:24:54 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:25:04 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:25:05 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:25:14 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[WARN] 23-02-2026 22:25:15 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[WARN] 23-02-2026 22:25:19 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:25:20 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:25:29 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[WARN] 23-02-2026 22:25:30 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:25:36 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:25:36 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:25:37 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Product name: Sữa Chống Nắng Sunplay Skin Aqua Dưỡng Da Sáng Mịn 55g is display
+[INFO] 23-02-2026 22:25:37 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:25:37 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:25:37 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:25:37 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:25:37 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:25:39 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:25:39 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:25:39 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Product name: Sữa Chống Nắng Sunplay Skin Aqua Dưỡng Da Sáng Mịn 55g is display
+[INFO] 23-02-2026 22:25:39 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:25:39 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:25:39 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:25:39 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Verify Address UI on browser: msedge
+[INFO] 23-02-2026 22:25:42 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:25:42 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:25:44 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Verify Address UI on browser: chrome
+[WARN] 23-02-2026 22:25:50 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:25:50 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:25:54 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:25:54 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:25:55 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:25:55 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Product name: Nước Hoa Nữ Narciso Rodriguez For Her EDP 100ml is display
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:25:58 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[WARN] 23-02-2026 22:25:59 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:25:59 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:26:00 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Verify Address UI on browser: msedge
+[INFO] 23-02-2026 22:26:02 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Product name: Nước Hoa Nữ Narciso Rodriguez For Her EDP 100ml is display
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:03 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:05 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Verify Address UI on browser: chrome
+[WARN] 23-02-2026 22:26:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:26:11 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:26:16 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:26:16 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:26:16 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:26:16 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:26:18 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:26:18 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:26:18 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Product name: Son Thỏi Lip On Lip Dưỡng Môi Sunset Peach - Cam Đào 2.2g is display
+[INFO] 23-02-2026 22:26:18 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:26:19 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:26:19 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:26:19 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:19 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[WARN] 23-02-2026 22:26:21 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:26:21 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:26:21 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Verify Address UI on browser: msedge
+[INFO] 23-02-2026 22:26:23 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:26:23 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:26:24 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Product name: Son Thỏi Lip On Lip Dưỡng Môi Sunset Peach - Cam Đào 2.2g is display
+[INFO] 23-02-2026 22:26:24 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:26:24 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:26:24 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:26:24 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:24 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:26 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Verify Address UI on browser: chrome
+[WARN] 23-02-2026 22:26:31 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:26:31 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:26:36 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:26:36 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:26:36 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:26:36 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:26:40 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:26:40 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:26:40 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Product name: Sữa Rửa Mặt CeraVe Sạch Sâu Cho Da Thường Đến Da Dầu 473ml is display
+[INFO] 23-02-2026 22:26:40 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:26:40 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:26:40 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:26:41 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:41 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[WARN] 23-02-2026 22:26:41 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:26:41 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:26:43 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Add single product to cart on browsermsedge
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Url: hasaki.vn/san-pham/... is display
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h1[@class='text-lg font-medium leading-[1.25]'] is displayed.
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Product name: Sữa Rửa Mặt CeraVe Sạch Sâu Cho Da Thường Đến Da Dầu 473ml is display
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:44 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_VerifyUI
+[INFO] 23-02-2026 22:26:46 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Add single product to cart on browserchrome
+[WARN] 23-02-2026 22:26:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:26:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:26:57 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:26:57 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:26:58 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:26:58 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:27:01 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:27:01 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:27:01 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:27:01 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:02 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '0'
+[WARN] 23-02-2026 22:27:02 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:27:02 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[WARN] 23-02-2026 22:27:03 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:27:03 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:27:04 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:27:04 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:05 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:27:05 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:27:05 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:27:05 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:05 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '1'
+[INFO] 23-02-2026 22:27:05 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:05 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:06 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '0'
+[WARN] 23-02-2026 22:27:07 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:27:07 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:27:07 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Add single product to cart on browsermsedge
+[INFO] 23-02-2026 22:27:07 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:27:08 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:09 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '1'
+[INFO] 23-02-2026 22:27:09 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:09 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:11 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Add single product to cart on browserchrome
+[WARN] 23-02-2026 22:27:17 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:27:17 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:27:21 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:27:21 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:27:23 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:27:23 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:27:25 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:27:25 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:27:25 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:27:25 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:26 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '1'
+[WARN] 23-02-2026 22:27:26 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:27:26 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[WARN] 23-02-2026 22:27:27 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:27:27 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:27:28 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:27:29 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:29 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:27:29 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:27:29 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:27:29 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:30 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '2'
+[INFO] 23-02-2026 22:27:30 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:30 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:30 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '1'
+[WARN] 23-02-2026 22:27:31 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:27:31 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:27:32 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:27:32 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Add single product to cart on browsermsedge
+[INFO] 23-02-2026 22:27:32 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:33 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '2'
+[INFO] 23-02-2026 22:27:33 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:33 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:35 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Add single product to cart on browserchrome
+[WARN] 23-02-2026 22:27:42 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:27:42 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:27:45 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:27:45 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:27:47 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:27:47 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[WARN] 23-02-2026 22:27:51 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:27:51 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:27:51 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:27:51 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:27:51 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:27:51 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:52 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '2'
+[INFO] 23-02-2026 22:27:53 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:27:53 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:27:53 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:27:53 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:27:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:27:53 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:27:54 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:27:54 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '2'
+[INFO] 23-02-2026 22:27:54 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:27:55 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:27:55 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:27:55 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '3'
+[INFO] 23-02-2026 22:27:55 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:55 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:56 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:27:56 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:27:57 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Test case: Add single product to cart on browsermsedge
+[INFO] 23-02-2026 22:27:57 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '3'
+[INFO] 23-02-2026 22:27:57 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:57 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:27:59 [CHROME] [TestNG-tests-1] ProductDetailTest - Test case: Add single product to cart on browserchrome
+[WARN] 23-02-2026 22:28:07 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:28:07 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:28:09 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:28:09 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:28:13 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:28:13 [MSEDGE] [TestNG-tests-2] ProductDetailTest - (Session reused), skip login.
+[WARN] 23-02-2026 22:28:14 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:28:14 [CHROME] [TestNG-tests-1] ProductDetailTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:28:15 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:28:15 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:28:15 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:28:15 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:28:16 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '3'
+[INFO] 23-02-2026 22:28:17 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is displayed.
+[INFO] 23-02-2026 22:28:17 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button is enabled.
+[INFO] 23-02-2026 22:28:17 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add Cart button is display & enable
+[INFO] 23-02-2026 22:28:17 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:28:17 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:28:17 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:28:18 [MSEDGE] [TestNG-tests-2] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:28:18 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '3'
+[INFO] 23-02-2026 22:28:18 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:28:19 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Giỏ hàng')]/parent::button
+[INFO] 23-02-2026 22:28:19 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Add product
+[INFO] 23-02-2026 22:28:19 [MSEDGE] [TestNG-tests-2] ProductDetailPage - Raw cart text: '4'
+[INFO] 23-02-2026 22:28:19 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:28:19 [MSEDGE] [TestNG-tests-2] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:28:20 [CHROME] [TestNG-tests-1] ProductDetailPage - [PASS] Popup: Sản Phẩm đã được thêm vào giỏ hàng thành công is display
+[INFO] 23-02-2026 22:28:20 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:28:21 [CHROME] [TestNG-tests-1] ProductDetailPage - Raw cart text: '4'
+[INFO] 23-02-2026 22:28:21 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:28:21 [CHROME] [TestNG-tests-1] ProductDetailTest - Finished row: ProductDetail_addSingleUnit
+[INFO] 23-02-2026 22:28:24 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:28:24 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:28:24 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:28:24 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:28:26 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:28:26 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:28:26 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:28:26 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:28:34 [MSEDGE] [TestNG-tests-2] CartTest - Validating pricing calculated on: chrome
+[INFO] 23-02-2026 22:28:35 [CHROME] [TestNG-tests-1] CartTest - Validating pricing calculated on: chrome
+[WARN] 23-02-2026 22:28:39 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:28:40 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[@class='header_username'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:28:44 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:28:45 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:28:55 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:28:56 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[@class='header_username']
+[WARN] 23-02-2026 22:29:05 [MSEDGE] [TestNG-tests-2] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[WARN] 23-02-2026 22:29:06 [CHROME] [TestNG-tests-1] ValidateHelper - [FAIL] to verifyElementIsExist with locator: By.xpath: //span[normalize-space()='Chào']
+[WARN] 23-02-2026 22:29:10 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:29:12 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //button[@id='acceptCookies'] did not appear within 5 seconds.
+[WARN] 23-02-2026 22:29:20 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[WARN] 23-02-2026 22:29:22 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:29:23 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:29:24 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[4]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:25 [MSEDGE] [TestNG-tests-2] CartPage - Verification at row 4 - Expected: 351000, Actual UI: 351000
+[INFO] 23-02-2026 22:29:25 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[3]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:25 [MSEDGE] [TestNG-tests-2] CartPage - Verification at row 3 - Expected: 128000, Actual UI: 128000
+[INFO] 23-02-2026 22:29:26 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[2]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:26 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:29:26 [MSEDGE] [TestNG-tests-2] CartPage - Verification at row 2 - Expected: 3750000, Actual UI: 3750000
+[INFO] 23-02-2026 22:29:26 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[1]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:27 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[4]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:27 [MSEDGE] [TestNG-tests-2] CartPage - Verification at row 1 - Expected: 160000, Actual UI: 160000
+[INFO] 23-02-2026 22:29:27 [MSEDGE] [TestNG-tests-2] CartTest - [PASS] Subtotal each item matches expectations.
+[INFO] 23-02-2026 22:29:27 [CHROME] [TestNG-tests-1] CartPage - Verification at row 4 - Expected: 351000, Actual UI: 351000
+[INFO] 23-02-2026 22:29:27 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[3]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:27 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[4]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:28 [CHROME] [TestNG-tests-1] CartPage - Verification at row 3 - Expected: 128000, Actual UI: 128000
+[INFO] 23-02-2026 22:29:28 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[2]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:28 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[3]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:28 [CHROME] [TestNG-tests-1] CartPage - Verification at row 2 - Expected: 3750000, Actual UI: 3750000
+[INFO] 23-02-2026 22:29:29 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[1]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:29 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[2]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:29 [CHROME] [TestNG-tests-1] CartPage - Verification at row 1 - Expected: 160000, Actual UI: 160000
+[INFO] 23-02-2026 22:29:29 [CHROME] [TestNG-tests-1] CartTest - [PASS] Subtotal each item matches expectations.
+[INFO] 23-02-2026 22:29:29 [MSEDGE] [TestNG-tests-2] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[1]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:29 [MSEDGE] [TestNG-tests-2] CartPage - Calculated sum of all items: 4389000
+[INFO] 23-02-2026 22:29:29 [MSEDGE] [TestNG-tests-2] CartTest - [PASS] Grand total is correct.
+[INFO] 23-02-2026 22:29:29 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : CartTest_CalculationCheck
+[INFO] 23-02-2026 22:29:29 [MSEDGE] [TestNG-tests-2] CartTest - Finished row: CartTest_CalculationCheck
+[INFO] 23-02-2026 22:29:30 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[4]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:30 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[3]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:31 [MSEDGE] [TestNG-tests-2] CartTest - Test case: Verify Cart page UI on browser: msedge
+[INFO] 23-02-2026 22:29:31 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[2]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:31 [CHROME] [TestNG-tests-1] ValidateHelper - Attribute 'value' of element By.xpath: //tbody/tr[1]//td[3]//input is: 1
+[INFO] 23-02-2026 22:29:31 [CHROME] [TestNG-tests-1] CartPage - Calculated sum of all items: 4389000
+[INFO] 23-02-2026 22:29:31 [CHROME] [TestNG-tests-1] CartTest - [PASS] Grand total is correct.
+[INFO] 23-02-2026 22:29:31 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : CartTest_CalculationCheck
+[INFO] 23-02-2026 22:29:31 [CHROME] [TestNG-tests-1] CartTest - Finished row: CartTest_CalculationCheck
+[INFO] 23-02-2026 22:29:33 [CHROME] [TestNG-tests-1] CartTest - Test case: Verify Cart page UI on browser: chrome
+[WARN] 23-02-2026 22:29:41 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:29:41 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:29:43 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:29:43 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:29:46 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:29:46 [MSEDGE] [TestNG-tests-2] CartTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:29:47 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:29:47 [MSEDGE] [TestNG-tests-2] CartPage - [PASS] Url: hasaki.vn/checkout/cart is display
+[INFO] 23-02-2026 22:29:47 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')] is displayed.
+[INFO] 23-02-2026 22:29:47 [MSEDGE] [TestNG-tests-2] CartPage - [PASS] Title 'Giỏ hàng' is display
+[INFO] 23-02-2026 22:29:47 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : CartTest_VerifyUI
+[INFO] 23-02-2026 22:29:47 [MSEDGE] [TestNG-tests-2] CartTest - Finished row: CartTest_VerifyUI
+[WARN] 23-02-2026 22:29:48 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:29:48 [CHROME] [TestNG-tests-1] CartTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:29:49 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:29:49 [CHROME] [TestNG-tests-1] CartPage - [PASS] Url: hasaki.vn/checkout/cart is display
+[INFO] 23-02-2026 22:29:49 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[contains(text(),'Giỏ hàng')] is displayed.
+[INFO] 23-02-2026 22:29:49 [CHROME] [TestNG-tests-1] CartPage - [PASS] Title 'Giỏ hàng' is display
+[INFO] 23-02-2026 22:29:49 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : CartTest_VerifyUI
+[INFO] 23-02-2026 22:29:49 [CHROME] [TestNG-tests-1] CartTest - Finished row: CartTest_VerifyUI
+[INFO] 23-02-2026 22:29:51 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:29:51 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:29:51 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:29:51 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:29:53 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:29:53 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:29:53 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:29:54 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:29:59 [CHROME] [TestNG-tests-1] CheckoutTest - Test case: Verifying profile address matches checkout address on browser: chrome
+[INFO] 23-02-2026 22:30:01 [MSEDGE] [TestNG-tests-2] CheckoutTest - Test case: Verifying profile address matches checkout address on browser: chrome
+[INFO] 23-02-2026 22:30:01 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:30:01 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:30:06 [MSEDGE] [TestNG-tests-2] CheckoutTest - Default Name: Hoang Đinh, Default Place: For Demo Only, Phường Tân Thuận Tây, Quận 7, Hồ Chí Minh
+[INFO] 23-02-2026 22:30:06 [CHROME] [TestNG-tests-1] CheckoutTest - Default Name: Hoàng Phan, Default Place: Hẻm 45/9, khu phố 10, đường Nguyễn Thị Thập, Phường Tân Phú, Quận 7, Hồ Chí Minh
+[INFO] 23-02-2026 22:30:09 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:30:09 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Go to cart
+[WARN] 23-02-2026 22:30:10 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Tạm tính:')]/following-sibling::button
+[INFO] 23-02-2026 22:30:10 [MSEDGE] [TestNG-tests-2] CartPage - Clicked Checkout button. Linking to CheckoutPage...
+[WARN] 23-02-2026 22:30:10 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Tạm tính:')]/following-sibling::button
+[INFO] 23-02-2026 22:30:10 [CHROME] [TestNG-tests-1] CartPage - Clicked Checkout button. Linking to CheckoutPage...
+[INFO] 23-02-2026 22:30:12 [MSEDGE] [TestNG-tests-2] CheckoutTest - Actual Name: Hoang Đinh, Actual Place: For Demo Only, Phường Tân Thuận Tây, Quận 7, Hồ Chí Minh
+[INFO] 23-02-2026 22:30:12 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : CheckoutTest_verifyAddressSyncFromProfile
+[INFO] 23-02-2026 22:30:12 [MSEDGE] [TestNG-tests-2] CheckoutTest - Finished row: CheckoutTest_verifyAddressSyncFromProfile
+[INFO] 23-02-2026 22:30:12 [CHROME] [TestNG-tests-1] CheckoutTest - Actual Name: Hoàng Phan, Actual Place: Hẻm 45/9, khu phố 10, đường Nguyễn Thị Thập, Phường Tân Phú, Quận 7, Hồ Chí Minh
+[INFO] 23-02-2026 22:30:12 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : CheckoutTest_verifyAddressSyncFromProfile
+[INFO] 23-02-2026 22:30:12 [CHROME] [TestNG-tests-1] CheckoutTest - Finished row: CheckoutTest_verifyAddressSyncFromProfile
+[INFO] 23-02-2026 22:30:13 [CHROME] [TestNG-tests-1] CheckoutTest - Test case: Verify Checkout page UI on browser: chrome
+[INFO] 23-02-2026 22:30:14 [MSEDGE] [TestNG-tests-2] CheckoutTest - Test case: Verify Checkout page UI on browser: msedge
+[WARN] 23-02-2026 22:30:24 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:30:24 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:30:24 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //button[@id='acceptCookies']
+[INFO] 23-02-2026 22:30:24 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //span[@class='header_username'] is now visible after waiting 5s
+[WARN] 23-02-2026 22:30:29 [CHROME] [TestNG-tests-1] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:30:29 [CHROME] [TestNG-tests-1] CheckoutTest - (Session reused), skip login.
+[WARN] 23-02-2026 22:30:29 [MSEDGE] [TestNG-tests-2] ValidateHelper - [TIMEOUT] Element By.xpath: //span[normalize-space()='Chào'] did not appear within 5 seconds.
+[INFO] 23-02-2026 22:30:29 [MSEDGE] [TestNG-tests-2] CheckoutTest - (Session reused), skip login.
+[INFO] 23-02-2026 22:30:30 [MSEDGE] [TestNG-tests-2] LoginPage - [PASS] Go to cart
+[INFO] 23-02-2026 22:30:30 [CHROME] [TestNG-tests-1] LoginPage - [PASS] Go to cart
+[WARN] 23-02-2026 22:30:31 [CHROME] [TestNG-tests-1] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Tạm tính:')]/following-sibling::button
+[INFO] 23-02-2026 22:30:31 [CHROME] [TestNG-tests-1] CartPage - Clicked Checkout button. Linking to CheckoutPage...
+[INFO] 23-02-2026 22:30:31 [CHROME] [TestNG-tests-1] CheckoutPage - [PASS] Url: hasaki.vn/checkout is display
+[INFO] 23-02-2026 22:30:31 [CHROME] [TestNG-tests-1] ValidateHelper - Scrolled to top of the page
+[WARN] 23-02-2026 22:30:31 [MSEDGE] [TestNG-tests-2] ValidateHelper - [WARN] Fail to click with locator, try js click : By.xpath: //div[contains(text(),'Tạm tính:')]/following-sibling::button
+[INFO] 23-02-2026 22:30:31 [MSEDGE] [TestNG-tests-2] CartPage - Clicked Checkout button. Linking to CheckoutPage...
+[INFO] 23-02-2026 22:30:31 [MSEDGE] [TestNG-tests-2] CheckoutPage - [PASS] Url: hasaki.vn/checkout is display
+[INFO] 23-02-2026 22:30:31 [MSEDGE] [TestNG-tests-2] ValidateHelper - Scrolled to top of the page
+[INFO] 23-02-2026 22:30:32 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h2[normalize-space()='Thanh toán'] is displayed.
+[INFO] 23-02-2026 22:30:32 [CHROME] [TestNG-tests-1] CheckoutPage - [PASS] Title 'Thanh Toán' is display
+[INFO] 23-02-2026 22:30:32 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h2[normalize-space()='Thanh toán'] is displayed.
+[INFO] 23-02-2026 22:30:32 [MSEDGE] [TestNG-tests-2] CheckoutPage - [PASS] Title 'Thanh Toán' is display
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Địa chỉ nhận hàng')] is displayed.
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] CheckoutPage - [PASS] address title 'Địa chỉ nhận hàng' is display
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Hình thức thanh toán')] is displayed.
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] CheckoutPage - [PASS] payment method title 'Hình thức thanh toán' is display
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] ValidateHelper - [PASS] Element By.xpath: //button[@aria-label='Đặt hàng'] is enabled.
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //button[@aria-label='Đặt hàng'] is displayed.
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] CheckoutPage - [PASS] 'Đặt Hàng' button is enable and display
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : CheckoutTest_verifyCheckoutUIComponents
+[INFO] 23-02-2026 22:30:33 [CHROME] [TestNG-tests-1] CheckoutTest - Finished row: CheckoutTest_verifyCheckoutUIComponents
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Địa chỉ nhận hàng')] is displayed.
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] CheckoutPage - [PASS] address title 'Địa chỉ nhận hàng' is display
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //h2[contains(text(),'Hình thức thanh toán')] is displayed.
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] CheckoutPage - [PASS] payment method title 'Hình thức thanh toán' is display
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] ValidateHelper - [PASS] Element By.xpath: //button[@aria-label='Đặt hàng'] is enabled.
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //button[@aria-label='Đặt hàng'] is displayed.
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] CheckoutPage - [PASS] 'Đặt Hàng' button is enable and display
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : CheckoutTest_verifyCheckoutUIComponents
+[INFO] 23-02-2026 22:30:33 [MSEDGE] [TestNG-tests-2] CheckoutTest - Finished row: CheckoutTest_verifyCheckoutUIComponents
+[INFO] 23-02-2026 22:30:37 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:30:37 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Launching Chrome browser...
+[INFO] 23-02-2026 22:30:37 [CHROME] [TestNG-tests-1] WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+[INFO] 23-02-2026 22:30:37 [CHROME] [TestNG-tests-1] WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\topph\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+[INFO] 23-02-2026 22:30:37 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:30:37 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Launching Edge browser...
+[INFO] 23-02-2026 22:30:37 [MSEDGE] [TestNG-tests-2] WebDriverManager - Using msedgedriver 145.0.3800.70 (resolved driver for Edge 145)
+[INFO] 23-02-2026 22:30:37 [MSEDGE] [TestNG-tests-2] WebDriverManager - Exporting webdriver.edge.driver as C:\Users\topph\.cache\selenium\msedgedriver\win64\145.0.3800.70\msedgedriver.exe
+[INFO] 23-02-2026 22:30:47 [CHROME] [TestNG-tests-1] LogoutTest - --- Test log-out flow ---
+[INFO] 23-02-2026 22:30:47 [CHROME] [TestNG-tests-1] LogoutTest - Email: topphanst@gmail.com
+[INFO] 23-02-2026 22:30:47 [CHROME] [TestNG-tests-1] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:30:48 [MSEDGE] [TestNG-tests-2] LogoutTest - --- Test log-out flow ---
+[INFO] 23-02-2026 22:30:48 [MSEDGE] [TestNG-tests-2] LogoutTest - Email: swata44@gmail.com
+[INFO] 23-02-2026 22:30:48 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element By.xpath: //button[@id='acceptCookies'] is now visible after waiting 5s
+[INFO] 23-02-2026 22:30:50 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //div[@class='item_header item_login user-info-group '] is displayed.
+[INFO] 23-02-2026 22:30:51 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //div[@class='item_header item_login user-info-group '] is displayed.
+[INFO] 23-02-2026 22:30:52 [CHROME] [TestNG-tests-1] MyAccountPage - --- Checking LoginTest & Register labels after LogoutTest ---
+[INFO] 23-02-2026 22:30:52 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //a[@class='popup-login txt_header_right'] is displayed.
+[INFO] 23-02-2026 22:30:52 [CHROME] [TestNG-tests-1] ValidateHelper - Element with locator: By.xpath: //a[@class='popup-register txt_header_right'] is displayed.
+[INFO] 23-02-2026 22:30:52 [CHROME] [TestNG-tests-1] MyAccountPage - [PASS] Label 'Đăng Nhập' & 'Đăng Ký' is display. Log out success
+[INFO] 23-02-2026 22:30:52 [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : logout_verifyUserCanLogoutSuccessfully
+[INFO] 23-02-2026 22:30:53 [MSEDGE] [TestNG-tests-2] MyAccountPage - --- Checking LoginTest & Register labels after LogoutTest ---
+[INFO] 23-02-2026 22:30:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //a[@class='popup-login txt_header_right'] is displayed.
+[INFO] 23-02-2026 22:30:53 [MSEDGE] [TestNG-tests-2] ValidateHelper - Element with locator: By.xpath: //a[@class='popup-register txt_header_right'] is displayed.
+[INFO] 23-02-2026 22:30:53 [MSEDGE] [TestNG-tests-2] MyAccountPage - [PASS] Label 'Đăng Nhập' & 'Đăng Ký' is display. Log out success
+[INFO] 23-02-2026 22:30:53 [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : logout_verifyUserCanLogoutSuccessfully
+[INFO] 23-02-2026 22:30:54 [CHROME] [TestNG-tests-1] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:30:56 [MSEDGE] [TestNG-tests-2] multipleThread_baseSetup - Driver closed. Test completed.
+[INFO] 23-02-2026 22:30:56 [] [main] Utils - [TestNG] Running:
+  C:\Users\topph\IdeaProjects\Hasaki.vn\src\test\java\resources\master\Master_Smoke.xml
+
