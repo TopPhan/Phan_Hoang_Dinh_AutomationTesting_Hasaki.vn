@@ -19,7 +19,8 @@
 
 ## 🌿 Project Overview
 
-**Hasaki.vn Automation Testing** is a production-grade end-to-end test automation framework targeting [Hasaki.vn](https://hasaki.vn/) — Vietnam's leading beauty & skincare e-commerce platform. Built with **Selenium WebDriver**, **TestNG**, and the **Page Object Model**, this framework validates the full purchase journey across multiple browsers simultaneously, with automated reporting deployed to GitHub Pages on every CI run.
+**Hasaki.vn Automation Testing** is a production-grade end-to-end test automation framework targeting [Hasaki.vn](https://hasaki.vn/) — Vietnam's leading beauty & skincare e-commerce platform. 
+Built with **Selenium WebDriver**, **TestNG**, and the **Page Object Model**, this framework validates the full purchase journey across multiple browsers simultaneously, with automated reporting deployed to GitHub Pages on every CI run.
 
 | Metric | Result |
 |---|---|
