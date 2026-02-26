@@ -1,4 +1,10 @@
 # 🌿 Hasaki.vn — End-to-End Automation Testing Framework
+<img width="1914" height="872" alt="image" src="https://github.com/user-attachments/assets/14729820-b142-4ea0-9ff0-0b5f79153642" />
+
+
+
+
+
 
 ---
 
@@ -411,36 +417,6 @@ The pipeline is defined in `.github/workflows/E2E_Purchase.yml` and triggers on:
 - **Push** to `develop/github_action` branch
 - **Pull Request** to `main` or `master`
 - **Manual dispatch** via GitHub UI (`workflow_dispatch`)
-
-### CI Run Evidence
-
-The screenshots and logs below are from a successful GitHub Actions run on **February 23, 2026**:
-
-**GitHub Actions Workflow — All Steps Passed:**
-
-> `E2E_Purchase_Flow` job succeeded in **6 minutes 25 seconds**. All 15 steps completed successfully including: Checkout code, Set up JDK 21, Install Chrome, Install Edge, Run Maven Tests (Headless), Upload Artifacts, Allure Report Action, and Deploy to GitHub Pages.
-
-**Allure Report Deployment — GitHub Pages:**
-
-> The `pages-build-deployment` workflow ran in **40 seconds** with status `Success`. Steps: `build` (8s) → `report-build-status` (5s) → `deploy` (10s). Report published to: `https://topphan.github.io/Phan_Hoang_Di...`
-
-**Test Results from CI Log:**
-
-```
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 304.7 s -- in TestSuite
-[INFO] BUILD SUCCESS
-[INFO] Total time: 05:09 min
-[INFO] Finished at: 2026-02-23T17:31:03Z
-```
-
-Both Chrome and Edge browsers ran in parallel. Key log highlights:
-```
-[INFO] [CHROME] [TestNG-tests-1] Standard_Mode_Listener - This test case is success : endToEndPurchaseFlow
-[INFO] [MSEDGE] [TestNG-tests-2] Standard_Mode_Listener - This test case is success : endToEndPurchaseFlow
-[INFO] PurchaseEndToEndTest - Data Integrity Check: Cart and Checkout lists are perfectly matched.
-```
-
----
 
 ## 🧪 Test Suites & Coverage
 
