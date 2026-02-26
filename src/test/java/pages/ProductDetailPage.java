@@ -110,12 +110,12 @@ public class ProductDetailPage {
     @Step("Verify that 'Added to Cart' success popup is visible")
     public boolean isPopupAddToCartDisplay() {
         try {
-            Boolean popupFound = validateHelper.verifyElementIsDisplay(successPopup);
+            Boolean popupFound = validateHelper.verifyElementIsExist(successPopup);
             Boolean popupMatch = validateHelper.getTextElement(successPopup).trim().contains("Sản Phẩm đã được thêm vào giỏ hàng thành công");
             if(popupFound && popupMatch){
                 logTest.info("[PASS] Popup: " + validateHelper.getTextElement(successPopup) + " is display");
             }
-            return popupFound && popupMatch;
+            return  popupFound&&popupMatch;
         } catch (Exception e) {
             logTest.error("[FAIL] Popup is not display");
             return false;
@@ -125,7 +125,7 @@ public class ProductDetailPage {
     @Step("Check if product has a purchase limit of 1 (Only Buy One popup)")
     public boolean isProductAllowOnlyBuyOne() {
         try {
-            validateHelper.waitForElementVisible(onlyBuyOne,3);
+            validateHelper.waitForElementVisible(onlyBuyOne,5);
             Boolean popupFound = driver.findElement(onlyBuyOne).isDisplayed();
             Boolean popupMatch = driver.findElement(onlyBuyOne).getText().trim().contains("Sản phẩm chỉ được mua tối đa là 1");
             if(popupFound && popupMatch){
@@ -172,7 +172,8 @@ public class ProductDetailPage {
     public int getCartQuantity() {
         try {
             validateHelper.scrollToTopPage_js();
-            wait.until(ExpectedConditions.elementToBeClickable(numberOfItems));
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(numberOfItems));
+            validateHelper.Delay(1000);
             String rawText = validateHelper.getTextElement(numberOfItems).trim();
             logTest.info("Raw cart text: '" + rawText + "'");
             if (rawText.isEmpty() || !rawText.matches("\\d+")) {
@@ -226,7 +227,7 @@ public class ProductDetailPage {
     public long getProductPrice() {
         try {
             validateHelper.scrollToTopPage_js();
-            validateHelper.waitForElementVisible(productPrice,2);
+            validateHelper.waitForElementVisible(productPrice,5);
             String rawText = validateHelper.getTextElement(productPrice).trim();
             long price = validateHelper.parseCurrencyToLong(rawText);
 

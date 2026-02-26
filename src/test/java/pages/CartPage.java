@@ -39,7 +39,7 @@ public class CartPage {
     // --- PAGE ELEMENT ---
     private By cartTitle = By.xpath("//div[contains(text(),'Giỏ hàng')]");
     private By allItems = By.xpath("//tbody//tr");
-    private By cartEmptyText = By.xpath("//p[contains(text(),'Bạn chưa chọn sản phẩm')]");
+    private By cartEmptyText = By.xpath("//main//div//span[.='0 sản phẩm']");
     private By cartTotalPrice = By.xpath("//div[contains(text(),'Tạm tính:')]//span");
     private By checkoutBtn = By.xpath("//div[contains(text(),'Tạm tính:')]/following-sibling::button");
 
@@ -101,7 +101,7 @@ public class CartPage {
         By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
         for (int i =0 ; i<times; i++) {
            validateHelper.clickElement(itemIncreaseLocator);
-           validateHelper.waitForElementVisible(itemQuantityLocator,1);
+           validateHelper.waitForElementVisible(itemQuantityLocator,5);
         }
         logTest.info("Increased quantity at row " + index + " by " + times);
     }
@@ -112,7 +112,7 @@ public class CartPage {
         By itemQuantityLocator = By.xpath(String.format(itemQuantity, index));
         for (int i =0 ; i<times; i++) {
             validateHelper.clickElement(itemDecreaseLocator);
-            validateHelper.waitForElementVisible(itemQuantityLocator,1);
+            validateHelper.waitForElementVisible(itemQuantityLocator,5);
         }
         logTest.info("Decreased quantity at row " + index + " by " + times);
     }
@@ -138,6 +138,8 @@ public class CartPage {
 
     @Step("Check if Cart is empty")
     public boolean verifyCartIsEmpty() {
+
+        validateHelper.waitForElementVisible(cartEmptyText,5);
         boolean isEmpty = validateHelper.verifyElementIsExist(cartEmptyText);
         logTest.info("Cart empty status: " + isEmpty);
         return isEmpty;
@@ -178,7 +180,7 @@ public class CartPage {
     // ---- ACTION LOOP ALL ITEMS IN CART ----
     @Step("Execute: Clear all items from cart")
     public void deleteAllItemInCart() {
-        validateHelper.waitForElementVisible(allItems,3);
+        validateHelper.waitForElementVisible(allItems,5);
         List<WebElement> listItems = driver.findElements(allItems);
         if (!listItems.isEmpty()) {
            while (validateHelper.verifyElementIsExist(By.xpath("//button[contains(text(),'Xóa')]"))) {

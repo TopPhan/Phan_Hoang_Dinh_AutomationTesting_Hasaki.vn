@@ -32,6 +32,7 @@ public class multipleThread_baseSetup {
         private final boolean isHeadless = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.headless"));
         private final boolean isIncognito = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.incognito"));
         private final boolean isMaximize = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.maximize"));
+        private final boolean isOffline = Boolean.parseBoolean(PropertiesFile.getPropValue("browser.offline"));
         private final String windowSize = PropertiesFile.getPropValue("browser.window.size"); // e.g., 1920x1080
 
         static String driverPath = PropertiesFile.getPropValue("driverPath");
@@ -72,15 +73,19 @@ public class multipleThread_baseSetup {
         //Config Browser input to Switch Case
         private  WebDriver initChromeDriver(String appURL) {
             logTest.info("Launching Chrome browser...");
-            //Using offline chrome driver
-            System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
-            //WebDriverManager.chromedriver().setup();
+
+            if (isOffline) {
+                //Using offline chrome driver
+                System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
+            } else {
+                WebDriverManager.chromedriver().setup(); //run online driver.
+            }
 
             ChromeOptions options = new ChromeOptions();
 
             // Get config from Properties
             if (isHeadless) {
-                options.addArguments("--headless=new");
+                options.addArguments("--headless");
                 options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
             }
             if (isIncognito) options.addArguments("--incognito");
@@ -90,6 +95,9 @@ public class multipleThread_baseSetup {
             options.addArguments("--no-sandbox"); // Bypass OS security (CI/CD environments)
             options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
             options.addArguments("--disable-notifications"); // disable notifications
+            options.addArguments("--force-device-scale-factor=1");
+            options.addArguments("--high-dpi-support=1");
+
 
             /* option run
             options.setAcceptInsecureCerts(true); // accept insecure certs: ssl,...
@@ -99,6 +107,10 @@ public class multipleThread_baseSetup {
              */
 
             WebDriver driver = new ChromeDriver(options);
+            driver.manage().window().setSize(new Dimension(1920,1080));
+            ((JavascriptExecutor) driver)
+                    .executeScript("window.resizeTo(1920,1080);");
+
             setupBrowser(driver, appURL);
             return driver;
         }
@@ -106,16 +118,18 @@ public class multipleThread_baseSetup {
     private WebDriver initEdgeDriver(String appURL) {
         logTest.info("Launching Edge browser...");
 
-        // 1. Set property for Edge driver
-        System.setProperty("webdriver.edge.driver", driverPath + "msedgedriver.exe");
-
-        // WebDriverManager.edgedriver().setup(); // run online driver.
+        if (isOffline) {
+            //Using offline Edge driver
+            System.setProperty("webdriver.edge.driver", driverPath + "msedgedriver.exe");
+        } else {
+            WebDriverManager.edgedriver().setup(); // run online driver.
+        }
 
         EdgeOptions options = new EdgeOptions();
 
         // 2. Get config from Properties
         if (isHeadless) {
-            options.addArguments("--headless=new");
+            options.addArguments("--headless");
             options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0");
         }
         if (isIncognito) options.addArguments("-inprivate"); // Edge use -inprivate
@@ -123,13 +137,20 @@ public class multipleThread_baseSetup {
 
         // 3. Turn off Pop-up and Notification
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-geolocation");
         options.addArguments("--disable-gpu");
+        options.addArguments("--force-device-scale-factor=1");
+        options.addArguments("--high-dpi-support=1");
+
 
         // 4. Init Edge driver
         WebDriver driver = new EdgeDriver(options);
+        driver.manage().window().setSize(new Dimension(1920,1080));
+        ((JavascriptExecutor) driver)
+                .executeScript("window.resizeTo(1920,1080);");
+
+
         setupBrowser(driver, appURL);
         return driver;
     }

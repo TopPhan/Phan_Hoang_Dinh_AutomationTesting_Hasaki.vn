@@ -78,12 +78,13 @@ public class ValidateHelper {
     @Step("Verify element '{0}' is existed")
     public boolean verifyElementIsExist(By locator) {
         try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
             List<WebElement> elements = driver.findElements(locator);
             int total = elements.size();
             return total > 0;
 
         } catch (Exception e) {
-            logTest.error("[FAIL] to verifyElementIsExist with locator: " + locator.toString());
+            logTest.warn("[FAIL] to verifyElementIsExist with locator: " + locator.toString());
         }
         return false;
     }
@@ -141,7 +142,7 @@ public class ValidateHelper {
             waitCustom.until(ExpectedConditions.visibilityOfElementLocated(by));
             logTest.info("Element " + by + " is now visible after waiting " + timeOutInSeconds + "s");
         } catch (Throwable error) {
-            logTest.error("[TIMEOUT] Element " + by + " did not appear within " + timeOutInSeconds + " seconds.");
+            logTest.warn("[TIMEOUT] Element " + by + " did not appear within " + timeOutInSeconds + " seconds.");
         }
     }
 

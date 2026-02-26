@@ -64,12 +64,12 @@ public class PurchaseEndToEndTest extends multipleThread_baseSetup {
 
         // Overite testcase name display on Allure report by testcode and description.
         // Dynamic test case name update for Allure
-        Allure.getLifecycle().updateTestCase(result -> result.setName("E2E Purchase Flow: Integrity Check (" + browserXml + ")"));
+        Allure.getLifecycle().updateTestCase(result -> result.setName("E2E Purchase Flow: Integrity Check"));
 
         LoginPage loginPage = new LoginPage(getDriver());
         SearchPage searchPage = new SearchPage(getDriver());
 
-        logTest.info("E2E Purchase Flow on browser: " + browserXml);
+        logTest.info("E2E Purchase Flow");
 
         // --- STEP 1: SMART LOGIN ---
         executeSmartLogin(loginPage);

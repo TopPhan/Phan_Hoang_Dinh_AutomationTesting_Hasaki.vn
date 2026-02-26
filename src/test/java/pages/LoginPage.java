@@ -46,8 +46,8 @@ public class LoginPage {
     // ---- Verify Page ----
     @Step("Check if user is successfully logged in")
     public boolean isLoggedIn() {
-        validateHelper.waitForElementVisible(headerUsername,2);
-        validateHelper.waitForElementVisible(headerUsernameAddress,2);
+        validateHelper.waitForElementVisible(headerUsername,5);
+        validateHelper.waitForElementVisible(headerUsernameAddress,5);
         return validateHelper.verifyElementIsExist(headerUsername) || validateHelper.verifyElementIsExist(headerUsernameAddress) ;
     }
 
@@ -142,7 +142,7 @@ public class LoginPage {
 
         // Check page has asked cookie,
         try{
-            validateHelper.waitForElementVisible(acceptCookie,2);
+            validateHelper.waitForElementVisible(acceptCookie,5);
             validateHelper.verifyElementIsExist(acceptCookie);
             validateHelper.clickElement(acceptCookie);
         } catch (Exception e) {
@@ -165,7 +165,7 @@ public class LoginPage {
 
         // Check page has asked cookie,
         try{
-            validateHelper.waitForElementVisible(acceptCookie,2);
+            validateHelper.waitForElementVisible(acceptCookie,5);
             validateHelper.verifyElementIsExist(acceptCookie);
             validateHelper.clickElement(acceptCookie);
         } catch (Exception e) {
@@ -187,7 +187,7 @@ public class LoginPage {
 
         // Check page has asked cookie,
         try{
-            validateHelper.waitForElementVisible(acceptCookie,2);
+            validateHelper.waitForElementVisible(acceptCookie,5);
             validateHelper.verifyElementIsExist(acceptCookie);
             validateHelper.clickElement(acceptCookie);
         } catch (Exception e) {

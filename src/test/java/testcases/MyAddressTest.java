@@ -198,6 +198,7 @@ public class MyAddressTest extends multipleThread_baseSetup {
             validateHelper.clickElement(loginPage.getAcceptCookie());
             myAccountPage = loginPage.login_user(emailXml, passXml);
             myAddressPage = myAccountPage.goToMyAddressTab();
+            validateHelper.Delay(2000);
         } else {
             logTest.info("(Session reused), skip logged in step.");
             myAddressPage = new MyAddressPage(getDriver());
