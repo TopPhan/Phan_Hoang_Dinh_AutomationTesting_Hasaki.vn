@@ -2,7 +2,7 @@ name: Hasaki.vn Automation Regression
 
 on:
   push:
-    branches: [develop/github_action]
+    branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
