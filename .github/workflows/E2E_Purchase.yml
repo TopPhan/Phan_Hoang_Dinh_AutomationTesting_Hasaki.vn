@@ -30,13 +30,28 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y microsoft-edge-stable
 
-      - name: Inject Secrets to XML
+      # ── Inject GitHub Secrets vào tất cả XML suite files ──────────────────
+      # Thay thế placeholder ${CHROME_USER}, ${CHROME_PASS}, ${EDGE_USER}, ${EDGE_PASS}
+      # bằng giá trị thật từ GitHub Secrets trước khi Maven đọc file
+      - name: Inject Secrets into XML suites
+        env:
+          CHROME_USER: ${{ secrets.CHROME_USER }}
+          CHROME_PASS: ${{ secrets.CHROME_PASS }}
+          EDGE_USER:   ${{ secrets.EDGE_USER }}
+          EDGE_PASS:   ${{ secrets.EDGE_PASS }}
         run: |
-          # Dùng dấu | làm phân cách thay cho / để tránh lỗi khi secret có ký tự đặc biệt
-          sed -i "s|\${CHROME_USER}|${{ secrets.CHROME_USER }}|g" src/test/java/resources/sub_suites/*.xml
-          sed -i "s|\${CHROME_PASS}|${{ secrets.CHROME_PASS }}|g" src/test/java/resources/sub_suites/*.xml
-          sed -i "s|\${EDGE_USER}|${{ secrets.EDGE_USER }}|g" src/test/java/resources/sub_suites/*.xml
-          sed -i "s|\${EDGE_PASS}|${{ secrets.EDGE_PASS }}|g" src/test/java/resources/sub_suites/*.xml
+          # Dùng | làm delimiter để tránh lỗi nếu secret có ký tự / hoặc ký tự đặc biệt
+          find src/test/java/resources/sub_suites -name "*.xml" | while read file; do
+            sed -i \
+              "s|\${CHROME_USER}|${CHROME_USER}|g" "$file"
+            sed -i \
+              "s|\${CHROME_PASS}|${CHROME_PASS}|g" "$file"
+            sed -i \
+              "s|\${EDGE_USER}|${EDGE_USER}|g"     "$file"
+            sed -i \
+              "s|\${EDGE_PASS}|${EDGE_PASS}|g"     "$file"
+          done
+          echo "✅ Secrets injected into all XML suite files"
 
       - name: Run Maven Tests (Headless)
         run: |
@@ -53,3 +68,27 @@ jobs:
             target/surefire-reports/
             ScreenShots/
             allure-results/
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Report Action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy Allure Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-history
+          publish_branch: gh-pages

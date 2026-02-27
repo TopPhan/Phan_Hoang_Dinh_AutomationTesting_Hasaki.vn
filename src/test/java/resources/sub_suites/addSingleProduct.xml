@@ -7,8 +7,8 @@
     <test name="sample test on chrome">
         <parameter name="browserType" value="chrome" />
         <parameter name="appURL" value="https://hasaki.vn/" />
-        <parameter name="email" value="topphanst@gmail.com"/>
-        <parameter name="password" value="topphan93"/>
+        <parameter name="email" value="${CHROME_USER}"/>
+        <parameter name="password" value="${CHROME_PASS}"/>
         <classes>
             <class name="testcases.ProductDetailTest">
                 <methods>
@@ -21,8 +21,8 @@
     <test name="sample test on edge">
         <parameter name="browserType" value="msedge" />
         <parameter name="appURL" value="https://hasaki.vn/" />
-        <parameter name="email" value="swata44@gmail.com"/>
-        <parameter name="password" value="topphan93"/>
+        <parameter name="email" value="${EDGE_USER}"/>
+        <parameter name="password" value="${EDGE_PASS}"/>
         <classes>
             <class name="testcases.ProductDetailTest">
                 <methods>
