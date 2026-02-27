@@ -1,4 +1,8 @@
-# 🌿 Hasaki.vn — End-to-End Automation Testing Framework
+# 🌿 [Hasaki.vn](https://hasaki.vn/) — End-to-End Automation Testing Framework
+<img width="1371" height="617" alt="image" src="https://github.com/user-attachments/assets/5426825a-b171-484f-8a78-32f2bf9587a1" />
+
+---
+
 > **Live Allure Report: [https://topphan.github.io/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn](https://topphan.github.io/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn)**  
 <img width="1914" height="872" alt="image" src="https://github.com/user-attachments/assets/14729820-b142-4ea0-9ff0-0b5f79153642" />
 
