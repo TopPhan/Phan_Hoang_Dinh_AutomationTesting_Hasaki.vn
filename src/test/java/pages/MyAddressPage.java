@@ -261,8 +261,8 @@ public class MyAddressPage {
 
         // Get all address on page
         validateHelper.waitForElementVisible(myAddress,5);
-        wait.until(ExpectedConditions.refreshed(
-                ExpectedConditions.visibilityOfElementLocated(listAddress)));
+        //wait.until(ExpectedConditions.refreshed(
+                //ExpectedConditions.visibilityOfElementLocated(listAddress)));
 
         List<WebElement> list_Address = driver.findElements(listAddress);
         String fullAddress = address +", "+ward+", "+district+", "+city;
