@@ -12,8 +12,8 @@
     <test name="E2E Purchase Flow - Chrome Execution">
         <parameter name="browserType" value="chrome" />
         <parameter name="appURL" value="https://hasaki.vn/" />
-        <parameter name="email" value="topphanst@gmail.com"/>
-        <parameter name="password" value="topphan93"/>
+        <parameter name="email" value="${CHROME_USER}"/>
+        <parameter name="password" value="${CHROME_PASS}"/>
         <classes>
             <class name="testcases.PurchaseEndToEndTest">
                 <methods>
@@ -26,8 +26,8 @@
     <test name="E2E Purchase Flow - MS EDGE Execution">
         <parameter name="browserType" value="msedge" />
         <parameter name="appURL" value="https://hasaki.vn/" />
-        <parameter name="email" value="swata44@gmail.com"/>
-        <parameter name="password" value="topphan93"/>
+        <parameter name="email" value="${EDGE_USER}"/>
+        <parameter name="password" value="${EDGE_PASS}"/>
         <classes>
             <class name="testcases.PurchaseEndToEndTest">
                 <methods>

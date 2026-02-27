@@ -24,11 +24,16 @@ jobs:
 
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
-          
+
       - name: Install Edge
         run: |
-         sudo apt-get update
-         sudo apt-get install -y microsoft-edge-stable
+          sudo apt-get update
+          sudo apt-get install -y microsoft-edge-stable
+
+      # Gộp tất cả lệnh thay thế vào 1 dòng dùng nhiều flag -e
+      - name: Inject Secrets to XML
+        run: |
+          sed -i -e "s/\${CHROME_USER}/${{ secrets.CHROME_USER }}/g" -e "s/\${CHROME_PASS}/${{ secrets.HASAKI_PASS }}/g" -e "s/\${EDGE_USER}/${{ secrets.EDGE_USER }}/g" -e "s/\${EDGE_PASS}/${{ secrets.HASAKI_PASS }}/g" src/test/java/resources/master/Master_E2E_Purchase.xml
 
       - name: Run Maven Tests (Headless)
         run: |
