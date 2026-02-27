@@ -490,4 +490,4 @@ Automation Test Engineer
 
 ---
 
-*This framework is designed for educational and portfolio demonstration purposes, targeting the live [Hasaki.vn](https://hasaki.vn/) website.*
+*This framework is designed for portfolio demonstration purposes, targeting the live [Hasaki.vn](https://hasaki.vn/) website.*
