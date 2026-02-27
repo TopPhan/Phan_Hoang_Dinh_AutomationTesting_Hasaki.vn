@@ -260,7 +260,7 @@ public class MyAddressPage {
     public boolean verifyAddressIsDeleted(String fullname, String city, String district, String ward, String address) throws InterruptedException {
 
         // Get all address on page
-        validateHelper.Delay(500);
+        validateHelper.waitForElementVisible(myAddress,5);
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.visibilityOfElementLocated(listAddress)));
 
