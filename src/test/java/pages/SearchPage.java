@@ -8,8 +8,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import javax.swing.*;
 import java.time.Duration;
 import java.util.List;
 
@@ -108,8 +106,6 @@ public class SearchPage {
         // Wait for pagination panel display
         softAssert.assertTrue(validateHelper.verifyElementIsDisplay(By.xpath("//div[@class='flex justify-center mt-5']")),"Pagination panel not display");
         softAssert.assertAll();
-        // delay 0.5s for stable dom.
-        validateHelper.Delay(500);
         return true; // Go to next page if not last page.
     }
 
@@ -176,7 +172,6 @@ public class SearchPage {
             logTest.info("List old price is refresh, wait for new apply price...");
         } catch (Exception e) {
             logTest.error("[FAIL] List old price is not refresh, wait for new apply price...");
-            validateHelper.Delay(1000);
         }
     }
 

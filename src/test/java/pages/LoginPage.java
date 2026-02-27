@@ -161,7 +161,7 @@ public class LoginPage {
     @Step("Perform login and enable 'Remember Me' for user: {0} - Linking MyAccountPage")
     public MyAccountPage login_remember_user(String username, String password) throws Exception {
 
-        validateHelper.Delay(2000);
+        validateHelper.waitForElementVisible(hasakiLogo,5);
 
         // Check page has asked cookie,
         try{

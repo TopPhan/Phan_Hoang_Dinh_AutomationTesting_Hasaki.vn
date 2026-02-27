@@ -171,7 +171,7 @@ Hasaki.vn/
 ### CI/CD Pipeline Flow
 
 ```
-  Push to develop/github_action  ──► GitHub Actions Triggered
+  Push to master  ──► GitHub Actions Triggered
               │
               ▼
       ┌───────────────────┐
@@ -433,8 +433,8 @@ allure generate allure-results --clean -o allure-report
 
 The pipeline is defined in `.github/workflows/E2E_Purchase.yml` and triggers on:
 
-- **Push** to `develop/github_action` branch
-- **Pull Request** to `main` or `master`
+- **Push** to `master` branch
+- **Pull Request** to `master` branch
 - **Manual dispatch** via GitHub UI (`workflow_dispatch`)
 
 ## 🧪 Test Suites & Coverage
