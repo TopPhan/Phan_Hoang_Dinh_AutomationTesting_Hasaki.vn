@@ -1,2 +1,0 @@
-Executing scenario: Enter valid email, leave password blank
-Email: topphanst@gmail.com
