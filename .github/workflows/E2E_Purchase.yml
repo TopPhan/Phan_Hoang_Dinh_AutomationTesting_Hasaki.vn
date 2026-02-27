@@ -32,8 +32,11 @@ jobs:
 
       - name: Inject Secrets to XML
         run: |
-          # Viết liền mạch tất cả lệnh thay thế để tránh lỗi 'unterminated s'
-          sed -i "s/\${CHROME_USER}/${{ secrets.CHROME_USER }}/g; s/\${CHROME_PASS}/${{ secrets.CHROME_PASS }}/g; s/\${EDGE_USER}/${{ secrets.EDGE_USER }}/g; s/\${EDGE_PASS}/${{ secrets.EDGE_PASS }}/g" src/test/java/resources/sub_suites/*.xml
+          # Dùng dấu | làm phân cách thay cho / để tránh lỗi khi secret có ký tự đặc biệt
+          sed -i "s|\${CHROME_USER}|${{ secrets.CHROME_USER }}|g" src/test/java/resources/sub_suites/*.xml
+          sed -i "s|\${CHROME_PASS}|${{ secrets.CHROME_PASS }}|g" src/test/java/resources/sub_suites/*.xml
+          sed -i "s|\${EDGE_USER}|${{ secrets.EDGE_USER }}|g" src/test/java/resources/sub_suites/*.xml
+          sed -i "s|\${EDGE_PASS}|${{ secrets.EDGE_PASS }}|g" src/test/java/resources/sub_suites/*.xml
 
       - name: Run Maven Tests (Headless)
         run: |
