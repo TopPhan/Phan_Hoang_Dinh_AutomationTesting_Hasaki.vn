@@ -149,18 +149,21 @@ public class MyAddressPage {
         // Enter city/province
         validateHelper.setText(inputCityProvinceTxt, city+" - "+district);
         validateHelper.action_Enter();
+        // validateHelper.Delay(200); // delay 200ms for stable dom
 
         // Select dropdown list ward
         validateHelper.clickElement(inputWardBtn);
         // Enter ward
         validateHelper.setText(inputWardTxt, ward);
         validateHelper.action_Enter();
+        // validateHelper.Delay(200); // delay 200ms for stable dom
 
         // Select textbox address
         validateHelper.clickElement(inputHouseNumberBtn);
         // Fill the address
         validateHelper.setText(inputHouseNumberTxt, address);
         validateHelper.action_Enter();
+        // validateHelper.Delay(200); // delay 200ms for stable dom
 
         // Click on Continues button
         js.executeScript("document.body.style.zoom='70%'");
@@ -257,7 +260,7 @@ public class MyAddressPage {
     public boolean verifyAddressIsDeleted(String fullname, String city, String district, String ward, String address) throws InterruptedException {
 
         // Get all address on page
-        validateHelper.waitForElementVisible(addressTitle,5);
+        validateHelper.Delay(500);
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.visibilityOfElementLocated(listAddress)));
 
@@ -300,18 +303,21 @@ public class MyAddressPage {
         // Enter city/province
         validateHelper.setText(inputCityProvinceTxt, city+" - "+district);
         validateHelper.action_Enter();
+        // validateHelper.Delay(200); // delay 200ms for stable dom
 
         // Select dropdown list ward
         validateHelper.clickElement(inputWardBtn);
         // Enter ward
         validateHelper.setText(inputWardTxt, ward);
         validateHelper.action_Enter();
+        // validateHelper.Delay(200); // delay 200ms for stable dom
 
         // Select textbox address
         validateHelper.clickElement(inputHouseNumberBtn);
         // Fill the address
         validateHelper.setText(inputHouseNumberTxt, address);
         validateHelper.action_Enter();
+        // validateHelper.Delay(200); // delay 200ms for stable dom
 
         // Click on Continues button
         js.executeScript("document.body.style.zoom='70%'");

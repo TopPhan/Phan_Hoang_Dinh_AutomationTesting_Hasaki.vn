@@ -120,6 +120,7 @@ public class CartPage {
     @Step("Validate calculation logic for item at row {0}")
     public boolean verifyTotalPriceItemsInCartByIndex(int index) throws InterruptedException {
         long expectedTotalPrice = getQuantityItemsInCartByIndex(index) * getUnitPriceItemsInCartByIndex(index);
+        validateHelper.Delay(500);
         long actualTotalPrice = getTotalPriceItemsInCartByIndex(index);
         logTest.info(String.format("Verification at row %d - Expected: %d, Actual UI: %d", index, expectedTotalPrice, actualTotalPrice));
         return expectedTotalPrice == actualTotalPrice;
@@ -234,6 +235,7 @@ public class CartPage {
                     logTest.info("Row " + i + " is a Gift (No price). Skipping...");
                     continue;
                 }
+                validateHelper.Delay(500);
                 totalPrice += getSubTotalPriceItemsInCartByIndex(i);
             }
             logTest.info("Calculated sum of all items: " + totalPrice);
