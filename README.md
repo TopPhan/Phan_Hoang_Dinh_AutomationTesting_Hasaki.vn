@@ -371,16 +371,30 @@ Used for lightweight, structured search keyword datasets. `JsonHelper.java` dese
 `DataProviders.java` acts as the bridge, feeding data from both Excel and JSON into the `@Test` methods at runtime. Each test row becomes an independent test case with its own pass/fail result in the Allure report.
 
 ```
-Data.xlsx / SearchData.json
-        │
-        ▼
-DataProviders.java  (@DataProvider)
-        │
-        ▼
-@Test methods (LoginTest, CartTest, SearchTest ...)
-        │
-        ▼
-POJO Models (LoginModel, ProductModel, AddressModel ...)
+                    ┌─────────────────┐
+                    │  DataProviders  │
+                    └────────┬────────┘
+          ┌─────────────────┼─────────────────┐
+          ▼                 ▼                 ▼
+   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+   │  Excel      │  │   JSON      │  │  Hardcode   │
+   │  Data.xlsx  │  │SearchData   │  │  Object[][] │
+   │  (Apache    │  │  .json      │  │             │
+   │   POI)      │  │  (Gson)     │  │             │
+   └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
+          │                 │                 │
+          └─────────────────▼─────────────────┘
+                    ┌─────────────────┐
+                    │  POJO Models    │
+                    │ LoginModel      │
+                    │ SearchModel     │
+                    │ ProductModel    │
+                    │ AddressModel    │
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+                    │  @Test methods  │
+                    └─────────────────┘
 ```
 
 ---
@@ -432,6 +446,28 @@ The pipeline is defined in `.github/workflows/E2E_Purchase.yml` and triggers on:
 | 🛍️ E2E Purchase | `PurchaseEndToEndTest.java` | Full flow: Login → Search → Add → Cart → Checkout |
 
 ---
+The XML suite system is organized into two levels (master → sub:
+
+```
+Master Suites
+├── Master_Regression.xml
+│   ├── PreCondition_Setup.xml   ← setup conditions (login first, clear cart...)
+│   └── Regression_Suite.xml     ← run the full regression test suite
+│
+├── Master_Smoke.xml
+│   ├── PreCondition_Setup.xml
+│   └── Smoke_Suite.xml         ← quickly run the most critical tests
+│
+└── Master_E2E_Purchase.xml
+    ├── PreCondition_Setup.xml
+    └── E2E_Purchase.xml        ← run the end-to-end purchase flow
+
+Sub Suites (chạy độc lập)
+├── QuickRun.xml                ← debug nhanh 1 test
+├── addSingleProduct.xml        ← quickly debug a single test
+└── emptyCart.xml               ← completely clear the shopping cart
+```
+
 
 ## 📁 Output Artifacts
 
