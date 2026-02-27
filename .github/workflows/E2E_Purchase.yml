@@ -30,10 +30,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y microsoft-edge-stable
 
-
       - name: Inject Secrets to XML
         run: |
-          sed -i -e "s/\${CHROME_USER}/${{ secrets.CHROME_USER }}/g" -e "s/\${CHROME_PASS}/${{ secrets.CHROME_PASS }}/g" -e "s/\${EDGE_USER}/${{ secrets.EDGE_USER }}/g" -e "s/\${EDGE_PASS}/${{ secrets.EDGE_PASS }}/g" src/test/java/resources/sub_suites/*.xml
+          # Viết liền mạch tất cả lệnh thay thế để tránh lỗi 'unterminated s'
+          sed -i "s/\${CHROME_USER}/${{ secrets.CHROME_USER }}/g; s/\${CHROME_PASS}/${{ secrets.CHROME_PASS }}/g; s/\${EDGE_USER}/${{ secrets.EDGE_USER }}/g; s/\${EDGE_PASS}/${{ secrets.EDGE_PASS }}/g" src/test/java/resources/sub_suites/*.xml
 
       - name: Run Maven Tests (Headless)
         run: |
