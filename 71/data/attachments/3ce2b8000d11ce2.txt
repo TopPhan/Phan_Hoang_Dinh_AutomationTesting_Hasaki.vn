@@ -1,0 +1,2 @@
+Executing scenario: Enter invalid data without symbol "@" in email
+Email: tophanstgmail.com
