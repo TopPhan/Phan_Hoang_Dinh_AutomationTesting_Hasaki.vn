@@ -4,8 +4,14 @@
 
 ---
 
-> **Live Allure Report: [https://topphan.github.io/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn](https://topphan.github.io/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn)**
+**Live Allure Report: [https://topphan.github.io/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn](https://topphan.github.io/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn)**
+
 <img width="1919" height="872" alt="image" src="https://github.com/user-attachments/assets/d675167b-1158-4baa-94b6-5dbd29ff8432" />
+---
+<img width="1369" height="619" alt="image" src="https://github.com/user-attachments/assets/ac11c96d-823a-4534-a30b-d1029081da65" />
+---
+<img width="1371" height="617" alt="image" src="https://github.com/user-attachments/assets/b629938d-4bfa-412b-9f22-3b64bf262f3a" />
+---
 
 ---
 
