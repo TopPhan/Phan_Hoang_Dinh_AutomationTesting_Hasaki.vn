@@ -1,2 +1,0 @@
-Executing scenario: Enter valid data in email with a space " " at the end.
-Email: topphanst@gmail.com 
