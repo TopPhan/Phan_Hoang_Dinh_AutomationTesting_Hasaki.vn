@@ -24,7 +24,6 @@
 - [Key Technologies Explained](#-key-technologies-explained)
 - [Test Suites & Coverage](#-test-suites--coverage)
 - [Data-Driven Testing](#-data-driven-testing)
-- [Security — GitHub Secrets](#-security--credential-management)
 - [Configuration & How to Run](#-how-to-run-the-project)
 - [Allure Report](#-allure-report)
 - [CI/CD Pipeline](#%EF%B8%8F-cicd-pipeline--github-actions)
@@ -115,13 +114,13 @@ Hasaki.vn/
 │           │   │   ├── Master_Regression.xml
 │           │   │   └── Master_Smoke.xml
 │           │   └── sub_suites/
-│           │       ├── E2E_Purchase.xml           # Uses ${CHROME_USER/PASS}, ${EDGE_USER/PASS}
-│           │       ├── PreCondition_Setup.xml     # Uses ${CHROME_USER/PASS}, ${EDGE_USER/PASS}
-│           │       ├── Regression_Suite.xml       # Uses ${CHROME_USER/PASS}, ${EDGE_USER/PASS}
-│           │       ├── Smoke_Suite.xml            # Uses ${CHROME_USER/PASS}, ${EDGE_USER/PASS}
-│           │       ├── addSingleProduct.xml       # Uses ${CHROME_USER/PASS}, ${EDGE_USER/PASS}
-│           │       ├── emptyCart.xml              # Uses ${CHROME_USER/PASS}
-│           │       └── QuickRun.xml               # Uses ${CHROME_USER/PASS}
+│           │       ├── E2E_Purchase.xml           
+│           │       ├── PreCondition_Setup.xml     
+│           │       ├── Regression_Suite.xml       
+│           │       ├── Smoke_Suite.xml            
+│           │       ├── addSingleProduct.xml       
+│           │       ├── emptyCart.xml              
+│           │       └── QuickRun.xml               
 │           └── testcases/
 │               ├── CartTest.java
 │               ├── CheckoutTest.java
@@ -186,11 +185,7 @@ Hasaki.vn/
       └────────┬──────────┘     └──────────┬──────────┘
                └──────────┬────────────────┘
                            │
-              ┌────────────▼─────────────────────────┐
-              │  Inject Secrets (Python3)             │
-              │  GitHub Secrets → XML suites          │
-              │  CHROME_USER/PASS · EDGE_USER/PASS    │
-              └────────────┬─────────────────────────┘
+                           │
                            │
               ┌────────────▼────────────────┐
               │  Run Maven Tests (Headless)  │  (~5–6 min)
@@ -262,92 +257,6 @@ Hasaki.vn/
 | Maven | 3.x | Build & dependency management |
 | GitHub Actions | ubuntu-latest | CI/CD pipeline |
 | Monte Screen Recorder | 0.7.7.0 | Screen video capture |
-
----
-
-## 🔐 Security — Credential Management
-
-All test account credentials are managed through **GitHub Actions Secrets** — no email or password is ever stored in source code.
-
-### How it works
-
-```
-GitHub Secrets (encrypted)
-  CHROME_USER  ──┐
-  CHROME_PASS  ──┤  GitHub Actions injects at runtime
-  EDGE_USER    ──┤        │
-  EDGE_PASS    ──┘        ▼
-                  Python3 replace() in workflow
-                  XML placeholders → real values
-                  (only in runner memory, never committed)
-```
-
-All 7 XML suite files store credentials as **placeholders**:
-
-```xml
-<parameter name="email"    value="${CHROME_USER}"/>
-<parameter name="password" value="${CHROME_PASS}"/>
-```
-
-The CI workflow injects real values at runtime using Python (not `sed` — Python handles special characters like `@`, `!`, `/` safely):
-
-```yaml
-- name: Inject Secrets into XML suites
-  env:
-    CHROME_USER: ${{ secrets.CHROME_USER }}
-    CHROME_PASS: ${{ secrets.CHROME_PASS }}
-    EDGE_USER:   ${{ secrets.EDGE_USER }}
-    EDGE_PASS:   ${{ secrets.EDGE_PASS }}
-  run: |
-    python3 - << 'PYEOF'
-    import os, glob
-    replacements = {
-        "${CHROME_USER}": os.environ["CHROME_USER"],
-        "${CHROME_PASS}": os.environ["CHROME_PASS"],
-        "${EDGE_USER}":   os.environ["EDGE_USER"],
-        "${EDGE_PASS}":   os.environ["EDGE_PASS"],
-    }
-    for path in glob.glob("src/test/java/resources/sub_suites/*.xml"):
-        content = open(path).read()
-        for k, v in replacements.items():
-            content = content.replace(k, v)
-        open(path, "w").write(content)
-        print(f"Injected: {path}")
-    PYEOF
-```
-
-### Setting up GitHub Secrets
-
-1. Go to your repository → **Settings → Secrets and variables → Actions**
-2. Click **New repository secret** and add:
-
-| Secret Name | Description |
-|---|---|
-| `CHROME_USER` | Email for Chrome browser account |
-| `CHROME_PASS` | Password for Chrome browser account |
-| `EDGE_USER` | Email for Edge browser account |
-| `EDGE_PASS` | Password for Edge browser account |
-
-### Running locally
-
-Set environment variables before running tests:
-
-**Windows (Command Prompt as Admin):**
-```cmd
-setx CHROME_USER "your_email@gmail.com"
-setx CHROME_PASS "your_password"
-setx EDGE_USER   "your_edge_email@gmail.com"
-setx EDGE_PASS   "your_edge_password"
-```
-> Restart IntelliJ IDEA after `setx` for changes to take effect.
-
-**macOS / Linux:**
-```bash
-export CHROME_USER="your_email@gmail.com"
-export CHROME_PASS="your_password"
-export EDGE_USER="your_edge_email@gmail.com"
-export EDGE_PASS="your_edge_password"
-```
 
 ---
 
@@ -565,7 +474,6 @@ jobs:
       - Set up JDK 21
       - Install Chrome
       - Install Edge
-      - Inject Secrets into XML suites   # ← Python3 replaces ${placeholders}
       - Run Maven Tests (Headless)        # ← Chrome + Edge parallel
       - Upload Artifacts
       - Allure Report Action
