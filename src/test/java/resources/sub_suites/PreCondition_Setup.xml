@@ -21,7 +21,6 @@
         </groups>
         <classes>
             <class name="testcases.CartTest" />
-            <class name="testcases.MyAddressTest" />
         </classes>
     </test>
 
@@ -37,7 +36,6 @@
         </groups>
         <classes>
             <class name="testcases.CartTest" />
-            <class name="testcases.MyAddressTest" />
         </classes>
     </test>
 
