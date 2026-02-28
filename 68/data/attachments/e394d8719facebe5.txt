@@ -1,2 +1,0 @@
-Executing scenario: Leave the email, password blank
-Email: 

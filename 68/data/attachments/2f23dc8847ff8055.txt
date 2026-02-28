@@ -1,1 +1,0 @@
-search_verifyResultsAccuracyWithMultipleKeywords failed and screenshot taken!

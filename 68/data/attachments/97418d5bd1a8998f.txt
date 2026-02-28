@@ -1,1 +1,0 @@
-endToEndPurchaseFlow failed and screenshot taken!
