@@ -1,0 +1,1029 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"### [Cleanup] Delete Existing Address
+**Objective:** Ensure the system can remove an address from the user's account.
+
+**Test Steps:**
+1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+2. **Execution:** Click delete and confirm the removal.
+3. **Post-check:** Verify the address no longer exists in the list.
+
+**Expected Result:** The targeted address is completely removed from the UI and system.
+","18924","Delete Address of 'Nguyễn Tuấn T'","Environment Cleanup","Thu Feb 26 15:41:30 UTC 2026","passed","Thu Feb 26 15:41:49 UTC 2026","testcases.MyAddressTest","Cleanup environment before test - MS EDGE","testcases.MyAddressTest","MyAddress_verifyDeleteAddress"
+"### [Logic] Calculation Accuracy & Pricing Audit
+**Objective:** Validate that the system calculates subtotals and the grand total without any discrepancies.
+
+**Test Steps:**
+1. **Data Collection:** Scan all items currently present in the cart.
+2. **Subtotal Audit:** Calculate (Price * Quantity) for each product and compare with the system's subtotal.
+3. **Grand Total Check:** Cross-check the sum of subtotals against the displayed Grand Total Price.
+
+**Target:** Ensure 100% pricing accuracy and catch potential rounding errors.
+","57769","TC2: Logic Check - Pricing Calculation","Hasaki.vn Smoke Suite","Mon Feb 23 17:21:06 UTC 2026","passed","Mon Feb 23 17:22:04 UTC 2026","testcases.CartTest","Smoke Test - Edge","testcases.CartTest","CartTest_CalculationCheck"
+"### [Cleanup] Cart empty & Final State Check
+**Objective:** Validate the ability to clear the entire cart and reset the shopping session.
+
+**Test Steps:**
+1. **Action:** Execute the ""Delete All"" function to remove all items from the cart.
+2. **Status Check:** Verify that no product elements remain in the cart list.
+3. **UI Verification:** Confirm the ""Empty Cart"" message or placeholder is displayed.
+
+**Target:** Ensure the cart can be fully cleared for a clean test environment.
+","51278","Clear All Items from Cart","Environment Cleanup","Thu Feb 26 15:39:22 UTC 2026","passed","Thu Feb 26 15:40:13 UTC 2026","testcases.CartTest","Cleanup environment before test - CHROME","testcases.CartTest","CartTest_DeleteAllItems"
+"### [Negative] Invalid Keyword Handling
+**Objective:** Ensure the system displays a proper ""No Results Found"" message for invalid/random strings.
+
+**Test Steps:**
+1. **Input:** Search with a non-existent/random keyword.
+2. **Verification:** Check for the presence of the ""No Product Found"" placeholder/message.
+
+**Expected Result:** System handles invalid input gracefully without crashing or showing blank pages.
+","14555","TC6 Negative Search: 'ádefsDFFFsdf'","Hasaki.vn Regression Suite","Mon Feb 23 16:41:27 UTC 2026","passed","Mon Feb 23 16:41:41 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyNoResultsForInvalidKeyword"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","23153","TC2: Add Single Product 'Nước hoa nữ' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:19:39 UTC 2026","passed","Mon Feb 23 17:20:02 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Negative] Missing Phone Number Validation
+**Objective:** Verify that the system prevents saving an address when the phone number is missing.
+
+**Test Steps:**
+1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+2. **Submit:** Attempt to save the address.
+3. **Validation:** Capture and check the specific error message.
+
+**Expected Result:** System blocks the submission and displays a clear ""Required"" warning for the phone field.
+","23636","TC3: Validate error message when phone is blank","Hasaki.vn Regression Suite","Mon Feb 23 16:46:01 UTC 2026","passed","Mon Feb 23 16:46:24 UTC 2026","testcases.MyAddressTest","Regression Test - Edge","testcases.MyAddressTest","MyAddress_validationLeavePhoneNumberBlank"
+"### [Filter] Price Range Validation
+**Objective:** Verify that the price filter correctly restricts products within the specified min-max range.
+
+**Test Steps:**
+1. **Search & Filter:** Search for a product and apply a price range filter.
+2. **Multi-page Verification:** Loop through all result pages.
+3. **Price Comparison:** Parse and verify every single product price against the filter boundary.
+
+**Expected Result:** No product price falls outside the [Min - Max] range across all pages.
+","26503","TC5 filter price: [Kem chống nắng] | Range: 80000 - 100000","Hasaki.vn Regression Suite","Mon Feb 23 16:41:44 UTC 2026","passed","Mon Feb 23 16:42:10 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyPriceFilterFunctionality"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","24279","TC3: Add 4 units of 'Sữa rửa mặt' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:51:58 UTC 2026","skipped","Mon Feb 23 16:52:23 UTC 2026","testcases.ProductDetailTest","Regression Test - Chrome","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","23639","TC1 Verify accurate rate by search  brand","Hasaki.vn Regression Suite","Mon Feb 23 16:42:33 UTC 2026","passed","Mon Feb 23 16:42:57 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [UI] Address Page Verification
+**Objective:** Ensure the Address Management page loads correctly with valid URL and Title.
+
+**Test Steps:**
+1. **Smart Login:** Reuse session or login to access the account.
+2. **Navigation:** Navigate to the ""My Address"" tab.
+3. **UI Check:** Verify the page URL and the presence of the Address Tab title.
+
+**Expected Result:** User is on the correct Address Management page without UI broken.
+","54841","TC1: Quick verify address page UI & URL","Hasaki.vn Smoke Suite","Mon Feb 23 17:16:05 UTC 2026","passed","Mon Feb 23 17:17:00 UTC 2026","testcases.MyAddressTest","Smoke Test - Chrome","testcases.MyAddressTest","MyAddress_verifyAddressUI"
+"### [E2E] Full Purchase Journey & Data Integrity Audit
+**Objective:** Validate the entire e-commerce flow from product discovery to the final checkout stage, ensuring no data loss or price mismatches occur during transitions.
+
+**Test Workflow:**
+1. **Session Management:** Execute Smart Login to maintain authentication throughout the journey.
+2. **Product Acquisition:** Dynamically search and aggregate multiple products into the shopping cart.
+3. **Cart Validation:** Perform a mathematical audit on subtotals and verify data mapping into Product Models (POJOs).
+4. **Checkout Integration:** Transfer all cart data to the Checkout page.
+5. **Final Integrity Check:** Execute a **Deep Comparison** between the Cart snapshot and Checkout reality (Matching Name, Price, and SKU).
+
+**Business Goal:** Ensure a seamless and error-free transaction process for the customer.
+","101804","E2E Purchase Flow: Integrity Check","Hasaki.vn - Purchase Flow","Thu Feb 26 15:41:59 UTC 2026","passed","Thu Feb 26 15:43:40 UTC 2026","testcases.PurchaseEndToEndTest","E2E Purchase Flow - MS EDGE Execution","testcases.PurchaseEndToEndTest","endToEndPurchaseFlow"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","19280","TC1: Verify UI for product 'Nước hoa nữ Narciso Rodriguez'","Hasaki.vn Smoke Suite","Mon Feb 23 17:18:10 UTC 2026","passed","Mon Feb 23 17:18:30 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","3401","TC1: Login with default account","Hasaki.vn Regression Suite","Mon Feb 23 16:40:17 UTC 2026","passed","Mon Feb 23 16:40:20 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Function] Add New Delivery Address
+**Objective:** Validate that a user can successfully create and save a new shipping address.
+
+**Test Steps:**
+1. **Smart Login:** Ensure the session is active.
+2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+3. **Submission:** Click save to store the new address.
+4. **Verification:** Verify the saved information matches the input data exactly.
+
+**Expected Result:** New address is saved and displayed correctly in the address list.
+","23981","TC2: Add Address for 'Trương Ngọc A'","Hasaki.vn Regression Suite","Mon Feb 23 16:46:46 UTC 2026","passed","Mon Feb 23 16:47:10 UTC 2026","testcases.MyAddressTest","Regression Test - Chrome","testcases.MyAddressTest","MyAddress_verifyAddNewAddress"
+"### [E2E] Full Purchase Flow & Data Integrity Check
+**Objective:** Validate the entire e-commerce flow from product search to the final checkout stage, ensuring no data loss or price mismatches occur during transitions.
+
+**Test Workflow:**
+1. **Session Management:** Execute Smart Login to maintain authentication throughout the flow.
+2. **Product Acquisition:** Dynamically search and add multiple products into the shopping cart.
+3. **Cart Validation:** Perform an audit on subtotals and verify data mapping into Product Models (POJOs).
+4. **Checkout Integration:** Transfer all cart data to the Checkout page.
+5. **Final Integrity Check:** Execute a **Deep Comparison** between the Cart data and Checkout data (Matching Name, Price, and SKU).
+
+**Business Goal:** Ensure a seamless and error-free, smoothly process for the customer.
+","79526","E2E Purchase Flow: Integrity Check","Hasaki.vn - Purchase Flow","Sat Feb 28 01:18:44 UTC 2026","failed","Sat Feb 28 01:20:04 UTC 2026","testcases.PurchaseEndToEndTest","E2E Purchase Flow - Chrome Execution","testcases.PurchaseEndToEndTest","endToEndPurchaseFlow"
+"### [Negative] Missing Phone Number Validation
+**Objective:** Verify that the system prevents saving an address when the phone number is missing.
+
+**Test Steps:**
+1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+2. **Submit:** Attempt to save the address.
+3. **Validation:** Capture and check the specific error message.
+
+**Expected Result:** System blocks the submission and displays a clear ""Required"" warning for the phone field.
+","23060","TC3: Validate error message when phone is blank","Hasaki.vn Regression Suite","Mon Feb 23 16:45:38 UTC 2026","passed","Mon Feb 23 16:46:01 UTC 2026","testcases.MyAddressTest","Regression Test - Edge","testcases.MyAddressTest","MyAddress_validationLeavePhoneNumberBlank"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","23270","TC2: Add Single Product 'Chống nắng' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:19:14 UTC 2026","passed","Mon Feb 23 17:19:37 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","14459","TC4 Verify system have auto-correct keyword","Hasaki.vn Regression Suite","Mon Feb 23 16:44:22 UTC 2026","failed","Mon Feb 23 16:44:37 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","30109","TC3: Add 3 units of 'Nước hoa nữ' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:50:56 UTC 2026","passed","Mon Feb 23 16:51:26 UTC 2026","testcases.ProductDetailTest","Regression Test - Edge","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [Cleanup] Delete Existing Address
+**Objective:** Ensure the system can remove an address from the user's account.
+
+**Test Steps:**
+1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+2. **Execution:** Click delete and confirm the removal.
+3. **Post-check:** Verify the address no longer exists in the list.
+
+**Expected Result:** The targeted address is completely removed from the UI and system.
+","41334","Delete Address of 'Nguyễn Thị B'","Environment Cleanup","Thu Feb 26 15:40:28 UTC 2026","passed","Thu Feb 26 15:41:09 UTC 2026","testcases.MyAddressTest","Cleanup environment before test - MS EDGE","testcases.MyAddressTest","MyAddress_verifyDeleteAddress"
+"### [UI] Checkout Page Integrity & Critical Components
+**Objective:** Verify that the Checkout page is fully rendered with all necessary functional components for payment.
+
+**Test Steps:**
+1. **Smart Authentication:** Reuse current session via `handleSmartLogin`.
+2. **Navigation Flow:** Transition from Homepage -> Cart -> Checkout page.
+3. **Component Validation:** Audit the presence of key UI anchors: Shipping Address, Payment Methods, and the 'Order' button.
+
+**Target:** Ensure the checkout interface is stable and all mandatory elements are enabled for user interaction.
+","18871","TC1: Integrity Check - Checkout Page UI","Hasaki.vn Smoke Suite","Mon Feb 23 17:22:46 UTC 2026","passed","Mon Feb 23 17:23:05 UTC 2026","testcases.CheckoutTest","Smoke Test - Chrome","testcases.CheckoutTest","CheckoutTest_verifyCheckoutUIComponents"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","19322","TC1: Verify UI for product 'Sữa rửa mặt cerave'","Hasaki.vn Smoke Suite","Mon Feb 23 17:18:52 UTC 2026","passed","Mon Feb 23 17:19:12 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","22700","TC2: Add Single Product 'Nước hoa nữ' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:19:39 UTC 2026","passed","Mon Feb 23 17:20:02 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","29142","TC3: Add 3 units of 'Son thỏi' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:51:27 UTC 2026","passed","Mon Feb 23 16:51:56 UTC 2026","testcases.ProductDetailTest","Regression Test - Chrome","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","38189","TC3 Verify unsigned keyword","Hasaki.vn Regression Suite","Mon Feb 23 16:43:41 UTC 2026","passed","Mon Feb 23 16:44:19 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [E2E] Full Purchase Journey & Data Integrity Audit
+**Objective:** Validate the entire e-commerce flow from product discovery to the final checkout stage, ensuring no data loss or price mismatches occur during transitions.
+
+**Test Workflow:**
+1. **Session Management:** Execute Smart Login to maintain authentication throughout the journey.
+2. **Product Acquisition:** Dynamically search and aggregate multiple products into the shopping cart.
+3. **Cart Validation:** Perform a mathematical audit on subtotals and verify data mapping into Product Models (POJOs).
+4. **Checkout Integration:** Transfer all cart data to the Checkout page.
+5. **Final Integrity Check:** Execute a **Deep Comparison** between the Cart snapshot and Checkout reality (Matching Name, Price, and SKU).
+
+**Business Goal:** Ensure a seamless and error-free transaction process for the customer.
+","104020","E2E Purchase Flow: Integrity Check","Hasaki.vn - Purchase Flow","Thu Feb 26 15:41:56 UTC 2026","passed","Thu Feb 26 15:43:40 UTC 2026","testcases.PurchaseEndToEndTest","E2E Purchase Flow - Chrome Execution","testcases.PurchaseEndToEndTest","endToEndPurchaseFlow"
+"### [Negative] Invalid Keyword Handling
+**Objective:** Ensure the system displays a proper ""No Results Found"" message for invalid/random strings.
+
+**Test Steps:**
+1. **Input:** Search with a non-existent/random keyword.
+2. **Verification:** Check for the presence of the ""No Product Found"" placeholder/message.
+
+**Expected Result:** System handles invalid input gracefully without crashing or showing blank pages.
+","13485","TC6 Negative Search: 'ádefsDFFFsdf'","Hasaki.vn Regression Suite","Mon Feb 23 16:41:28 UTC 2026","passed","Mon Feb 23 16:41:41 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyNoResultsForInvalidKeyword"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","22501","TC2: Add Single Product 'Son thỏi' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:20:04 UTC 2026","passed","Mon Feb 23 17:20:26 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Data-Sync] Profile Address & Checkout Consistency
+**Objective:** Validate that the system correctly pulls and synchronizes the default shipping address from the user profile to the Checkout page.
+
+**Test Steps:**
+1. **Profile Audit:** Access 'My Address' tab to extract the default Name and Address string.
+2. **Data Comparison:** Navigate to Checkout and capture the automatically populated address info.
+3. **Verification:** Perform a string-match comparison between the Profile Data and Checkout Data.
+
+**Target:** Ensure seamless data synchronization across the account management and checkout modules.
+","10150","TC2: Data Sync - Default Address Validation","Hasaki.vn Smoke Suite","Mon Feb 23 17:22:34 UTC 2026","passed","Mon Feb 23 17:22:44 UTC 2026","testcases.CheckoutTest","Smoke Test - Chrome","testcases.CheckoutTest","CheckoutTest_verifyAddressSyncFromProfile"
+"### [Cleanup] Delete Existing Address
+**Objective:** Ensure the system can remove an address from the user's account.
+
+**Test Steps:**
+1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+2. **Execution:** Click delete and confirm the removal.
+3. **Post-check:** Verify the address no longer exists in the list.
+
+**Expected Result:** The targeted address is completely removed from the UI and system.
+","19278","Delete Address of 'Trương Ngọc A'","Environment Cleanup","Thu Feb 26 15:41:10 UTC 2026","passed","Thu Feb 26 15:41:29 UTC 2026","testcases.MyAddressTest","Cleanup environment before test - CHROME","testcases.MyAddressTest","MyAddress_verifyDeleteAddress"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","19240","TC1: Verify UI for product 'Nước hoa nữ Narciso Rodriguez'","Hasaki.vn Smoke Suite","Mon Feb 23 17:18:09 UTC 2026","passed","Mon Feb 23 17:18:28 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [Logic] Calculation Accuracy & Pricing Audit
+**Objective:** Validate that the system calculates subtotals and the grand total without any discrepancies.
+
+**Test Steps:**
+1. **Data Collection:** Scan all items currently present in the cart.
+2. **Subtotal Audit:** Calculate (Price * Quantity) for each product and compare with the system's subtotal.
+3. **Grand Total Check:** Cross-check the sum of subtotals against the displayed Grand Total Price.
+
+**Target:** Ensure 100% pricing accuracy and catch potential rounding errors.
+","56347","TC2: Logic Check - Pricing Calculation","Hasaki.vn Smoke Suite","Mon Feb 23 17:21:05 UTC 2026","passed","Mon Feb 23 17:22:02 UTC 2026","testcases.CartTest","Smoke Test - Chrome","testcases.CartTest","CartTest_CalculationCheck"
+"### [Negative] Missing Phone Number Validation
+**Objective:** Verify that the system prevents saving an address when the phone number is missing.
+
+**Test Steps:**
+1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+2. **Submit:** Attempt to save the address.
+3. **Validation:** Capture and check the specific error message.
+
+**Expected Result:** System blocks the submission and displays a clear ""Required"" warning for the phone field.
+","23157","TC3: Validate error message when phone is blank","Hasaki.vn Regression Suite","Mon Feb 23 16:45:34 UTC 2026","passed","Mon Feb 23 16:45:57 UTC 2026","testcases.MyAddressTest","Regression Test - Chrome","testcases.MyAddressTest","MyAddress_validationLeavePhoneNumberBlank"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","23131","TC2: Add Single Product 'Son thỏi' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:20:05 UTC 2026","passed","Mon Feb 23 17:20:28 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","38889","TC2 Verify broad match key word","Hasaki.vn Regression Suite","Mon Feb 23 16:43:00 UTC 2026","passed","Mon Feb 23 16:43:39 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [Function] Add New Delivery Address
+**Objective:** Validate that a user can successfully create and save a new shipping address.
+
+**Test Steps:**
+1. **Smart Login:** Ensure the session is active.
+2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+3. **Submission:** Click save to store the new address.
+4. **Verification:** Verify the saved information matches the input data exactly.
+
+**Expected Result:** New address is saved and displayed correctly in the address list.
+","23854","TC2: Add Address for 'Nguyễn Thị B'","Hasaki.vn Regression Suite","Mon Feb 23 16:46:25 UTC 2026","passed","Mon Feb 23 16:46:49 UTC 2026","testcases.MyAddressTest","Regression Test - Edge","testcases.MyAddressTest","MyAddress_verifyAddNewAddress"
+"### [Cleanup] Cart empty & Final State Check
+**Objective:** Validate the ability to clear the entire cart and reset the shopping session.
+
+**Test Steps:**
+1. **Action:** Execute the ""Delete All"" function to remove all items from the cart.
+2. **Status Check:** Verify that no product elements remain in the cart list.
+3. **UI Verification:** Confirm the ""Empty Cart"" message or placeholder is displayed.
+
+**Target:** Ensure the cart can be fully cleared for a clean test environment.
+","64367","Clear All Items from Cart","Environment Cleanup","Sat Feb 28 01:17:27 UTC 2026","passed","Sat Feb 28 01:18:32 UTC 2026","testcases.CartTest","Cleanup environment before test - MS EDGE","testcases.CartTest","CartTest_DeleteAllItems"
+"### [Navigation] Search to Product Detail
+**Objective:** Ensure the user can reach the correct Product Detail Page (PDP) from the search results.
+
+**Test Steps:**
+1. **Search:** Input specific keyword and brand.
+2. **Selection:** Click on the first product in the results list.
+3. **Data Sync:** Verify that the PDP displays the correct Product Name and Brand.
+
+**Expected Result:** Smooth transition from Search to PDP with 100% data consistency.
+","4873","TC7 Search & Navigate: [rửa mặt] [cerave]","Hasaki.vn Smoke Suite","Mon Feb 23 17:15:55 UTC 2026","passed","Mon Feb 23 17:16:00 UTC 2026","testcases.SearchTest","Smoke Test - Edge","testcases.SearchTest","search_verifyNavigationToProductDetail"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","24233","TC3: Add 4 units of 'Sữa rửa mặt' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:52:00 UTC 2026","skipped","Mon Feb 23 16:52:24 UTC 2026","testcases.ProductDetailTest","Regression Test - Edge","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","23530","TC3: Add 2 units of 'Chống nắng' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:50:30 UTC 2026","skipped","Mon Feb 23 16:50:53 UTC 2026","testcases.ProductDetailTest","Regression Test - Edge","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [Negative] Missing Phone Number Validation
+**Objective:** Verify that the system prevents saving an address when the phone number is missing.
+
+**Test Steps:**
+1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+2. **Submit:** Attempt to save the address.
+3. **Validation:** Capture and check the specific error message.
+
+**Expected Result:** System blocks the submission and displays a clear ""Required"" warning for the phone field.
+","23644","TC3: Validate error message when phone is blank","Hasaki.vn Regression Suite","Mon Feb 23 16:45:58 UTC 2026","passed","Mon Feb 23 16:46:21 UTC 2026","testcases.MyAddressTest","Regression Test - Chrome","testcases.MyAddressTest","MyAddress_validationLeavePhoneNumberBlank"
+"### [UI] Address Page Verification
+**Objective:** Ensure the Address Management page loads correctly with valid URL and Title.
+
+**Test Steps:**
+1. **Smart Login:** Reuse session or login to access the account.
+2. **Navigation:** Navigate to the ""My Address"" tab.
+3. **UI Check:** Verify the page URL and the presence of the Address Tab title.
+
+**Expected Result:** User is on the correct Address Management page without UI broken.
+","53096","TC1: Quick verify address page UI & URL","Hasaki.vn Smoke Suite","Mon Feb 23 17:16:09 UTC 2026","passed","Mon Feb 23 17:17:02 UTC 2026","testcases.MyAddressTest","Smoke Test - Edge","testcases.MyAddressTest","MyAddress_verifyAddressUI"
+"### [UI] Checkout Page Integrity & Critical Components
+**Objective:** Verify that the Checkout page is fully rendered with all necessary functional components for payment.
+
+**Test Steps:**
+1. **Smart Authentication:** Reuse current session via `handleSmartLogin`.
+2. **Navigation Flow:** Transition from Homepage -> Cart -> Checkout page.
+3. **Component Validation:** Audit the presence of key UI anchors: Shipping Address, Payment Methods, and the 'Order' button.
+
+**Target:** Ensure the checkout interface is stable and all mandatory elements are enabled for user interaction.
+","19472","TC1: Integrity Check - Checkout Page UI","Hasaki.vn Smoke Suite","Mon Feb 23 17:22:46 UTC 2026","passed","Mon Feb 23 17:23:06 UTC 2026","testcases.CheckoutTest","Smoke Test - Edge","testcases.CheckoutTest","CheckoutTest_verifyCheckoutUIComponents"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","29960","TC3: Add 3 units of 'Nước hoa nữ' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:50:55 UTC 2026","passed","Mon Feb 23 16:51:25 UTC 2026","testcases.ProductDetailTest","Regression Test - Chrome","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [Function] Quantity Update & Price Synchronization
+**Objective:** Verify that increasing item quantities triggers correct price recalculations.
+
+**Test Steps:**
+1. **Action:** Increase the quantity of a specific product in the cart.
+2. **Sync Check:** Wait for the system to process the update and reflect new values.
+3. **Recalculation:** Re-verify the subtotal and grand total based on the updated quantity.
+
+**Target:** Ensure the dynamic cart update logic is synchronized with the pricing engine.
+","55418","TC3: Functional - Quantity Update & Recalculate","Hasaki.vn Regression Suite","Mon Feb 23 16:55:13 UTC 2026","passed","Mon Feb 23 16:56:09 UTC 2026","testcases.CartTest","Regression Test - Edge","testcases.CartTest","CartTest_UpdateQuantity"
+"### [Navigation] Search to Product Detail
+**Objective:** Ensure the user can reach the correct Product Detail Page (PDP) from the search results.
+
+**Test Steps:**
+1. **Search:** Input specific keyword and brand.
+2. **Selection:** Click on the first product in the results list.
+3. **Data Sync:** Verify that the PDP displays the correct Product Name and Brand.
+
+**Expected Result:** Smooth transition from Search to PDP with 100% data consistency.
+","4824","TC7 Search & Navigate: [rửa mặt] [cerave]","Hasaki.vn Smoke Suite","Mon Feb 23 17:15:53 UTC 2026","passed","Mon Feb 23 17:15:58 UTC 2026","testcases.SearchTest","Smoke Test - Chrome","testcases.SearchTest","search_verifyNavigationToProductDetail"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","37548","TC3 Verify unsigned keyword","Hasaki.vn Regression Suite","Mon Feb 23 16:43:41 UTC 2026","passed","Mon Feb 23 16:44:19 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","22570","TC2: Add Single Product 'Sữa rửa mặt' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:20:28 UTC 2026","passed","Mon Feb 23 17:20:51 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Function] Logout & Session Termination
+**Objective:** Verify that the system terminates the user session correctly upon logging out.
+
+**Test Steps:**
+1. **Login:** Access the system with a valid account.
+2. **Logout Action:** Navigate to the Logout function within the My Account page.
+3. **Verification:** Confirm the user is redirected and the session is cleared successfully.
+
+**Expected Result:** User is logged out.The session is terminated, redirected to the login page.
+","5710","Logout Test: Verify session termination for swata44@gmail.com","Hasaki.vn Smoke Suite","Mon Feb 23 17:23:21 UTC 2026","passed","Mon Feb 23 17:23:26 UTC 2026","testcases.LogoutTest","Smoke Test - Edge","testcases.LogoutTest","logout_verifyUserCanLogoutSuccessfully"
+"### [Cleanup] Cart empty & Final State Check
+**Objective:** Validate the ability to clear the entire cart and reset the shopping session.
+
+**Test Steps:**
+1. **Action:** Execute the ""Delete All"" function to remove all items from the cart.
+2. **Status Check:** Verify that no product elements remain in the cart list.
+3. **UI Verification:** Confirm the ""Empty Cart"" message or placeholder is displayed.
+
+**Target:** Ensure the cart can be fully cleared for a clean test environment.
+","56398","Clear All Items from Cart","Environment Cleanup","Sat Feb 28 01:17:17 UTC 2026","passed","Sat Feb 28 01:18:13 UTC 2026","testcases.CartTest","Cleanup environment before test - CHROME","testcases.CartTest","CartTest_DeleteAllItems"
+"### [Function] Add New Delivery Address
+**Objective:** Validate that a user can successfully create and save a new shipping address.
+
+**Test Steps:**
+1. **Smart Login:** Ensure the session is active.
+2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+3. **Submission:** Click save to store the new address.
+4. **Verification:** Verify the saved information matches the input data exactly.
+
+**Expected Result:** New address is saved and displayed correctly in the address list.
+","25160","TC2: Add Address for 'Trương Ngọc A'","Hasaki.vn Regression Suite","Mon Feb 23 16:46:49 UTC 2026","passed","Mon Feb 23 16:47:14 UTC 2026","testcases.MyAddressTest","Regression Test - Edge","testcases.MyAddressTest","MyAddress_verifyAddNewAddress"
+"### [Data-Sync] Profile Address & Checkout Consistency
+**Objective:** Validate that the system correctly pulls and synchronizes the default shipping address from the user profile to the Checkout page.
+
+**Test Steps:**
+1. **Profile Audit:** Access 'My Address' tab to extract the default Name and Address string.
+2. **Data Comparison:** Navigate to Checkout and capture the automatically populated address info.
+3. **Verification:** Perform a string-match comparison between the Profile Data and Checkout Data.
+
+**Target:** Ensure seamless data synchronization across the account management and checkout modules.
+","10107","TC2: Data Sync - Default Address Validation","Hasaki.vn Smoke Suite","Mon Feb 23 17:22:35 UTC 2026","passed","Mon Feb 23 17:22:45 UTC 2026","testcases.CheckoutTest","Smoke Test - Edge","testcases.CheckoutTest","CheckoutTest_verifyAddressSyncFromProfile"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2469","TC6: Enter valid data in email with a space "" "" at the end.","Hasaki.vn Regression Suite","Mon Feb 23 16:40:51 UTC 2026","passed","Mon Feb 23 16:40:54 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Function] Add New Delivery Address
+**Objective:** Validate that a user can successfully create and save a new shipping address.
+
+**Test Steps:**
+1. **Smart Login:** Ensure the session is active.
+2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+3. **Submission:** Click save to store the new address.
+4. **Verification:** Verify the saved information matches the input data exactly.
+
+**Expected Result:** New address is saved and displayed correctly in the address list.
+","24007","TC2: Add Address for 'Nguyễn Thị B'","Hasaki.vn Regression Suite","Mon Feb 23 16:46:22 UTC 2026","passed","Mon Feb 23 16:46:46 UTC 2026","testcases.MyAddressTest","Regression Test - Chrome","testcases.MyAddressTest","MyAddress_verifyAddNewAddress"
+"### [UI] Cart Page Accessibility & State Verification
+**Objective:** Verify that the Cart page loads correctly and the Page Object is properly initialized.
+
+**Test Steps:**
+1. **Smart Authentication:** Reuse existing session or login via `handleSmartLogin`.
+2. **Navigation:** Navigate directly to the Cart page via `quickGoToCart()`.
+3. **UI Check:** Verify the page URL and ensure the Cart Title element is displayed.
+
+**Target:** Confirm the cart environment is ready for functional and logic testing.
+","16901","TC1: Check cart page UI","Hasaki.vn Smoke Suite","Mon Feb 23 17:22:03 UTC 2026","passed","Mon Feb 23 17:22:20 UTC 2026","testcases.CartTest","Smoke Test - Chrome","testcases.CartTest","CartTest_VerifyUI"
+"### [Function] Add New Delivery Address
+**Objective:** Validate that a user can successfully create and save a new shipping address.
+
+**Test Steps:**
+1. **Smart Login:** Ensure the session is active.
+2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+3. **Submission:** Click save to store the new address.
+4. **Verification:** Verify the saved information matches the input data exactly.
+
+**Expected Result:** New address is saved and displayed correctly in the address list.
+","24443","TC2: Add Address for 'Nguyễn Tuấn T'","Hasaki.vn Regression Suite","Mon Feb 23 16:47:14 UTC 2026","passed","Mon Feb 23 16:47:39 UTC 2026","testcases.MyAddressTest","Regression Test - Edge","testcases.MyAddressTest","MyAddress_verifyAddNewAddress"
+"### [Function] Logout & Session Termination
+**Objective:** Verify that the system terminates the user session correctly upon logging out.
+
+**Test Steps:**
+1. **Login:** Access the system with a valid account.
+2. **Logout Action:** Navigate to the Logout function within the My Account page.
+3. **Verification:** Confirm the user is redirected and the session is cleared successfully.
+
+**Expected Result:** User is logged out.The session is terminated, redirected to the login page.
+","5426","Logout Test: Verify session termination for topphanst@gmail.com","Hasaki.vn Smoke Suite","Mon Feb 23 17:23:18 UTC 2026","passed","Mon Feb 23 17:23:24 UTC 2026","testcases.LogoutTest","Smoke Test - Chrome","testcases.LogoutTest","logout_verifyUserCanLogoutSuccessfully"
+"### [Function] Quantity Update & Price Synchronization
+**Objective:** Verify that increasing item quantities triggers correct price recalculations.
+
+**Test Steps:**
+1. **Action:** Increase the quantity of a specific product in the cart.
+2. **Sync Check:** Wait for the system to process the update and reflect new values.
+3. **Recalculation:** Re-verify the subtotal and grand total based on the updated quantity.
+
+**Target:** Ensure the dynamic cart update logic is synchronized with the pricing engine.
+","54585","TC3: Functional - Quantity Update & Recalculate","Hasaki.vn Regression Suite","Mon Feb 23 16:55:10 UTC 2026","passed","Mon Feb 23 16:56:05 UTC 2026","testcases.CartTest","Regression Test - Chrome","testcases.CartTest","CartTest_UpdateQuantity"
+"### [Filter] Price Range Validation
+**Objective:** Verify that the price filter correctly restricts products within the specified min-max range.
+
+**Test Steps:**
+1. **Search & Filter:** Search for a product and apply a price range filter.
+2. **Multi-page Verification:** Loop through all result pages.
+3. **Price Comparison:** Parse and verify every single product price against the filter boundary.
+
+**Expected Result:** No product price falls outside the [Min - Max] range across all pages.
+","18411","TC5 filter price: [Nước hoa] | Range: 100000 - 200000","Hasaki.vn Regression Suite","Mon Feb 23 16:42:13 UTC 2026","passed","Mon Feb 23 16:42:31 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyPriceFilterFunctionality"
+"### [UI] Login Page Layout & Elements Check
+**Objective:** Verify that all UI elements are displayed correctly before user interaction.
+
+**Key Checks:**
+- Validate placeholders for Email/Phone and Password fields.
+- Check if all main labels are displayed correctly in Vietnamese.
+- Handle cookies popup to ensure a clean UI state.
+","926","Verify LoginTest UI","Hasaki.vn Smoke Suite","Mon Feb 23 17:15:40 UTC 2026","passed","Mon Feb 23 17:15:41 UTC 2026","testcases.LoginTest","Smoke Test - Chrome","testcases.LoginTest","login_verifyUILayoutAndPlaceholders"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","19905","TC1: Verify UI for product 'Son thỏi LIP ON LIP'","Hasaki.vn Smoke Suite","Mon Feb 23 17:18:30 UTC 2026","passed","Mon Feb 23 17:18:50 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","1445","TC3: Enter valid email, leave password blank","Hasaki.vn Regression Suite","Mon Feb 23 16:40:31 UTC 2026","passed","Mon Feb 23 16:40:32 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2049","TC4: Leave the email blank, enter valid password","Hasaki.vn Regression Suite","Mon Feb 23 16:40:34 UTC 2026","passed","Mon Feb 23 16:40:36 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Negative] Missing Phone Number Validation
+**Objective:** Verify that the system prevents saving an address when the phone number is missing.
+
+**Test Steps:**
+1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+2. **Submit:** Attempt to save the address.
+3. **Validation:** Capture and check the specific error message.
+
+**Expected Result:** System blocks the submission and displays a clear ""Required"" warning for the phone field.
+","44410","TC3: Validate error message when phone is blank","Hasaki.vn Regression Suite","Mon Feb 23 16:44:53 UTC 2026","passed","Mon Feb 23 16:45:37 UTC 2026","testcases.MyAddressTest","Regression Test - Edge","testcases.MyAddressTest","MyAddress_validationLeavePhoneNumberBlank"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","1977","TC2: Leave the email, password blank","Hasaki.vn Regression Suite","Mon Feb 23 16:40:25 UTC 2026","passed","Mon Feb 23 16:40:27 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [E2E] Financial Synchronization (Price Integrity)
+**Objective:** Verify that the final total price calculated in the Cart matches exactly with the value on the Checkout page.
+
+**Test Steps:**
+1. **Bulk Purchase:** Add a variety of items to the cart to create a complex pricing scenario.
+2. **Cart Pricing:** Capture the `totalPriceInCart` as the source of truth.
+3. **Checkout Verification:** Compare the source price against the `totalPriceInCheckout` after the page transition.
+
+**Target:** Prevent any pricing discrepancies errors during the final steps of the flow.
+","48340","TC4: Verify E2E Flow - Shopping Cart & Checkout Total Price","Hasaki.vn Regression Suite","Mon Feb 23 16:57:14 UTC 2026","passed","Mon Feb 23 16:58:02 UTC 2026","testcases.CheckoutTest","Regression Test - Edge","testcases.CheckoutTest","CheckoutTest_verifyGrandTotalMatchWithCart"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","23449","TC1 Verify accurate rate by search  brand","Hasaki.vn Regression Suite","Mon Feb 23 16:42:33 UTC 2026","passed","Mon Feb 23 16:42:57 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [Cleanup] Delete Existing Address
+**Objective:** Ensure the system can remove an address from the user's account.
+
+**Test Steps:**
+1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+2. **Execution:** Click delete and confirm the removal.
+3. **Post-check:** Verify the address no longer exists in the list.
+
+**Expected Result:** The targeted address is completely removed from the UI and system.
+","19022","Delete Address of 'Nguyễn Tuấn T'","Environment Cleanup","Thu Feb 26 15:41:29 UTC 2026","passed","Thu Feb 26 15:41:48 UTC 2026","testcases.MyAddressTest","Cleanup environment before test - CHROME","testcases.MyAddressTest","MyAddress_verifyDeleteAddress"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","39775","TC2 Verify broad match key word","Hasaki.vn Regression Suite","Mon Feb 23 16:42:59 UTC 2026","passed","Mon Feb 23 16:43:39 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [Cleanup] Delete Existing Address
+**Objective:** Ensure the system can remove an address from the user's account.
+
+**Test Steps:**
+1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+2. **Execution:** Click delete and confirm the removal.
+3. **Post-check:** Verify the address no longer exists in the list.
+
+**Expected Result:** The targeted address is completely removed from the UI and system.
+","18587","Delete Address of 'Trương Ngọc A'","Environment Cleanup","Thu Feb 26 15:41:11 UTC 2026","passed","Thu Feb 26 15:41:30 UTC 2026","testcases.MyAddressTest","Cleanup environment before test - MS EDGE","testcases.MyAddressTest","MyAddress_verifyDeleteAddress"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","18617","TC1: Verify UI for product 'Son thỏi LIP ON LIP'","Hasaki.vn Smoke Suite","Mon Feb 23 17:18:32 UTC 2026","passed","Mon Feb 23 17:18:50 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2987","TC5: Enter invalid data without symbol ""@"" in email","Hasaki.vn Regression Suite","Mon Feb 23 16:40:42 UTC 2026","passed","Mon Feb 23 16:40:45 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2942","TC7: Enter valid email, invalid password ","Hasaki.vn Regression Suite","Mon Feb 23 16:40:58 UTC 2026","passed","Mon Feb 23 16:41:01 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2870","TC5: Enter invalid data without symbol ""@"" in email","Hasaki.vn Regression Suite","Mon Feb 23 16:40:40 UTC 2026","passed","Mon Feb 23 16:40:43 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [UI] Cart Page Accessibility & State Verification
+**Objective:** Verify that the Cart page loads correctly and the Page Object is properly initialized.
+
+**Test Steps:**
+1. **Smart Authentication:** Reuse existing session or login via `handleSmartLogin`.
+2. **Navigation:** Navigate directly to the Cart page via `quickGoToCart()`.
+3. **UI Check:** Verify the page URL and ensure the Cart Title element is displayed.
+
+**Target:** Confirm the cart environment is ready for functional and logic testing.
+","16539","TC1: Check cart page UI","Hasaki.vn Smoke Suite","Mon Feb 23 17:22:06 UTC 2026","passed","Mon Feb 23 17:22:22 UTC 2026","testcases.CartTest","Smoke Test - Edge","testcases.CartTest","CartTest_VerifyUI"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","55368","TC1: Verify UI for product 'Chống nắng sunplay'","Hasaki.vn Smoke Suite","Mon Feb 23 17:17:13 UTC 2026","passed","Mon Feb 23 17:18:09 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","54867","TC1: Verify UI for product 'Chống nắng sunplay'","Hasaki.vn Smoke Suite","Mon Feb 23 17:17:12 UTC 2026","passed","Mon Feb 23 17:18:07 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2865","TC7: Enter valid email, invalid password ","Hasaki.vn Regression Suite","Mon Feb 23 16:40:57 UTC 2026","passed","Mon Feb 23 16:41:00 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","3280","TC1: Login with default account","Hasaki.vn Regression Suite","Mon Feb 23 16:40:16 UTC 2026","passed","Mon Feb 23 16:40:19 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Negative] Missing Phone Number Validation
+**Objective:** Verify that the system prevents saving an address when the phone number is missing.
+
+**Test Steps:**
+1. **Incomplete Input:** Fill in all address details but leave the Phone Number field empty.
+2. **Submit:** Attempt to save the address.
+3. **Validation:** Capture and check the specific error message.
+
+**Expected Result:** System blocks the submission and displays a clear ""Required"" warning for the phone field.
+","43755","TC3: Validate error message when phone is blank","Hasaki.vn Regression Suite","Mon Feb 23 16:44:50 UTC 2026","passed","Mon Feb 23 16:45:34 UTC 2026","testcases.MyAddressTest","Regression Test - Chrome","testcases.MyAddressTest","MyAddress_validationLeavePhoneNumberBlank"
+"### [UI] Login Page Layout & Elements Check
+**Objective:** Verify that all UI elements are displayed correctly before user interaction.
+
+**Key Checks:**
+- Validate placeholders for Email/Phone and Password fields.
+- Check if all main labels are displayed correctly in Vietnamese.
+- Handle cookies popup to ensure a clean UI state.
+","927","Verify LoginTest UI","Hasaki.vn Smoke Suite","Mon Feb 23 17:15:41 UTC 2026","passed","Mon Feb 23 17:15:41 UTC 2026","testcases.LoginTest","Smoke Test - Edge","testcases.LoginTest","login_verifyUILayoutAndPlaceholders"
+"### [Filter] Price Range Validation
+**Objective:** Verify that the price filter correctly restricts products within the specified min-max range.
+
+**Test Steps:**
+1. **Search & Filter:** Search for a product and apply a price range filter.
+2. **Multi-page Verification:** Loop through all result pages.
+3. **Price Comparison:** Parse and verify every single product price against the filter boundary.
+
+**Expected Result:** No product price falls outside the [Min - Max] range across all pages.
+","26794","TC5 filter price: [Kem chống nắng] | Range: 80000 - 100000","Hasaki.vn Regression Suite","Mon Feb 23 16:41:44 UTC 2026","passed","Mon Feb 23 16:42:11 UTC 2026","testcases.SearchTest","Regression Test - Edge","testcases.SearchTest","search_verifyPriceFilterFunctionality"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","23498","TC3: Add 2 units of 'Chống nắng' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:50:30 UTC 2026","skipped","Mon Feb 23 16:50:53 UTC 2026","testcases.ProductDetailTest","Regression Test - Chrome","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","23453","TC2: Add Single Product 'Chống nắng' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:19:14 UTC 2026","passed","Mon Feb 23 17:19:37 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","1795","TC3: Enter valid email, leave password blank","Hasaki.vn Regression Suite","Mon Feb 23 16:40:29 UTC 2026","passed","Mon Feb 23 16:40:30 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [Filter] Price Range Validation
+**Objective:** Verify that the price filter correctly restricts products within the specified min-max range.
+
+**Test Steps:**
+1. **Search & Filter:** Search for a product and apply a price range filter.
+2. **Multi-page Verification:** Loop through all result pages.
+3. **Price Comparison:** Parse and verify every single product price against the filter boundary.
+
+**Expected Result:** No product price falls outside the [Min - Max] range across all pages.
+","18230","TC5 filter price: [Nước hoa] | Range: 100000 - 200000","Hasaki.vn Regression Suite","Mon Feb 23 16:42:13 UTC 2026","passed","Mon Feb 23 16:42:31 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyPriceFilterFunctionality"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","5639","TC6: Enter valid data in email with a space "" "" at the end.","Hasaki.vn Regression Suite","Mon Feb 23 16:40:47 UTC 2026","passed","Mon Feb 23 16:40:53 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+"### [E2E] Full Purchase Flow & Data Integrity Check
+**Objective:** Validate the entire e-commerce flow from product search to the final checkout stage, ensuring no data loss or price mismatches occur during transitions.
+
+**Test Workflow:**
+1. **Session Management:** Execute Smart Login to maintain authentication throughout the flow.
+2. **Product Acquisition:** Dynamically search and add multiple products into the shopping cart.
+3. **Cart Validation:** Perform an audit on subtotals and verify data mapping into Product Models (POJOs).
+4. **Checkout Integration:** Transfer all cart data to the Checkout page.
+5. **Final Integrity Check:** Execute a **Deep Comparison** between the Cart data and Checkout data (Matching Name, Price, and SKU).
+
+**Business Goal:** Ensure a seamless and error-free, smoothly process for the customer.
+","100605","E2E Purchase Flow: Integrity Check","Hasaki.vn - Purchase Flow","Sat Feb 28 01:18:44 UTC 2026","passed","Sat Feb 28 01:20:25 UTC 2026","testcases.PurchaseEndToEndTest","E2E Purchase Flow - MS EDGE Execution","testcases.PurchaseEndToEndTest","endToEndPurchaseFlow"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","1980","TC4: Leave the email blank, enter valid password","Hasaki.vn Regression Suite","Mon Feb 23 16:40:36 UTC 2026","passed","Mon Feb 23 16:40:38 UTC 2026","testcases.LoginTest","Regression Test - Edge","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
+" ### [Cart] Add Multiple Items & Purchase Limit Handling
+ **Objective:** Verify quantity management in the cart and handle products with purchase limits.
+ 
+ **Test Steps:**
+ 1. **Set Quantity:** Input a specific number of units from the DataProvider.
+ 2. **Action:** Attempt to add the bulk quantity to the cart.
+ 3. **Logic Handling:** - If the product is limited to 1, skip the verification to avoid false failure.
+     - Otherwise, verify the cart count increases by the specified amount.
+     
+ **Expected Result:** Cart quantity matches the sum of existing items and newly added units.
+ ","29600","TC3: Add 3 units of 'Son thỏi' to Cart","Hasaki.vn Regression Suite","Mon Feb 23 16:51:28 UTC 2026","passed","Mon Feb 23 16:51:57 UTC 2026","testcases.ProductDetailTest","Regression Test - Edge","testcases.ProductDetailTest","ProductDetail_addMultipleUnits"
+"### [E2E] Financial Synchronization (Price Integrity)
+**Objective:** Verify that the final total price calculated in the Cart matches exactly with the value on the Checkout page.
+
+**Test Steps:**
+1. **Bulk Purchase:** Add a variety of items to the cart to create a complex pricing scenario.
+2. **Cart Pricing:** Capture the `totalPriceInCart` as the source of truth.
+3. **Checkout Verification:** Compare the source price against the `totalPriceInCheckout` after the page transition.
+
+**Target:** Prevent any pricing discrepancies errors during the final steps of the flow.
+","50741","TC4: Verify E2E Flow - Shopping Cart & Checkout Total Price","Hasaki.vn Regression Suite","Mon Feb 23 16:57:10 UTC 2026","passed","Mon Feb 23 16:58:01 UTC 2026","testcases.CheckoutTest","Regression Test - Chrome","testcases.CheckoutTest","CheckoutTest_verifyGrandTotalMatchWithCart"
+"### [Data-Driven] Search Accuracy & Matching Rate
+**Objective:** Validate search engine quality by calculating the matching rate of results against expected keywords.
+
+**Test Steps:**
+1. **Dynamic Search:** Execute search using keywords and types from Excel.
+2. **First Page Audit:** Calculate matching percentage for the initial result set.
+3. **Deep Pagination:** Traverse through all available pages to compute the ""Global Accuracy Rate"".
+4. **Threshold Validation:** Compare final rate against the defined expected percentage.
+
+**Target:** Ensure search results remain relevant across multiple pages.
+","14861","TC4 Verify system have auto-correct keyword","Hasaki.vn Regression Suite","Mon Feb 23 16:44:21 UTC 2026","failed","Mon Feb 23 16:44:36 UTC 2026","testcases.SearchTest","Regression Test - Chrome","testcases.SearchTest","search_verifyResultsAccuracyWithMultipleKeywords"
+"### [E2E] Item List Migration & Integrity (Cart to Checkout)
+**Objective:** Ensure that all products added to the cart are accurately carried over to the Checkout stage without data loss.
+
+**Test Steps:**
+1. **Data Acquisition:** Dynamically search and add multiple items from Data provider to the cart.
+2. **Cart Snapshot:** Extract a detailed list of products (Name, SKU, Price) using the `ProductModel` POJO.
+3. **Deep Comparison:** Transition to Checkout and perform a 1-on-1 comparison between the Cart List and Checkout List.
+
+**Target:** Guarantee 100% data integrity for product metadata throughout the purchase journey.
+","48125","TC3: E2E Flow - Item List Integrity (Cart -> Checkout)","Hasaki.vn Regression Suite","Mon Feb 23 16:58:02 UTC 2026","passed","Mon Feb 23 16:58:51 UTC 2026","testcases.CheckoutTest","Regression Test - Chrome","testcases.CheckoutTest","CheckoutTest_verifyItemListIntegrityAfterCheckout"
+"### [Function] Add New Delivery Address
+**Objective:** Validate that a user can successfully create and save a new shipping address.
+
+**Test Steps:**
+1. **Smart Login:** Ensure the session is active.
+2. **Input Data:** Fill in Name, Phone, and select Province/District/Ward from Excel.
+3. **Submission:** Click save to store the new address.
+4. **Verification:** Verify the saved information matches the input data exactly.
+
+**Expected Result:** New address is saved and displayed correctly in the address list.
+","24074","TC2: Add Address for 'Nguyễn Tuấn T'","Hasaki.vn Regression Suite","Mon Feb 23 16:47:10 UTC 2026","passed","Mon Feb 23 16:47:34 UTC 2026","testcases.MyAddressTest","Regression Test - Chrome","testcases.MyAddressTest","MyAddress_verifyAddNewAddress"
+"### [UI] Product Detail Page Check
+**Objective:** Verify that the Product Detail Page (PDP) displays the correct information and is ready for interaction.
+
+**Test Steps:**
+1. **Navigation:** Search and navigate to the PDP of a specific product.
+2. **URL & Identity:** Verify the page URL and ensure the product name contains the correct keyword.
+3. **Availability:** Confirm the ""Add to Cart"" button is visible and enabled.
+
+**Expected Result:** PDP loads fully with accurate product data and an active purchase button.
+","19631","TC1: Verify UI for product 'Sữa rửa mặt cerave'","Hasaki.vn Smoke Suite","Mon Feb 23 17:18:52 UTC 2026","passed","Mon Feb 23 17:19:12 UTC 2026","testcases.ProductDetailTest","Smoke Test - Chrome","testcases.ProductDetailTest","ProductDetail_VerifyUI"
+"### [E2E] Item List Migration & Integrity (Cart to Checkout)
+**Objective:** Ensure that all products added to the cart are accurately carried over to the Checkout stage without data loss.
+
+**Test Steps:**
+1. **Data Acquisition:** Dynamically search and add multiple items from Data provider to the cart.
+2. **Cart Snapshot:** Extract a detailed list of products (Name, SKU, Price) using the `ProductModel` POJO.
+3. **Deep Comparison:** Transition to Checkout and perform a 1-on-1 comparison between the Cart List and Checkout List.
+
+**Target:** Guarantee 100% data integrity for product metadata throughout the purchase journey.
+","47991","TC3: E2E Flow - Item List Integrity (Cart -> Checkout)","Hasaki.vn Regression Suite","Mon Feb 23 16:58:04 UTC 2026","passed","Mon Feb 23 16:58:52 UTC 2026","testcases.CheckoutTest","Regression Test - Edge","testcases.CheckoutTest","CheckoutTest_verifyItemListIntegrityAfterCheckout"
+"### [Cleanup] Delete Existing Address
+**Objective:** Ensure the system can remove an address from the user's account.
+
+**Test Steps:**
+1. **Locate Target:** Identify the address to be deleted by Name and Address string.
+2. **Execution:** Click delete and confirm the removal.
+3. **Post-check:** Verify the address no longer exists in the list.
+
+**Expected Result:** The targeted address is completely removed from the UI and system.
+","41478","Delete Address of 'Nguyễn Thị B'","Environment Cleanup","Thu Feb 26 15:40:28 UTC 2026","passed","Thu Feb 26 15:41:10 UTC 2026","testcases.MyAddressTest","Cleanup environment before test - CHROME","testcases.MyAddressTest","MyAddress_verifyDeleteAddress"
+"### [Cart] Add Single Item to Cart
+**Objective:** Verify that the cart quantity increases correctly when adding one unit.
+
+**Test Steps:**
+1. **Pre-check:** Capture the current items count in the mini-cart.
+2. **Action:** Click ""Add to Cart"" and verify the success popup appears.
+3. **Sync Check:** Close the popup and re-verify the cart quantity.
+
+**Expected Result:** The cart badge must increase by exactly (+1) unit.
+","22710","TC2: Add Single Product 'Sữa rửa mặt' to Cart","Hasaki.vn Smoke Suite","Mon Feb 23 17:20:30 UTC 2026","passed","Mon Feb 23 17:20:52 UTC 2026","testcases.ProductDetailTest","Smoke Test - Edge","testcases.ProductDetailTest","ProductDetail_addSingleUnit"
+"### [Data-Driven] Login Functionality Scenarios
+**Objective:** Execute multiple login test cases automatically using data from Excel/POJO.
+
+**Test Scenarios:**
+- **Positive Case:** Login with valid account.
+- **Empty Fields:** Leave Email or Password blank to check error messages.
+- **Invalid Format:** Enter email without '@' or wrong format.
+- **Security & Boundary:** Check wrong passwords and trailing spaces.
+
+**Data Source:** LoginModel (Dynamic Data Provider).
+","2155","TC2: Leave the email, password blank","Hasaki.vn Regression Suite","Mon Feb 23 16:40:23 UTC 2026","passed","Mon Feb 23 16:40:25 UTC 2026","testcases.LoginTest","Regression Test - Chrome","testcases.LoginTest","login_verifyMultipleAuthenticationScenarios"
