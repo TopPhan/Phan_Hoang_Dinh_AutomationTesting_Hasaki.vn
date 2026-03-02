@@ -3,7 +3,7 @@
 ![TestNG](https://img.shields.io/badge/TestNG-7.x-red?style=flat-square)
 ![Maven](https://img.shields.io/badge/Maven-Project-blue?style=flat-square&logo=apache-maven) <br>
 ![Regression Test](https://github.com/TopPhan/Phan_Hoang_Dinh_AutomationTesting_Hasaki.vn/actions/workflows/E2E_Purchase.yml/badge.svg) 
-# 🌿 [Hasaki.vn](https://hasaki.vn/) — End-to-End Automation Testing Framework
+# 🌿 [Hasaki.vn](https://hasaki.vn/) — E2E Automation Testing Framework
 
 <img width="1911" height="866" alt="image" src="https://github.com/user-attachments/assets/302da9c5-8e77-4723-9e1a-80cbf7b0c15a" />
 
